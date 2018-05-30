@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="J3f-LZ-bNb">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="College_Posters" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="-890.39999999999998" y="35.532233883058474"/>
+        </scene>
+        <!--Discover-->
+        <scene sceneID="NOc-pt-id2">
+            <objects>
+                <viewController id="jPc-wd-6Hf" customClass="DiscoverViewController" customModule="College_Posters" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QvO-jd-Taf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="jPD-9b-gNv"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Discover" id="791-d0-mAf"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VEJ-qF-uIf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="952.79999999999995" y="367.46626686656674"/>
+        </scene>
+        <!--Post-->
+        <scene sceneID="P8O-Mj-JeX">
+            <objects>
+                <viewController id="SC7-aT-qhD" customClass="PostViewController" customModule="College_Posters" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rzA-CV-Txa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="egf-vS-y97"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Post" id="pki-CS-mvo"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NxF-ih-iiH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="937" y="1084"/>
+        </scene>
+        <!--Explore-->
+        <scene sceneID="Dl2-Wm-FtE">
+            <objects>
+                <viewController id="cyA-fR-51p" customClass="ExploreViewController" customModule="College_Posters" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CYb-M1-lyc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="uoa-Ru-FWa"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Explore" id="7na-AY-6XR"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SfK-Zr-f7Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="952.79999999999995" y="-296.40179910044981"/>
+        </scene>
+        <!--Message-->
+        <scene sceneID="AMZ-CR-3Ip">
+            <objects>
+                <viewController id="Mzf-3T-ZxK" customClass="MessageViewController" customModule="College_Posters" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cpw-ep-3Pc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="GjP-3O-P79"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Message" id="pN5-cL-IRu"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bcV-7o-rpd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2434" y="-82"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="Hgi-3T-5si">
+            <objects>
+                <viewController id="4dI-9v-H1e" customClass="ProfileViewController" customModule="College_Posters" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TTL-DY-bfZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="R3R-8y-k84"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Profile" id="kIE-ol-jvg"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cfy-nI-ZAP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2433" y="782"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="G45-8C-pLw">
+            <objects>
+                <tabBarController id="J3f-LZ-bNb" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="YBl-At-ugb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="cyA-fR-51p" kind="relationship" relationship="viewControllers" id="skJ-4k-bim"/>
+                        <segue destination="jPc-wd-6Hf" kind="relationship" relationship="viewControllers" id="71D-br-WqD"/>
+                        <segue destination="SC7-aT-qhD" kind="relationship" relationship="viewControllers" id="yRU-12-FlH"/>
+                        <segue destination="Mzf-3T-ZxK" kind="relationship" relationship="viewControllers" id="N3L-Zy-f92"/>
+                        <segue destination="4dI-9v-H1e" kind="relationship" relationship="viewControllers" id="Bzb-0J-40O"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O36-9D-fbv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-33" y="36"/>
+        </scene>
+    </scenes>
+</document>
