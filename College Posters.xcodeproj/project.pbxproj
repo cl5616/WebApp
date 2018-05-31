@@ -23,6 +23,7 @@
 		EB4A886020BF2E7300AF5587 /* ExploreRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A885F20BF2E7300AF5587 /* ExploreRootViewController.swift */; };
 		EB4A886620BF6F0700AF5587 /* ExploreTrendCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A886520BF6F0700AF5587 /* ExploreTrendCollectionViewController.swift */; };
 		EB4A886820BF6F1800AF5587 /* ExploreFollowCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A886720BF6F1800AF5587 /* ExploreFollowCollectionViewController.swift */; };
+		EB4A887120C06DA800AF5587 /* Poster.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A887020C06DA800AF5587 /* Poster.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		EB4A885F20BF2E7300AF5587 /* ExploreRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreRootViewController.swift; sourceTree = "<group>"; };
 		EB4A886520BF6F0700AF5587 /* ExploreTrendCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreTrendCollectionViewController.swift; sourceTree = "<group>"; };
 		EB4A886720BF6F1800AF5587 /* ExploreFollowCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreFollowCollectionViewController.swift; sourceTree = "<group>"; };
+		EB4A887020C06DA800AF5587 /* Poster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poster.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 		EB4A882120BEC4F400AF5587 /* College Posters */ = {
 			isa = PBXGroup;
 			children = (
+				EB4A886F20C06D7B00AF5587 /* model */,
 				EB4A882220BEC4F400AF5587 /* AppDelegate.swift */,
 				EB4A882420BEC4F400AF5587 /* ViewController.swift */,
 				EB4A885520BF1A6D00AF5587 /* DiscoverViewController.swift */,
@@ -150,6 +153,14 @@
 				EB4A884720BEC4F500AF5587 /* Info.plist */,
 			);
 			path = "College PostersUITests";
+			sourceTree = "<group>";
+		};
+		EB4A886F20C06D7B00AF5587 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				EB4A887020C06DA800AF5587 /* Poster.swift */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,6 +302,7 @@
 				EB4A885620BF1A6D00AF5587 /* DiscoverViewController.swift in Sources */,
 				EB4A886620BF6F0700AF5587 /* ExploreTrendCollectionViewController.swift in Sources */,
 				EB4A885C20BF1A9E00AF5587 /* ProfileViewController.swift in Sources */,
+				EB4A887120C06DA800AF5587 /* Poster.swift in Sources */,
 				EB4A886820BF6F1800AF5587 /* ExploreFollowCollectionViewController.swift in Sources */,
 				EB4A885A20BF1A8800AF5587 /* MessageViewController.swift in Sources */,
 				EB4A886020BF2E7300AF5587 /* ExploreRootViewController.swift in Sources */,

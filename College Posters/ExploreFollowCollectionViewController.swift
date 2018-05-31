@@ -8,7 +8,7 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
+private let reuseIdentifier = "followCell"
 
 class ExploreFollowCollectionViewController: UICollectionViewController {
 
@@ -19,7 +19,7 @@ class ExploreFollowCollectionViewController: UICollectionViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "followCell")
+        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
     }
@@ -53,11 +53,10 @@ class ExploreFollowCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "followCell", for: indexPath)
-    
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        
         // Configure the cell
-        cell.backgroundColor = UIColor.red
-    
+        
         return cell
     }
 
