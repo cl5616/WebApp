@@ -14,7 +14,7 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var selectButton: UIButton!
-    @IBOutlet weak var nextButton: UIBarButtonItem!
+    @IBOutlet weak var nextButton: s!
 
     var picker = UIImagePickerController()
     
@@ -47,6 +47,7 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
+            
         }))
         
         actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action:UIAlertAction) in self.picker.sourceType = .photoLibrary
@@ -59,7 +60,8 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     @IBAction func nextPressed(_ sender: Any) {
-        
+        let postDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "postDetailVC")
+        self.navigationController!.pushViewController(postDetailViewController!, animated: true)
     }
     
     override func viewDidLoad() {
