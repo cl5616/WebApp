@@ -1,4 +1,3 @@
 language: swift
 os: osx
-xcode_project: CollegePosters
-xcode_scheme: CollegePostersTests
+script: xcodebuild test -project CollegePosters.xcodeproj -scheme CollegePosters -destination 'platform=iOS Simulator,OS=11.3,name=iPhone 8'
