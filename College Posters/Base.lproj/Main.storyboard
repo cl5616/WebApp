@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="J3f-LZ-bNb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="J3f-LZ-bNb">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -48,10 +49,60 @@
                     <view key="view" contentMode="scaleToFill" id="rzA-CV-Txa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="84s-aN-lse">
+                                <rect key="frame" x="0.0" y="64" width="375" height="322"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="84s-aN-lse" secondAttribute="height" multiplier="375:322" id="FQU-B8-dNn"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vUt-uN-Mfu">
+                                <rect key="frame" x="131" y="64" width="114" height="322"/>
+                                <state key="normal" title="SELECT IMAGES">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="selectPressed:" destination="SC7-aT-qhD" eventType="touchUpInside" id="jJA-47-geW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qcw-rG-ZM6">
+                                <rect key="frame" x="245" y="394" width="114" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" title="SELECT MULTIPLE"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="vUt-uN-Mfu" firstAttribute="centerY" secondItem="84s-aN-lse" secondAttribute="centerY" id="7J8-eH-dOd"/>
+                            <constraint firstItem="vUt-uN-Mfu" firstAttribute="top" secondItem="84s-aN-lse" secondAttribute="top" id="Ciy-26-Eih"/>
+                            <constraint firstItem="vUt-uN-Mfu" firstAttribute="centerX" secondItem="84s-aN-lse" secondAttribute="centerX" id="IAV-AY-f3N"/>
+                            <constraint firstItem="qcw-rG-ZM6" firstAttribute="top" secondItem="84s-aN-lse" secondAttribute="bottom" constant="8" id="O34-kS-B0P"/>
+                            <constraint firstItem="egf-vS-y97" firstAttribute="trailing" secondItem="qcw-rG-ZM6" secondAttribute="trailing" constant="16" id="TSX-P4-vPr"/>
+                            <constraint firstItem="vUt-uN-Mfu" firstAttribute="top" secondItem="84s-aN-lse" secondAttribute="top" id="VTM-wW-g2V"/>
+                            <constraint firstItem="84s-aN-lse" firstAttribute="centerX" secondItem="egf-vS-y97" secondAttribute="centerX" id="ZCy-fd-fLV"/>
+                            <constraint firstItem="84s-aN-lse" firstAttribute="top" secondItem="egf-vS-y97" secondAttribute="top" id="n1p-d7-YkX"/>
+                            <constraint firstItem="84s-aN-lse" firstAttribute="width" secondItem="egf-vS-y97" secondAttribute="width" id="yuD-yY-aJA"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="egf-vS-y97"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Post" id="iaE-rK-t6S"/>
+                    <navigationItem key="navigationItem" title="Post" id="iaE-rK-t6S">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="pHi-eP-zgC">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ndw-YD-t75">
+                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Next"/>
+                            </button>
+                            <connections>
+                                <action selector="nextPressed:" destination="SC7-aT-qhD" id="y2V-fw-2vP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="NextButton" destination="pHi-eP-zgC" id="WHI-Tz-3o7"/>
+                        <outlet property="nextButton" destination="pHi-eP-zgC" id="qaw-Wl-YxL"/>
+                        <outlet property="previewImage" destination="84s-aN-lse" id="jZc-Dw-O7z"/>
+                        <outlet property="selectButton" destination="vUt-uN-Mfu" id="nJX-OD-JYH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NxF-ih-iiH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
