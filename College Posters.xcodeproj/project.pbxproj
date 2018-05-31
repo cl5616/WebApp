@@ -24,6 +24,7 @@
 		EB4A886620BF6F0700AF5587 /* ExploreTrendCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A886520BF6F0700AF5587 /* ExploreTrendCollectionViewController.swift */; };
 		EB4A886820BF6F1800AF5587 /* ExploreFollowCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A886720BF6F1800AF5587 /* ExploreFollowCollectionViewController.swift */; };
 		EB4A887120C06DA800AF5587 /* Poster.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A887020C06DA800AF5587 /* Poster.swift */; };
+		EB4A887320C09D8800AF5587 /* ExploreTrendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A887220C09D8800AF5587 /* ExploreTrendCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		EB4A886520BF6F0700AF5587 /* ExploreTrendCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreTrendCollectionViewController.swift; sourceTree = "<group>"; };
 		EB4A886720BF6F1800AF5587 /* ExploreFollowCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreFollowCollectionViewController.swift; sourceTree = "<group>"; };
 		EB4A887020C06DA800AF5587 /* Poster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poster.swift; sourceTree = "<group>"; };
+		EB4A887220C09D8800AF5587 /* ExploreTrendCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreTrendCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,16 +120,9 @@
 			isa = PBXGroup;
 			children = (
 				EB4A886F20C06D7B00AF5587 /* model */,
+				EB4A887620C0A10500AF5587 /* view */,
+				EB4A887520C0A08900AF5587 /* controllers */,
 				EB4A882220BEC4F400AF5587 /* AppDelegate.swift */,
-				EB4A882420BEC4F400AF5587 /* ViewController.swift */,
-				EB4A885520BF1A6D00AF5587 /* DiscoverViewController.swift */,
-				EB4A885B20BF1A9E00AF5587 /* ProfileViewController.swift */,
-				EB4A885D20BF1AC000AF5587 /* ExploreViewController.swift */,
-				EB4A885720BF1A7900AF5587 /* PostViewController.swift */,
-				EB4A885920BF1A8800AF5587 /* MessageViewController.swift */,
-				EB4A886520BF6F0700AF5587 /* ExploreTrendCollectionViewController.swift */,
-				EB4A886720BF6F1800AF5587 /* ExploreFollowCollectionViewController.swift */,
-				EB4A885F20BF2E7300AF5587 /* ExploreRootViewController.swift */,
 				EB4A882620BEC4F400AF5587 /* Main.storyboard */,
 				EB4A882C20BEC4F500AF5587 /* Assets.xcassets */,
 				EB4A882E20BEC4F500AF5587 /* LaunchScreen.storyboard */,
@@ -161,6 +156,30 @@
 				EB4A887020C06DA800AF5587 /* Poster.swift */,
 			);
 			path = model;
+			sourceTree = "<group>";
+		};
+		EB4A887520C0A08900AF5587 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EB4A882420BEC4F400AF5587 /* ViewController.swift */,
+				EB4A885520BF1A6D00AF5587 /* DiscoverViewController.swift */,
+				EB4A885B20BF1A9E00AF5587 /* ProfileViewController.swift */,
+				EB4A885D20BF1AC000AF5587 /* ExploreViewController.swift */,
+				EB4A885720BF1A7900AF5587 /* PostViewController.swift */,
+				EB4A885920BF1A8800AF5587 /* MessageViewController.swift */,
+				EB4A886520BF6F0700AF5587 /* ExploreTrendCollectionViewController.swift */,
+				EB4A886720BF6F1800AF5587 /* ExploreFollowCollectionViewController.swift */,
+				EB4A885F20BF2E7300AF5587 /* ExploreRootViewController.swift */,
+			);
+			path = controllers;
+			sourceTree = "<group>";
+		};
+		EB4A887620C0A10500AF5587 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				EB4A887220C09D8800AF5587 /* ExploreTrendCollectionViewCell.swift */,
+			);
+			path = view;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -301,6 +320,7 @@
 				EB4A885E20BF1AC000AF5587 /* ExploreViewController.swift in Sources */,
 				EB4A885620BF1A6D00AF5587 /* DiscoverViewController.swift in Sources */,
 				EB4A886620BF6F0700AF5587 /* ExploreTrendCollectionViewController.swift in Sources */,
+				EB4A887320C09D8800AF5587 /* ExploreTrendCollectionViewCell.swift in Sources */,
 				EB4A885C20BF1A9E00AF5587 /* ProfileViewController.swift in Sources */,
 				EB4A887120C06DA800AF5587 /* Poster.swift in Sources */,
 				EB4A886820BF6F1800AF5587 /* ExploreFollowCollectionViewController.swift in Sources */,

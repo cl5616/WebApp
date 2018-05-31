@@ -14,7 +14,7 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var selectButton: UIButton!
-    @IBOutlet weak var nextButton: s!
+    @IBOutlet weak var nextButton: UIBarButtonItem!
 
     var picker = UIImagePickerController()
     
