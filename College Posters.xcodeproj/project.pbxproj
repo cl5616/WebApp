@@ -20,6 +20,9 @@
 		EB4A885A20BF1A8800AF5587 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A885920BF1A8800AF5587 /* MessageViewController.swift */; };
 		EB4A885C20BF1A9E00AF5587 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A885B20BF1A9E00AF5587 /* ProfileViewController.swift */; };
 		EB4A885E20BF1AC000AF5587 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A885D20BF1AC000AF5587 /* ExploreViewController.swift */; };
+		EB4A886020BF2E7300AF5587 /* ExploreRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A885F20BF2E7300AF5587 /* ExploreRootViewController.swift */; };
+		EB4A886620BF6F0700AF5587 /* ExploreTrendCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A886520BF6F0700AF5587 /* ExploreTrendCollectionViewController.swift */; };
+		EB4A886820BF6F1800AF5587 /* ExploreFollowCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A886720BF6F1800AF5587 /* ExploreFollowCollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +62,9 @@
 		EB4A885920BF1A8800AF5587 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		EB4A885B20BF1A9E00AF5587 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		EB4A885D20BF1AC000AF5587 /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
+		EB4A885F20BF2E7300AF5587 /* ExploreRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreRootViewController.swift; sourceTree = "<group>"; };
+		EB4A886520BF6F0700AF5587 /* ExploreTrendCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreTrendCollectionViewController.swift; sourceTree = "<group>"; };
+		EB4A886720BF6F1800AF5587 /* ExploreFollowCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreFollowCollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +122,9 @@
 				EB4A885D20BF1AC000AF5587 /* ExploreViewController.swift */,
 				EB4A885720BF1A7900AF5587 /* PostViewController.swift */,
 				EB4A885920BF1A8800AF5587 /* MessageViewController.swift */,
+				EB4A886520BF6F0700AF5587 /* ExploreTrendCollectionViewController.swift */,
+				EB4A886720BF6F1800AF5587 /* ExploreFollowCollectionViewController.swift */,
+				EB4A885F20BF2E7300AF5587 /* ExploreRootViewController.swift */,
 				EB4A882620BEC4F400AF5587 /* Main.storyboard */,
 				EB4A882C20BEC4F500AF5587 /* Assets.xcassets */,
 				EB4A882E20BEC4F500AF5587 /* LaunchScreen.storyboard */,
@@ -280,8 +289,11 @@
 				EB4A882320BEC4F400AF5587 /* AppDelegate.swift in Sources */,
 				EB4A885E20BF1AC000AF5587 /* ExploreViewController.swift in Sources */,
 				EB4A885620BF1A6D00AF5587 /* DiscoverViewController.swift in Sources */,
+				EB4A886620BF6F0700AF5587 /* ExploreTrendCollectionViewController.swift in Sources */,
 				EB4A885C20BF1A9E00AF5587 /* ProfileViewController.swift in Sources */,
+				EB4A886820BF6F1800AF5587 /* ExploreFollowCollectionViewController.swift in Sources */,
 				EB4A885A20BF1A8800AF5587 /* MessageViewController.swift in Sources */,
+				EB4A886020BF2E7300AF5587 /* ExploreRootViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
