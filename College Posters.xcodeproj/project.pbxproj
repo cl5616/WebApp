@@ -99,9 +99,9 @@
 		EB4A881620BEC4F400AF5587 = {
 			isa = PBXGroup;
 			children = (
-				EB4A882120BEC4F400AF5587 /* College Posters */,
-				EB4A883920BEC4F500AF5587 /* College PostersTests */,
-				EB4A884420BEC4F500AF5587 /* College PostersUITests */,
+				EB4A882120BEC4F400AF5587 /* CollegePosters */,
+				EB4A883920BEC4F500AF5587 /* CollegePostersTests */,
+				EB4A884420BEC4F500AF5587 /* CollegePostersUITests */,
 				EB4A882020BEC4F400AF5587 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -116,7 +116,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		EB4A882120BEC4F400AF5587 /* College Posters */ = {
+		EB4A882120BEC4F400AF5587 /* CollegePosters */ = {
 			isa = PBXGroup;
 			children = (
 				EB4A886F20C06D7B00AF5587 /* model */,
@@ -129,25 +129,25 @@
 				EB4A883120BEC4F500AF5587 /* Info.plist */,
 				EB4A882920BEC4F400AF5587 /* College_Posters.xcdatamodeld */,
 			);
-			path = "College Posters";
+			path = CollegePosters;
 			sourceTree = "<group>";
 		};
-		EB4A883920BEC4F500AF5587 /* College PostersTests */ = {
+		EB4A883920BEC4F500AF5587 /* CollegePostersTests */ = {
 			isa = PBXGroup;
 			children = (
 				EB4A883A20BEC4F500AF5587 /* College_PostersTests.swift */,
 				EB4A883C20BEC4F500AF5587 /* Info.plist */,
 			);
-			path = "College PostersTests";
+			path = CollegePostersTests;
 			sourceTree = "<group>";
 		};
-		EB4A884420BEC4F500AF5587 /* College PostersUITests */ = {
+		EB4A884420BEC4F500AF5587 /* CollegePostersUITests */ = {
 			isa = PBXGroup;
 			children = (
 				EB4A884520BEC4F500AF5587 /* College_PostersUITests.swift */,
 				EB4A884720BEC4F500AF5587 /* Info.plist */,
 			);
-			path = "College PostersUITests";
+			path = CollegePostersUITests;
 			sourceTree = "<group>";
 		};
 		EB4A886F20C06D7B00AF5587 /* model */ = {
