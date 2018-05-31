@@ -8,28 +8,67 @@
 
 import UIKit
 
-class PostViewController: UIViewController {
+class PostViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    @IBOutlet weak var previewImage: UIImageView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var selectButton: UIButton!
+    @IBOutlet weak var nextButton: s!
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    var picker = UIImagePickerController()
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+            self.previewImage.image = image
+            selectButton.isHidden = true
+            self.nextButton.isEnabled = true
+        }
+        
+        self.dismiss(animated: true, completion: nil)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
     }
-    */
+    
+    @IBAction func selectPressed(_ sender: Any) {
+        
+        picker.allowsEditing = true
+        
+        let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a source", preferredStyle: .actionSheet)
+        
+        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action:UIAlertAction) in
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                self.picker.sourceType = .camera
+                self.present(self.picker, animated: true, completion: nil)
+            } else {
+                let alert = UIAlertController(title: "Invalid Photo Source", message: "No access to Camera.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+            
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action:UIAlertAction) in self.picker.sourceType = .photoLibrary
+            self.present(self.picker, animated: true, completion: nil)
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    @IBAction func nextPressed(_ sender: Any) {
+        let postDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "postDetailVC")
+        self.navigationController!.pushViewController(postDetailViewController!, animated: true)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        nextButton.isEnabled = false
+        picker.delegate = self
+        self.navigationItem.rightBarButtonItem = nextButton
+    }
 
 }
