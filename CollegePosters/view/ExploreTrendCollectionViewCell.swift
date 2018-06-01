@@ -10,6 +10,8 @@ import UIKit
 
 class ExploreTrendCell : UICollectionViewCell {
     
+    var test : String
+    
     var poster: Poster? {
         didSet {
             cellLabel.text = poster?.posterTitle
