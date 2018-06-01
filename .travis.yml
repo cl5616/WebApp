@@ -1,4 +1,8 @@
 language: swift
 os: osx
 osx_image: xcode9.3
-script: xcodebuild test -project CollegePosters.xcodeproj -scheme CollegePosters -destination 'platform=iOS Simulator,OS=10.3.1,name=iPhone 7'
+script:
+  - xcodebuild test -project CollegePosters.xcodeproj -scheme CollegePosters -destination 'platform=iOS Simulator,OS=10.3.1,name=iPhone 7'
+  - xcodebuild test -project CollegePosters.xcodeproj -scheme CollegePosters -destination 'platform=iOS Simulator,OS=10.3.1,name=iPhone 7 Plus'
+  - xcodebuild test -project CollegePosters.xcodeproj -scheme CollegePosters -destination 'platform=iOS Simulator,OS=10.3.1,name=iPhone 6'
+  - xcodebuild test -project CollegePosters.xcodeproj -scheme CollegePosters -destination 'platform=iOS Simulator,OS=10.3.1,name=iPhone 6 Plus'
