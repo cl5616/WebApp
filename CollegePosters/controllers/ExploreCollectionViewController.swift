@@ -65,13 +65,12 @@ class ExploreCollectionViewController: UICollectionViewController, UICollectionV
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        //menuBar.hbLeftAnchor?.constant = scrollView.contentOffset.x / 3
         if self.currentIdx > 0 && self.currentIdx < indexToIdMap.count - 1 {
             menuBar.hbLeftAnchor?.constant = view.frame.width / 3
         } else if self.currentIdx == 0 {
-            menuBar.hbLeftAnchor?.constant = 0
+            menuBar.hbLeftAnchor?.constant = scrollView.contentOffset.x / 3
         } else {
-            menuBar.hbLeftAnchor?.constant = view.frame.width / 3 * 2
+            menuBar.hbLeftAnchor?.constant = (scrollView.contentOffset.x - (CGFloat((indexToIdMap.count - 1)) * view.frame.width / 3)) / 3
         }
         
     }
@@ -101,6 +100,7 @@ class ExploreCollectionViewController: UICollectionViewController, UICollectionV
             menuBar.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
             menuBar.hbLeftAnchor?.constant = view.frame.width / 3 * 2
         }
+        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {self.menuBar.layoutIfNeeded()}, completion:nil)
     }
     
     private func setupMenuBar() {

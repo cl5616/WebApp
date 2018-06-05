@@ -72,8 +72,8 @@ class ExploreMenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelega
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! MenuBarCell
         
         cell.imageView.image = UIImage(named: navImageNames[indexPath.item])?.withRenderingMode(.alwaysTemplate)
-        cell.imageView.contentMode = UIViewContentMode.center
         cell.tintColor = UIColor.gray
+        
         return cell
     }
     
@@ -98,8 +98,8 @@ class MenuBarCell: UICollectionViewCell {
     
     let imageView: UIImageView = {
         let iv = UIImageView(image: UIImage(named: "trend")?.withRenderingMode(.alwaysTemplate))
-        iv.contentMode = UIViewContentMode.center
         iv.translatesAutoresizingMaskIntoConstraints = false
+        iv.contentMode = UIViewContentMode.center
         return iv
     }()
     
