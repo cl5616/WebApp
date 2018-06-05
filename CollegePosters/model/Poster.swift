@@ -13,7 +13,7 @@ class Poster: NSObject {
     var posterImageName: String?
     var posterTitle: String?
     var posterDescription: PosterDescription?
-    
+    var time: Date?
     
 }
 

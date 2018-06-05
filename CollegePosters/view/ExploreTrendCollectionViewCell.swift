@@ -10,8 +10,6 @@ import UIKit
 
 class ExploreTrendCell : UICollectionViewCell {
     
-    var test : String
-    
     var poster: Poster? {
         didSet {
             cellLabel.text = poster?.posterTitle
@@ -38,6 +36,8 @@ class ExploreTrendCell : UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.cornerRadius = 20
+        imageView.layer.masksToBounds = true
         
         return imageView
     }()
@@ -53,7 +53,6 @@ class ExploreTrendCell : UICollectionViewCell {
         let label = UILabel()
         label.backgroundColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "some example text plus djfklajsdklfjajlsnd jklbafjal nsdjknfajln vjlkbajdn fjkabsdjo fnajksdnf jlansdfjk bajosdnf kasdgj a;dsnga a"
         return label
     }()
     
@@ -82,14 +81,12 @@ class ExploreTrendCell : UICollectionViewCell {
         addSubview(cellLabel)
         addConstraint(NSLayoutConstraint(item: cellLabel, attribute: .top, relatedBy: .equal, toItem: posterImage, attribute: .bottom, multiplier: 1, constant: 8))
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0(44)]-8-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": cellLabel]))
-        addConstraint(NSLayoutConstraint(item: cellLabel, attribute: .leading, relatedBy: .equal, toItem: posterImage, attribute: .leading, multiplier: 1, constant: 0))
+        addConstraint(NSLayoutConstraint(item: cellLabel, attribute: .leading, relatedBy: .equal, toItem: posterImage, attribute: .leading, multiplier: 1, constant: 20))
         addConstraint(NSLayoutConstraint(item: cellLabel, attribute: .trailing, relatedBy: .equal, toItem: posterImage, attribute: .trailing, multiplier: 1, constant: -50))
         
         addSubview(likebtn)
         addConstraint(NSLayoutConstraint(item: likebtn, attribute: .top, relatedBy: .equal, toItem: posterImage, attribute: .bottom, multiplier: 1, constant: 15))
         addConstraint(NSLayoutConstraint(item: likebtn, attribute: .trailing, relatedBy: .equal, toItem: posterImage, attribute: .trailing, multiplier: 1, constant: -7))
-        print("built cell")
-        
     }
     
 }

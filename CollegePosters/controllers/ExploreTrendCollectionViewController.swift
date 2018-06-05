@@ -14,6 +14,12 @@ class ExploreTrendCollectionViewController: UICollectionViewController, UICollec
     
     var posters: [Poster] = [Poster]()
     var postersSrcUrl: String?
+    let menuBar: ExploreMenuBar = {
+        let mb = ExploreMenuBar()
+        mb.translatesAutoresizingMaskIntoConstraints = false
+        return mb
+    }()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +29,8 @@ class ExploreTrendCollectionViewController: UICollectionViewController, UICollec
 
         // Register cell classes
         self.collectionView!.register(ExploreTrendCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        
+        //test images
         let test1Poster = Poster()
         test1Poster.posterImageName = "heart33"
         test1Poster.posterTitle = "Some stupid title"
@@ -31,14 +39,18 @@ class ExploreTrendCollectionViewController: UICollectionViewController, UICollec
         test2Poster.posterTitle = "Some other stupid title"
         
         posters = [test1Poster, test2Poster]
+        
 
         // Do any additional setup after loading the view.
+        
+        collectionView?.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: 0, right: 0)
+        setupMenuBar()
     }
     
-    func addNewPosters(_ posters: Poster...) {
-        for poster in posters {
-            self.posters.append(poster)
-        }
+    private func setupMenuBar() {
+        view.addSubview(menuBar)
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0(30)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": menuBar]))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": menuBar]))
     }
 
     override func didReceiveMemoryWarning() {
