@@ -12,10 +12,11 @@ class ExploreMenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelega
     
     var exploreController: ExploreCollectionViewController?
     let cellId = "menuBarCell"
-    let navImageNames = ["trend", "follow"]
+    let navImageNames = ["trend", "follow", "category", "category"]
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = UIColor.white
         cv.translatesAutoresizingMaskIntoConstraints = false
@@ -38,6 +39,10 @@ class ExploreMenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelega
         collectionView.selectItem(at: selectedMenuBarCell, animated: false, scrollPosition: [])
         
         setupHorizontalBar()
+        
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.isPagingEnabled = true
     }
     
     var hbLeftAnchor: NSLayoutConstraint?
@@ -51,44 +56,41 @@ class ExploreMenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelega
         hbLeftAnchor = hb.leftAnchor.constraint(equalTo: self.leftAnchor)
         hbLeftAnchor?.isActive = true
         hb.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        hb.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/2).isActive = true
+        hb.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/3).isActive = true
         hb.heightAnchor.constraint(equalToConstant: 4).isActive = true
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-      
-        /*
-        let x = CGFloat(indexPath.item) * frame.width / 2
-        hbLeftAnchor?.constant = x
-        
-        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {self.layoutIfNeeded()}, completion: nil)
-        */
         exploreController?.scrollToMenuIndex(menuIndex: indexPath.item)
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return 4
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! MenuBarCell
         
         cell.imageView.image = UIImage(named: navImageNames[indexPath.item])?.withRenderingMode(.alwaysTemplate)
+        cell.imageView.contentMode = UIViewContentMode.center
         cell.tintColor = UIColor.gray
-        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: frame.width / 2, height: frame.height)
+        return CGSize(width: frame.width / 3, height: frame.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
@@ -96,6 +98,7 @@ class MenuBarCell: UICollectionViewCell {
     
     let imageView: UIImageView = {
         let iv = UIImageView(image: UIImage(named: "trend")?.withRenderingMode(.alwaysTemplate))
+        iv.contentMode = UIViewContentMode.center
         iv.translatesAutoresizingMaskIntoConstraints = false
         return iv
     }()
@@ -129,6 +132,4 @@ class MenuBarCell: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
 }

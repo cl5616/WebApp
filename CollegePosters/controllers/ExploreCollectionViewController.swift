@@ -13,7 +13,10 @@ class ExploreCollectionViewController: UICollectionViewController, UICollectionV
     var postersSrcUrl: String?
     let trendId = "trendCell"
     let followId = "followCell"
-    let indexToIdMap = [0: "trendCell", 1: "followCell"]
+    let cat1ID = "cat1"
+    let cat2ID = "cat2"
+    let indexToIdMap = [0: "trendCell", 1: "followCell", 2: "cat1", 3: "cat2"]
+    var currentIdx = 0
     
     lazy var menuBar: ExploreMenuBar = {
         let mb = ExploreMenuBar()
@@ -31,6 +34,8 @@ class ExploreCollectionViewController: UICollectionViewController, UICollectionV
         // Register cell classes
         self.collectionView!.register(TrendCell.self, forCellWithReuseIdentifier: trendId)
         self.collectionView!.register(FollowCell.self, forCellWithReuseIdentifier: followId)
+        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cat1ID)
+        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cat2ID)
 
         // Do any additional setup after loading the view.
         
@@ -42,14 +47,33 @@ class ExploreCollectionViewController: UICollectionViewController, UICollectionV
     
     override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         let index = targetContentOffset.pointee.x / view.frame.width
+        self.currentIdx = Int(index)
         
         let indexPath = IndexPath(item: Int(index), section: 0)
         
-        menuBar.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
+        if Int(index) > 0 && Int(index) < indexToIdMap.count - 1 {
+            menuBar.collectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
+            menuBar.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
+        } else if Int(index) == 0 {
+            menuBar.collectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.left, animated: true)
+            menuBar.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
+        } else {
+            menuBar.collectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.right, animated: true)
+            menuBar.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
+        }
+        
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        menuBar.hbLeftAnchor?.constant = scrollView.contentOffset.x / 2
+        //menuBar.hbLeftAnchor?.constant = scrollView.contentOffset.x / 3
+        if self.currentIdx > 0 && self.currentIdx < indexToIdMap.count - 1 {
+            menuBar.hbLeftAnchor?.constant = view.frame.width / 3
+        } else if self.currentIdx == 0 {
+            menuBar.hbLeftAnchor?.constant = 0
+        } else {
+            menuBar.hbLeftAnchor?.constant = view.frame.width / 3 * 2
+        }
+        
     }
     
     func setupCollectionView() {
@@ -61,8 +85,22 @@ class ExploreCollectionViewController: UICollectionViewController, UICollectionV
     }
     
     func scrollToMenuIndex(menuIndex: Int) {
+        currentIdx = menuIndex
         let indexPath = IndexPath(item: menuIndex, section: 0)
         collectionView?.scrollToItem(at: indexPath, at: [], animated: true)
+        if menuIndex > 0 && menuIndex < indexToIdMap.count - 1 {
+            menuBar.collectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
+            menuBar.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
+            menuBar.hbLeftAnchor?.constant = view.frame.width / 3
+        } else if menuIndex == 0 {
+            menuBar.collectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.left, animated: true)
+            menuBar.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
+            menuBar.hbLeftAnchor?.constant = 0
+        } else {
+            menuBar.collectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.right, animated: true)
+            menuBar.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
+            menuBar.hbLeftAnchor?.constant = view.frame.width / 3 * 2
+        }
     }
     
     private func setupMenuBar() {
@@ -109,13 +147,17 @@ class ExploreCollectionViewController: UICollectionViewController, UICollectionV
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 2
+        return 4
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: indexToIdMap[indexPath.item]!, for: indexPath)
-            
+        
+        if indexPath.item == 3 {
+            cell.backgroundColor = UIColor.orange
+        }
+        
         return cell
     }
 
