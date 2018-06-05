@@ -14,7 +14,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="College_Posters" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CollegePosters" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -29,7 +29,7 @@
         <!--Search-->
         <scene sceneID="NOc-pt-id2">
             <objects>
-                <viewController id="jPc-wd-6Hf" customClass="DiscoverViewController" customModule="College_Posters" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jPc-wd-6Hf" customClass="DiscoverViewController" customModule="CollegePosters" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QvO-jd-Taf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -42,10 +42,10 @@
             </objects>
             <point key="canvasLocation" x="1892" y="367.46626686656674"/>
         </scene>
-        <!--Post-->
+        <!--PostImageSelect-->
         <scene sceneID="P8O-Mj-JeX">
             <objects>
-                <viewController id="SC7-aT-qhD" customClass="PostViewController" customModule="College_Posters" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="PostImageSelect" id="SC7-aT-qhD" customClass="PostViewController" customModule="CollegePosters" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rzA-CV-Txa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -95,15 +95,10 @@
                         <viewLayoutGuide key="safeArea" id="egf-vS-y97"/>
                     </view>
                     <navigationItem key="navigationItem" title="Post" id="iaE-rK-t6S">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="pHi-eP-zgC">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ndw-YD-t75">
-                                <rect key="frame" x="276" y="7" width="83" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Next"/>
-                            </button>
+                        <barButtonItem key="rightBarButtonItem" title="Next" style="plain" id="pHi-eP-zgC">
                             <connections>
                                 <action selector="nextPressed:" destination="SC7-aT-qhD" id="y2V-fw-2vP"/>
-                                <segue destination="iIn-WC-v6w" kind="show" id="sz2-j1-IRD"/>
+                                <segue destination="5wP-SZ-X0J" kind="show" id="RKX-Z1-D4A"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -112,26 +107,28 @@
                         <outlet property="nextButton" destination="pHi-eP-zgC" id="qaw-Wl-YxL"/>
                         <outlet property="previewImage" destination="84s-aN-lse" id="jZc-Dw-O7z"/>
                         <outlet property="selectButton" destination="vUt-uN-Mfu" id="nJX-OD-JYH"/>
+                        <outlet property="titleTextField" destination="EvR-zs-yX2" id="hkJ-DC-NQx"/>
+                        <segue destination="5wP-SZ-X0J" kind="show" id="BQE-7U-Xvp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NxF-ih-iiH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1876" y="1083.5082458770617"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="z6N-Ce-h6A">
+        <!--Details-->
+        <scene sceneID="v1g-KI-koA">
             <objects>
-                <viewController storyboardIdentifier="postDetailVC" id="iIn-WC-v6w" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ppl-kI-Aan">
+                <viewController title="Details" id="5wP-SZ-X0J" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3Pg-z5-0cy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="SDU-jm-Lir"/>
+                        <viewLayoutGuide key="safeArea" id="ll1-d7-Sl7"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mLW-Mf-CNv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rUh-Sk-UAG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2854" y="1091"/>
+            <point key="canvasLocation" x="2799" y="1085"/>
         </scene>
         <!--Explore-->
         <scene sceneID="Dl2-Wm-FtE">
@@ -167,7 +164,7 @@
         <!--Explore Trend Collection View Controller-->
         <scene sceneID="akB-NK-e5O">
             <objects>
-                <collectionViewController storyboardIdentifier="ExploreTrend" id="xjj-Zx-Qjm" customClass="ExploreTrendCollectionViewController" customModule="College_Posters" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="ExploreTrend" id="xjj-Zx-Qjm" customClass="ExploreTrendCollectionViewController" customModule="CollegePosters" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="Wim-ay-pW8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -192,7 +189,7 @@
         <!--Explore Follow Collection View Controller-->
         <scene sceneID="7tf-BK-Bzx">
             <objects>
-                <collectionViewController storyboardIdentifier="ExploreFollow" id="gKI-ac-aVs" customClass="ExploreFollowCollectionViewController" customModule="College_Posters" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="ExploreFollow" id="gKI-ac-aVs" customClass="ExploreFollowCollectionViewController" customModule="CollegePosters" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="tUK-LD-ayi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -217,7 +214,7 @@
         <!--Message-->
         <scene sceneID="AMZ-CR-3Ip">
             <objects>
-                <viewController id="Mzf-3T-ZxK" customClass="MessageViewController" customModule="College_Posters" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Mzf-3T-ZxK" customClass="MessageViewController" customModule="CollegePosters" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cpw-ep-3Pc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -233,7 +230,7 @@
         <!--Profile-->
         <scene sceneID="Hgi-3T-5si">
             <objects>
-                <viewController id="4dI-9v-H1e" customClass="ProfileViewController" customModule="College_Posters" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="4dI-9v-H1e" customClass="ProfileViewController" customModule="CollegePosters" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TTL-DY-bfZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -270,7 +267,7 @@
         <!--Explore Root View Controller-->
         <scene sceneID="Ypf-Sz-Zfj">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="ejs-jM-Mtx" customClass="ExploreRootViewController" customModule="College_Posters" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="ejs-jM-Mtx" customClass="ExploreRootViewController" customModule="CollegePosters" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cmG-In-gRx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2852" y="-296.85157421289358"/>
@@ -394,4 +391,7 @@
         <image name="profile33" width="27" height="29"/>
         <image name="profilefilled33" width="27" height="29"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="BQE-7U-Xvp"/>
+    </inferredMetricsTieBreakers>
 </document>

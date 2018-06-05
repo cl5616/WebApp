@@ -8,14 +8,16 @@
 
 import UIKit
 
-class PostViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class PostViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,
+    UITextFieldDelegate{
 
     @IBOutlet weak var previewImage: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var selectButton: UIButton!
     @IBOutlet weak var nextButton: UIBarButtonItem!
-
+    @IBOutlet weak var titleTextField: UITextField!
+    
     var picker = UIImagePickerController()
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -60,14 +62,26 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     @IBAction func nextPressed(_ sender: Any) {
-        let postDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "postDetailVC")
-        self.navigationController!.pushViewController(postDetailViewController!, animated: true)
+        
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        titleTextField.resignFirstResponder()
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         nextButton.isEnabled = false
         picker.delegate = self
+        titleTextField.delegate = self
         self.navigationItem.rightBarButtonItem = nextButton
     }
 
