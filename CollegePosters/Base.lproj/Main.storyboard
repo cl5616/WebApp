@@ -56,8 +56,15 @@
                                     <constraint firstAttribute="width" secondItem="84s-aN-lse" secondAttribute="height" multiplier="375:322" id="FQU-B8-dNn"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vUt-uN-Mfu">
-                                <rect key="frame" x="131" y="64" width="114" height="322"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EvR-zs-yX2">
+                                <rect key="frame" x="33" y="468" width="308" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vUt-uN-Mfu">
+                                <rect key="frame" x="254" y="403" width="114" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="SELECT IMAGES">
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -65,30 +72,15 @@
                                     <action selector="selectPressed:" destination="SC7-aT-qhD" eventType="touchUpInside" id="jJA-47-geW"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qcw-rG-ZM6">
-                                <rect key="frame" x="245" y="394" width="114" height="28"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <state key="normal" title="SELECT MULTIPLE"/>
-                            </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EvR-zs-yX2">
-                                <rect key="frame" x="33" y="468" width="308" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="egf-vS-y97" firstAttribute="trailing" secondItem="EvR-zs-yX2" secondAttribute="trailing" constant="34" id="3Cm-Lo-e52"/>
-                            <constraint firstItem="vUt-uN-Mfu" firstAttribute="centerY" secondItem="84s-aN-lse" secondAttribute="centerY" id="7J8-eH-dOd"/>
+                            <constraint firstItem="egf-vS-y97" firstAttribute="trailing" secondItem="vUt-uN-Mfu" secondAttribute="trailing" constant="7" id="74H-kY-rom"/>
                             <constraint firstItem="EvR-zs-yX2" firstAttribute="top" secondItem="84s-aN-lse" secondAttribute="bottom" constant="82" id="BuX-g3-B7I"/>
-                            <constraint firstItem="vUt-uN-Mfu" firstAttribute="top" secondItem="84s-aN-lse" secondAttribute="top" id="Ciy-26-Eih"/>
-                            <constraint firstItem="vUt-uN-Mfu" firstAttribute="centerX" secondItem="84s-aN-lse" secondAttribute="centerX" id="IAV-AY-f3N"/>
                             <constraint firstItem="EvR-zs-yX2" firstAttribute="leading" secondItem="egf-vS-y97" secondAttribute="leading" constant="33" id="Jcu-8b-U65"/>
-                            <constraint firstItem="qcw-rG-ZM6" firstAttribute="top" secondItem="84s-aN-lse" secondAttribute="bottom" constant="8" id="O34-kS-B0P"/>
-                            <constraint firstItem="egf-vS-y97" firstAttribute="trailing" secondItem="qcw-rG-ZM6" secondAttribute="trailing" constant="16" id="TSX-P4-vPr"/>
-                            <constraint firstItem="vUt-uN-Mfu" firstAttribute="top" secondItem="84s-aN-lse" secondAttribute="top" id="VTM-wW-g2V"/>
                             <constraint firstItem="84s-aN-lse" firstAttribute="centerX" secondItem="egf-vS-y97" secondAttribute="centerX" id="ZCy-fd-fLV"/>
+                            <constraint firstItem="vUt-uN-Mfu" firstAttribute="top" secondItem="84s-aN-lse" secondAttribute="bottom" constant="17" id="m0v-lD-z03"/>
                             <constraint firstItem="84s-aN-lse" firstAttribute="top" secondItem="egf-vS-y97" secondAttribute="top" id="n1p-d7-YkX"/>
                             <constraint firstItem="84s-aN-lse" firstAttribute="width" secondItem="egf-vS-y97" secondAttribute="width" id="yuD-yY-aJA"/>
                         </constraints>
