@@ -10,8 +10,9 @@ import UIKit
 
 class ExploreMenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     
+    var exploreController: ExploreCollectionViewController?
     let cellId = "menuBarCell"
-    let navImageNames = ["Trend", "explore"]
+    let navImageNames = ["trend", "follow"]
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -35,6 +36,34 @@ class ExploreMenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelega
         
         let selectedMenuBarCell = IndexPath(item: 0, section: 0)
         collectionView.selectItem(at: selectedMenuBarCell, animated: false, scrollPosition: [])
+        
+        setupHorizontalBar()
+    }
+    
+    var hbLeftAnchor: NSLayoutConstraint?
+    
+    func setupHorizontalBar() {
+        let hb = UIView()
+        hb.backgroundColor = UIColor.black
+        hb.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(hb)
+        
+        hbLeftAnchor = hb.leftAnchor.constraint(equalTo: self.leftAnchor)
+        hbLeftAnchor?.isActive = true
+        hb.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        hb.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/2).isActive = true
+        hb.heightAnchor.constraint(equalToConstant: 4).isActive = true
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+      
+        /*
+        let x = CGFloat(indexPath.item) * frame.width / 2
+        hbLeftAnchor?.constant = x
+        
+        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {self.layoutIfNeeded()}, completion: nil)
+        */
+        exploreController?.scrollToMenuIndex(menuIndex: indexPath.item)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -49,7 +78,7 @@ class ExploreMenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelega
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! MenuBarCell
         
         cell.imageView.image = UIImage(named: navImageNames[indexPath.item])?.withRenderingMode(.alwaysTemplate)
-        cell.tintColor = UIColor.black
+        cell.tintColor = UIColor.gray
         
         return cell
     }
@@ -66,20 +95,20 @@ class ExploreMenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelega
 class MenuBarCell: UICollectionViewCell {
     
     let imageView: UIImageView = {
-        let iv = UIImageView(image: UIImage(named: "Trend")?.withRenderingMode(.alwaysTemplate))
+        let iv = UIImageView(image: UIImage(named: "trend")?.withRenderingMode(.alwaysTemplate))
         iv.translatesAutoresizingMaskIntoConstraints = false
         return iv
     }()
     
     override var isHighlighted: Bool {
         didSet {
-            imageView.tintColor = isHighlighted ? UIColor.gray : UIColor.black
+            imageView.tintColor = isHighlighted ? UIColor.black : UIColor.gray
         }
     }
     
     override var isSelected: Bool {
         didSet {
-            imageView.tintColor = isSelected ? UIColor.gray : UIColor.black
+            imageView.tintColor = isSelected ? UIColor.black : UIColor.gray
         }
     }
     

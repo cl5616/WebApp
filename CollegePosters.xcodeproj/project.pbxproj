@@ -19,12 +19,13 @@
 		EB4A885A20BF1A8800AF5587 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A885920BF1A8800AF5587 /* MessageViewController.swift */; };
 		EB4A885C20BF1A9E00AF5587 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A885B20BF1A9E00AF5587 /* ProfileViewController.swift */; };
 		EB4A885E20BF1AC000AF5587 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A885D20BF1AC000AF5587 /* ExploreViewController.swift */; };
-		EB4A886020BF2E7300AF5587 /* ExploreRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A885F20BF2E7300AF5587 /* ExploreRootViewController.swift */; };
-		EB4A886620BF6F0700AF5587 /* ExploreTrendCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A886520BF6F0700AF5587 /* ExploreTrendCollectionViewController.swift */; };
-		EB4A886820BF6F1800AF5587 /* ExploreFollowCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A886720BF6F1800AF5587 /* ExploreFollowCollectionViewController.swift */; };
+		EB4A886620BF6F0700AF5587 /* ExploreCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A886520BF6F0700AF5587 /* ExploreCollectionViewController.swift */; };
 		EB4A887120C06DA800AF5587 /* Poster.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A887020C06DA800AF5587 /* Poster.swift */; };
-		EB4A887320C09D8800AF5587 /* ExploreTrendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A887220C09D8800AF5587 /* ExploreTrendCollectionViewCell.swift */; };
+		EB4A887320C09D8800AF5587 /* ExploreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A887220C09D8800AF5587 /* ExploreCell.swift */; };
 		EB4A888620C5E53A00AF5587 /* ExploreMenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A888520C5E53A00AF5587 /* ExploreMenuBar.swift */; };
+		EB4A889020C6FD6900AF5587 /* TrendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A888F20C6FD6900AF5587 /* TrendCell.swift */; };
+		EB4A889420C7146400AF5587 /* FollowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A889320C7146400AF5587 /* FollowCell.swift */; };
+		EB4A889620C71DA400AF5587 /* ExploreBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A889520C71DA400AF5587 /* ExploreBaseCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,12 +55,13 @@
 		EB4A885920BF1A8800AF5587 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		EB4A885B20BF1A9E00AF5587 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		EB4A885D20BF1AC000AF5587 /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
-		EB4A885F20BF2E7300AF5587 /* ExploreRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreRootViewController.swift; sourceTree = "<group>"; };
-		EB4A886520BF6F0700AF5587 /* ExploreTrendCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreTrendCollectionViewController.swift; sourceTree = "<group>"; };
-		EB4A886720BF6F1800AF5587 /* ExploreFollowCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreFollowCollectionViewController.swift; sourceTree = "<group>"; };
+		EB4A886520BF6F0700AF5587 /* ExploreCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCollectionViewController.swift; sourceTree = "<group>"; };
 		EB4A887020C06DA800AF5587 /* Poster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poster.swift; sourceTree = "<group>"; };
-		EB4A887220C09D8800AF5587 /* ExploreTrendCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreTrendCollectionViewCell.swift; sourceTree = "<group>"; };
+		EB4A887220C09D8800AF5587 /* ExploreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCell.swift; sourceTree = "<group>"; };
 		EB4A888520C5E53A00AF5587 /* ExploreMenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreMenuBar.swift; sourceTree = "<group>"; };
+		EB4A888F20C6FD6900AF5587 /* TrendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendCell.swift; sourceTree = "<group>"; };
+		EB4A889320C7146400AF5587 /* FollowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowCell.swift; sourceTree = "<group>"; };
+		EB4A889520C71DA400AF5587 /* ExploreBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreBaseCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,9 +142,7 @@
 				EB4A885D20BF1AC000AF5587 /* ExploreViewController.swift */,
 				EB4A885720BF1A7900AF5587 /* PostViewController.swift */,
 				EB4A885920BF1A8800AF5587 /* MessageViewController.swift */,
-				EB4A886520BF6F0700AF5587 /* ExploreTrendCollectionViewController.swift */,
-				EB4A886720BF6F1800AF5587 /* ExploreFollowCollectionViewController.swift */,
-				EB4A885F20BF2E7300AF5587 /* ExploreRootViewController.swift */,
+				EB4A886520BF6F0700AF5587 /* ExploreCollectionViewController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -150,8 +150,11 @@
 		EB4A887620C0A10500AF5587 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				EB4A887220C09D8800AF5587 /* ExploreTrendCollectionViewCell.swift */,
+				EB4A887220C09D8800AF5587 /* ExploreCell.swift */,
 				EB4A888520C5E53A00AF5587 /* ExploreMenuBar.swift */,
+				EB4A888F20C6FD6900AF5587 /* TrendCell.swift */,
+				EB4A889320C7146400AF5587 /* FollowCell.swift */,
+				EB4A889520C71DA400AF5587 /* ExploreBaseCell.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -257,20 +260,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB4A889420C7146400AF5587 /* FollowCell.swift in Sources */,
+				EB4A889620C71DA400AF5587 /* ExploreBaseCell.swift in Sources */,
+				EB4A889020C6FD6900AF5587 /* TrendCell.swift in Sources */,
 				EB4A885820BF1A7900AF5587 /* PostViewController.swift in Sources */,
 				EB4A882B20BEC4F400AF5587 /* College_Posters.xcdatamodeld in Sources */,
 				EB4A882520BEC4F400AF5587 /* ViewController.swift in Sources */,
 				EB4A882320BEC4F400AF5587 /* AppDelegate.swift in Sources */,
 				EB4A885E20BF1AC000AF5587 /* ExploreViewController.swift in Sources */,
 				EB4A885620BF1A6D00AF5587 /* DiscoverViewController.swift in Sources */,
-				EB4A886620BF6F0700AF5587 /* ExploreTrendCollectionViewController.swift in Sources */,
-				EB4A887320C09D8800AF5587 /* ExploreTrendCollectionViewCell.swift in Sources */,
+				EB4A886620BF6F0700AF5587 /* ExploreCollectionViewController.swift in Sources */,
+				EB4A887320C09D8800AF5587 /* ExploreCell.swift in Sources */,
 				EB4A885C20BF1A9E00AF5587 /* ProfileViewController.swift in Sources */,
 				EB4A887120C06DA800AF5587 /* Poster.swift in Sources */,
-				EB4A886820BF6F1800AF5587 /* ExploreFollowCollectionViewController.swift in Sources */,
 				EB4A885A20BF1A8800AF5587 /* MessageViewController.swift in Sources */,
 				EB4A888620C5E53A00AF5587 /* ExploreMenuBar.swift in Sources */,
-				EB4A886020BF2E7300AF5587 /* ExploreRootViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ExploreTrendCell : UICollectionViewCell {
+class ExploreCell : UICollectionViewCell {
     
     var poster: Poster? {
         didSet {

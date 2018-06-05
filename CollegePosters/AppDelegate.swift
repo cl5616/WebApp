@@ -17,11 +17,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
+        window?.makeKeyAndVisible()
         //nav bar eliminate border
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
         
+        //status bar
+        let statusBackground = UIView()
+        statusBackground.backgroundColor = UIColor.white
+        statusBackground.translatesAutoresizingMaskIntoConstraints = false
+        
+        window?.addSubview(statusBackground)
+        window?.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0(20)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": statusBackground]))
+        window?.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": statusBackground]))
+
         
         return true
     }

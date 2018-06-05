@@ -134,42 +134,11 @@
             <point key="canvasLocation" x="2854" y="1091"/>
         </scene>
         <!--Explore-->
-        <scene sceneID="Dl2-Wm-FtE">
-            <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="cyA-fR-51p" customClass="ExploreViewController" customModule="College_Posters" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="CYb-M1-lyc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Djg-z6-P88">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <segue destination="xjj-Zx-Qjm" kind="embed" id="rSX-ND-7WZ"/>
-                                </connections>
-                            </containerView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="Djg-z6-P88" firstAttribute="bottom" secondItem="uoa-Ru-FWa" secondAttribute="bottom" id="9Q3-zI-fOz"/>
-                            <constraint firstItem="Djg-z6-P88" firstAttribute="top" secondItem="uoa-Ru-FWa" secondAttribute="top" id="QzW-jK-9jd"/>
-                            <constraint firstItem="Djg-z6-P88" firstAttribute="trailing" secondItem="uoa-Ru-FWa" secondAttribute="trailing" id="TQy-I3-hYt"/>
-                            <constraint firstItem="Djg-z6-P88" firstAttribute="leading" secondItem="uoa-Ru-FWa" secondAttribute="leading" id="g09-wL-O7a"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="uoa-Ru-FWa"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Explore" id="gyY-Ou-SUd"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SfK-Zr-f7Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1892" y="-296.40179910044981"/>
-        </scene>
-        <!--Explore Trend Collection View Controller-->
         <scene sceneID="akB-NK-e5O">
             <objects>
-                <collectionViewController storyboardIdentifier="ExploreTrend" automaticallyAdjustsScrollViewInsets="NO" id="xjj-Zx-Qjm" customClass="ExploreTrendCollectionViewController" customModule="CollegePosters" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="ExploreTrend" automaticallyAdjustsScrollViewInsets="NO" id="xjj-Zx-Qjm" customClass="ExploreCollectionViewController" customModule="CollegePosters" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="Wim-ay-pW8">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5mC-8V-YQI">
@@ -184,10 +153,11 @@
                             <outlet property="delegate" destination="xjj-Zx-Qjm" id="CsZ-a6-FKc"/>
                         </connections>
                     </collectionView>
+                    <navigationItem key="navigationItem" title="Explore" id="LTO-wh-xqN"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gOo-XK-cAA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2930" y="-297"/>
+            <point key="canvasLocation" x="1764" y="-296"/>
         </scene>
         <!--Message-->
         <scene sceneID="AMZ-CR-3Ip">
@@ -245,22 +215,22 @@
         <!--Navigation Controller-->
         <scene sceneID="geX-OZ-gIq">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kMh-0X-3X4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IR3-Fa-zYJ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="fire64" selectedImage="firefilled64" id="7na-AY-6XR">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                         <color key="badgeColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="B3c-zM-4sz">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="B3c-zM-4sz">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="cyA-fR-51p" kind="relationship" relationship="rootViewController" id="31q-Ff-W3O"/>
+                        <segue destination="xjj-Zx-Qjm" kind="relationship" relationship="rootViewController" id="JgL-qI-cYv"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kMh-0X-3X4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="952.79999999999995" y="-296.40179910044981"/>
         </scene>
