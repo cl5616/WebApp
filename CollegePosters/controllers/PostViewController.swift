@@ -137,8 +137,6 @@ class PostViewController: UIViewController, /*UIImagePickerControllerDelegate,*/
         self.view.endEditing(true)
     }
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

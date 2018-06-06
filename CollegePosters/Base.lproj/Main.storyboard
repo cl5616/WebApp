@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="J3f-LZ-bNb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -25,7 +25,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VEJ-qF-uIf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1892" y="367.46626686656674"/>
+            <point key="canvasLocation" x="1745" y="367"/>
         </scene>
         <!--PostImageSelect-->
         <scene sceneID="P8O-Mj-JeX">
@@ -167,10 +167,40 @@
             </objects>
             <point key="canvasLocation" x="1892" y="2619.9400299850076"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="2HT-xe-HWy">
+            <objects>
+                <viewController storyboardIdentifier="notSignedIn" id="HKd-Q8-PkP" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qup-AF-Mua">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SRL-LW-AKR">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="J3f-LZ-bNb" kind="show" id="gOh-cI-zap"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="SRL-LW-AKR" firstAttribute="leading" secondItem="GbS-J8-N6L" secondAttribute="leading" id="Ego-j3-vck"/>
+                            <constraint firstItem="SRL-LW-AKR" firstAttribute="top" secondItem="GbS-J8-N6L" secondAttribute="top" id="d3R-Rn-7e9"/>
+                            <constraint firstItem="SRL-LW-AKR" firstAttribute="bottom" secondItem="GbS-J8-N6L" secondAttribute="bottom" id="nLR-3D-rQR"/>
+                            <constraint firstItem="SRL-LW-AKR" firstAttribute="trailing" secondItem="GbS-J8-N6L" secondAttribute="trailing" id="qUT-TU-sFb"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="GbS-J8-N6L"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u1f-r6-hOy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1295.2" y="35.532233883058474"/>
+        </scene>
         <!--ExploreRoot-->
         <scene sceneID="G45-8C-pLw">
             <objects>
-                <tabBarController title="ExploreRoot" id="J3f-LZ-bNb" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="SignedIn" title="ExploreRoot" id="J3f-LZ-bNb" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="YBl-At-ugb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

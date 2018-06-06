@@ -12,7 +12,7 @@ class ExploreMenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelega
     
     var exploreController: ExploreCollectionViewController?
     let cellId = "menuBarCell"
-    let navImageNames = ["trend", "follow", "category", "category"]
+    let navImageNames = ["trend", "follow", "clubs", "market", "job", "academy", "socials"]
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -65,7 +65,7 @@ class ExploreMenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return navImageNames.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
