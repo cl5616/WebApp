@@ -30,6 +30,7 @@
 		EB4A889020C6FD6900AF5587 /* TrendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A888F20C6FD6900AF5587 /* TrendCell.swift */; };
 		EB4A889420C7146400AF5587 /* FollowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A889320C7146400AF5587 /* FollowCell.swift */; };
 		EB4A889620C71DA400AF5587 /* ExploreBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A889520C71DA400AF5587 /* ExploreBaseCell.swift */; };
+		EB4A889920C84CFB00AF5587 /* HttpApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A889820C84CFB00AF5587 /* HttpApiService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		EB4A888F20C6FD6900AF5587 /* TrendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendCell.swift; sourceTree = "<group>"; };
 		EB4A889320C7146400AF5587 /* FollowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowCell.swift; sourceTree = "<group>"; };
 		EB4A889520C71DA400AF5587 /* ExploreBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreBaseCell.swift; sourceTree = "<group>"; };
+		EB4A889820C84CFB00AF5587 /* HttpApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpApiService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				EB4A887020C06DA800AF5587 /* Poster.swift */,
+				EB4A889820C84CFB00AF5587 /* HttpApiService.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -362,14 +365,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-
 				EB4A889420C7146400AF5587 /* FollowCell.swift in Sources */,
 				EB4A889620C71DA400AF5587 /* ExploreBaseCell.swift in Sources */,
 				EB4A889020C6FD6900AF5587 /* TrendCell.swift in Sources */,
-				//EB4A885820BF1A7900AF5587 /* PostViewController.swift in Sources */,
 				63640EB420C74EBD0045A0F1 /* PostImagesView.swift in Sources */,
 				EB4A882B20BEC4F400AF5587 /* College_Posters.xcdatamodeld in Sources */,
 				EB4A882520BEC4F400AF5587 /* ViewController.swift in Sources */,
+				EB4A889920C84CFB00AF5587 /* HttpApiService.swift in Sources */,
 				EB4A882320BEC4F400AF5587 /* AppDelegate.swift in Sources */,
 				63D40D2520C5E16000DBF059 /* PostViewController.swift in Sources */,
 				EB4A885E20BF1AC000AF5587 /* ExploreViewController.swift in Sources */,

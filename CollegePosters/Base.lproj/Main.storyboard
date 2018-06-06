@@ -11,21 +11,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CollegePosters" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                    </view>
-                </viewController>
-            </objects>
-            <point key="canvasLocation" x="-846" y="36"/>
-        </scene>
         <!--Search-->
         <scene sceneID="NOc-pt-id2">
             <objects>
@@ -206,7 +191,6 @@
         <!--Navigation Controller-->
         <scene sceneID="geX-OZ-gIq">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kMh-0X-3X4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IR3-Fa-zYJ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="fire64" selectedImage="firefilled64" id="7na-AY-6XR">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
@@ -222,6 +206,7 @@
                         <segue destination="xjj-Zx-Qjm" kind="relationship" relationship="rootViewController" id="JgL-qI-cYv"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kMh-0X-3X4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="952.79999999999995" y="-296.40179910044981"/>
         </scene>
@@ -323,6 +308,6 @@
         <image name="profilefilled33" width="27" height="29"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BQE-7U-Xvp"/>
+        <segue reference="RKX-Z1-D4A"/>
     </inferredMetricsTieBreakers>
 </document>
