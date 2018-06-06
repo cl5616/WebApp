@@ -12,16 +12,18 @@ import BSImagePicker
 
 class PostViewController: UIViewController, /*UIImagePickerControllerDelegate,*/ UINavigationControllerDelegate,
     UITextFieldDelegate {
-
+    
+    
     
     //@IBOutlet weak var imageCollection: UICollectionView!
-    @IBOutlet weak var previewImage: UIImageView!
+    //@IBOutlet weak var previewImage: UIImageView!
     
     @IBOutlet weak var selectButton: UIButton!
     @IBOutlet weak var nextButton: UIBarButtonItem!
     @IBOutlet weak var titleTextField: UITextField!
     
-//    var picker = UIImagePickerController()
+    @IBOutlet weak var previewImage: PostImagesView!
+    //    var picker = UIImagePickerController()
 
     var selectedAssets = [PHAsset]()
     var selectedPhotos = [UIImage]()
@@ -110,10 +112,13 @@ class PostViewController: UIViewController, /*UIImagePickerControllerDelegate,*/
             }
             /*scrollViewImages.contentSize = CGSize(width: contentWidth, height: scrollViewImages.frame.height)
             */
-            
+            /*
             self.previewImage.animationImages = self.selectedPhotos
             self.previewImage.animationDuration = 3.0
             self.previewImage.startAnimating()
+ */
+            previewImage.selectedPhotos = self.selectedPhotos
+            previewImage.cv.reloadData()
         }
     }
     
