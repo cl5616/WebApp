@@ -118,7 +118,9 @@ class PostViewController: UIViewController, /*UIImagePickerControllerDelegate,*/
             self.previewImage.startAnimating()
  */
             previewImage.selectedPhotos = self.selectedPhotos
-            previewImage.cv.reloadData()
+            DispatchQueue.main.async {
+                self.previewImage.cv.reloadData()
+            }
         }
     }
     

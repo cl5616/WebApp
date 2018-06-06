@@ -10,7 +10,7 @@ import UIKit
 
 class PostImagesView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
   
-    var postImagesController: PostViewController?
+    //ar postImagesController: PostViewController?
     var cellID = "adfj"
     var selectedPhotos: [UIImage]?
     lazy var cv: UICollectionView = {

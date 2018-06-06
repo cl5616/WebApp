@@ -366,7 +366,7 @@
 				EB4A889420C7146400AF5587 /* FollowCell.swift in Sources */,
 				EB4A889620C71DA400AF5587 /* ExploreBaseCell.swift in Sources */,
 				EB4A889020C6FD6900AF5587 /* TrendCell.swift in Sources */,
-				EB4A885820BF1A7900AF5587 /* PostViewController.swift in Sources */,
+				//EB4A885820BF1A7900AF5587 /* PostViewController.swift in Sources */,
 				63640EB420C74EBD0045A0F1 /* PostImagesView.swift in Sources */,
 				EB4A882B20BEC4F400AF5587 /* College_Posters.xcdatamodeld in Sources */,
 				EB4A882520BEC4F400AF5587 /* ViewController.swift in Sources */,
