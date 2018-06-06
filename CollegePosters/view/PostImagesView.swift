@@ -20,7 +20,7 @@ class PostImagesView: UIView, UICollectionViewDataSource, UICollectionViewDelega
         cv2.translatesAutoresizingMaskIntoConstraints = false
         cv2.dataSource = self
         cv2.delegate = self
-        cv2.backgroundColor = UIColor.white
+        cv2.backgroundColor = UIColor.lightGray
         return cv2
     }()
 
