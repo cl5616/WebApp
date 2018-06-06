@@ -42,22 +42,23 @@
             </objects>
             <point key="canvasLocation" x="1892" y="367.46626686656674"/>
         </scene>
-        <!--Post-->
+        <!--PostImageSelect-->
         <scene sceneID="P8O-Mj-JeX">
             <objects>
-                <viewController id="SC7-aT-qhD" customClass="PostViewController" customModule="CollegePosters" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="PostImageSelect" id="SC7-aT-qhD" customClass="PostViewController" customModule="CollegePosters" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rzA-CV-Txa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="84s-aN-lse">
-                                <rect key="frame" x="0.0" y="64" width="375" height="322"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="84s-aN-lse" secondAttribute="height" multiplier="375:322" id="FQU-B8-dNn"/>
-                                </constraints>
-                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EvR-zs-yX2">
+                                <rect key="frame" x="33" y="468" width="308" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vUt-uN-Mfu">
-                                <rect key="frame" x="131" y="64" width="114" height="322"/>
+                                <rect key="frame" x="254" y="403" width="114" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="SELECT IMAGES">
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -65,73 +66,63 @@
                                     <action selector="selectPressed:" destination="SC7-aT-qhD" eventType="touchUpInside" id="jJA-47-geW"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qcw-rG-ZM6">
-                                <rect key="frame" x="245" y="394" width="114" height="28"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <state key="normal" title="SELECT MULTIPLE"/>
-                            </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EvR-zs-yX2">
-                                <rect key="frame" x="33" y="468" width="308" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d5G-Uq-fHX" customClass="PostImagesView" customModule="CollegePosters" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="375" height="322"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="d5G-Uq-fHX" secondAttribute="height" multiplier="375:322" id="2Ge-Oj-Utz"/>
+                                    <constraint firstAttribute="width" secondItem="d5G-Uq-fHX" secondAttribute="height" multiplier="375:322" id="yTh-n4-pDe"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="egf-vS-y97" firstAttribute="trailing" secondItem="EvR-zs-yX2" secondAttribute="trailing" constant="34" id="3Cm-Lo-e52"/>
-                            <constraint firstItem="vUt-uN-Mfu" firstAttribute="centerY" secondItem="84s-aN-lse" secondAttribute="centerY" id="7J8-eH-dOd"/>
-                            <constraint firstItem="EvR-zs-yX2" firstAttribute="top" secondItem="84s-aN-lse" secondAttribute="bottom" constant="82" id="BuX-g3-B7I"/>
-                            <constraint firstItem="vUt-uN-Mfu" firstAttribute="top" secondItem="84s-aN-lse" secondAttribute="top" id="Ciy-26-Eih"/>
-                            <constraint firstItem="vUt-uN-Mfu" firstAttribute="centerX" secondItem="84s-aN-lse" secondAttribute="centerX" id="IAV-AY-f3N"/>
+                            <constraint firstItem="d5G-Uq-fHX" firstAttribute="top" secondItem="egf-vS-y97" secondAttribute="top" id="53Z-9Z-1GM"/>
+                            <constraint firstItem="egf-vS-y97" firstAttribute="trailing" secondItem="vUt-uN-Mfu" secondAttribute="trailing" constant="7" id="74H-kY-rom"/>
+                            <constraint firstItem="d5G-Uq-fHX" firstAttribute="leading" secondItem="egf-vS-y97" secondAttribute="leading" id="IGn-gW-940"/>
                             <constraint firstItem="EvR-zs-yX2" firstAttribute="leading" secondItem="egf-vS-y97" secondAttribute="leading" constant="33" id="Jcu-8b-U65"/>
-                            <constraint firstItem="qcw-rG-ZM6" firstAttribute="top" secondItem="84s-aN-lse" secondAttribute="bottom" constant="8" id="O34-kS-B0P"/>
-                            <constraint firstItem="egf-vS-y97" firstAttribute="trailing" secondItem="qcw-rG-ZM6" secondAttribute="trailing" constant="16" id="TSX-P4-vPr"/>
-                            <constraint firstItem="vUt-uN-Mfu" firstAttribute="top" secondItem="84s-aN-lse" secondAttribute="top" id="VTM-wW-g2V"/>
-                            <constraint firstItem="84s-aN-lse" firstAttribute="centerX" secondItem="egf-vS-y97" secondAttribute="centerX" id="ZCy-fd-fLV"/>
-                            <constraint firstItem="84s-aN-lse" firstAttribute="top" secondItem="egf-vS-y97" secondAttribute="top" id="n1p-d7-YkX"/>
-                            <constraint firstItem="84s-aN-lse" firstAttribute="width" secondItem="egf-vS-y97" secondAttribute="width" id="yuD-yY-aJA"/>
+                            <constraint firstItem="EvR-zs-yX2" firstAttribute="top" secondItem="d5G-Uq-fHX" secondAttribute="bottom" constant="82" id="WL1-W0-61Z"/>
+                            <constraint firstItem="vUt-uN-Mfu" firstAttribute="top" secondItem="d5G-Uq-fHX" secondAttribute="bottom" constant="17" id="WoX-Yo-W61"/>
+                            <constraint firstItem="d5G-Uq-fHX" firstAttribute="trailing" secondItem="egf-vS-y97" secondAttribute="trailing" id="iTh-Ld-9SL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="egf-vS-y97"/>
                     </view>
                     <navigationItem key="navigationItem" title="Post" id="iaE-rK-t6S">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="pHi-eP-zgC">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ndw-YD-t75">
-                                <rect key="frame" x="276" y="7" width="83" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Next"/>
-                            </button>
+                        <barButtonItem key="rightBarButtonItem" title="Next" style="plain" id="pHi-eP-zgC">
                             <connections>
                                 <action selector="nextPressed:" destination="SC7-aT-qhD" id="y2V-fw-2vP"/>
-                                <segue destination="iIn-WC-v6w" kind="show" id="sz2-j1-IRD"/>
+                                <segue destination="5wP-SZ-X0J" kind="show" id="RKX-Z1-D4A"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="NextButton" destination="pHi-eP-zgC" id="WHI-Tz-3o7"/>
                         <outlet property="nextButton" destination="pHi-eP-zgC" id="qaw-Wl-YxL"/>
-                        <outlet property="previewImage" destination="84s-aN-lse" id="jZc-Dw-O7z"/>
+                        <outlet property="previewImage" destination="d5G-Uq-fHX" id="syr-rI-T8Z"/>
                         <outlet property="selectButton" destination="vUt-uN-Mfu" id="nJX-OD-JYH"/>
+                        <outlet property="titleTextField" destination="EvR-zs-yX2" id="hkJ-DC-NQx"/>
+                        <segue destination="5wP-SZ-X0J" kind="show" id="BQE-7U-Xvp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NxF-ih-iiH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1876" y="1083.5082458770617"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="z6N-Ce-h6A">
+        <!--Details-->
+        <scene sceneID="v1g-KI-koA">
             <objects>
-                <viewController storyboardIdentifier="postDetailVC" id="iIn-WC-v6w" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ppl-kI-Aan">
+                <viewController title="Details" id="5wP-SZ-X0J" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3Pg-z5-0cy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="SDU-jm-Lir"/>
+                        <viewLayoutGuide key="safeArea" id="ll1-d7-Sl7"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mLW-Mf-CNv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rUh-Sk-UAG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2854" y="1091"/>
+            <point key="canvasLocation" x="2799" y="1085"/>
         </scene>
         <!--Explore-->
         <scene sceneID="akB-NK-e5O">
@@ -331,4 +322,7 @@
         <image name="profile33" width="27" height="29"/>
         <image name="profilefilled33" width="27" height="29"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="BQE-7U-Xvp"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/jx/Desktop/CollegePosters/CollegePosters.xcodeproj">
+      location = "group:/Users/ypcnyc/icDocSecondYearWebAppIos/CollegePosters/controllers/PostViewController.swift">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>

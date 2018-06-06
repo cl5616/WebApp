@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		299C885E20EFF44472BA215C /* Pods_CollegePosters.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CAE3A4F07D2613D19DD221D /* Pods_CollegePosters.framework */; };
+		63640EB420C74EBD0045A0F1 /* PostImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63640EB320C74EBD0045A0F1 /* PostImagesView.swift */; };
+		63640EB620C74EFF0045A0F1 /* PostImagesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63640EB520C74EFF0045A0F1 /* PostImagesViewCell.swift */; };
+		63D40D2520C5E16000DBF059 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D40D2420C5E16000DBF059 /* PostViewController.swift */; };
+		93CB93758FD07CEEA0422BEB /* Pods_CollegePostersTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74B41D4A16BAF559D7DB52F /* Pods_CollegePostersTests.framework */; };
 		EB4A882320BEC4F400AF5587 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A882220BEC4F400AF5587 /* AppDelegate.swift */; };
 		EB4A882520BEC4F400AF5587 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A882420BEC4F400AF5587 /* ViewController.swift */; };
 		EB4A882820BEC4F400AF5587 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB4A882620BEC4F400AF5587 /* Main.storyboard */; };
@@ -15,7 +20,6 @@
 		EB4A883020BEC4F500AF5587 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB4A882E20BEC4F500AF5587 /* LaunchScreen.storyboard */; };
 		EB4A883B20BEC4F500AF5587 /* College_PostersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A883A20BEC4F500AF5587 /* College_PostersTests.swift */; };
 		EB4A885620BF1A6D00AF5587 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A885520BF1A6D00AF5587 /* DiscoverViewController.swift */; };
-		EB4A885820BF1A7900AF5587 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A885720BF1A7900AF5587 /* PostViewController.swift */; };
 		EB4A885A20BF1A8800AF5587 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A885920BF1A8800AF5587 /* MessageViewController.swift */; };
 		EB4A885C20BF1A9E00AF5587 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A885B20BF1A9E00AF5587 /* ProfileViewController.swift */; };
 		EB4A885E20BF1AC000AF5587 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A885D20BF1AC000AF5587 /* ExploreViewController.swift */; };
@@ -39,6 +43,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0CAE3A4F07D2613D19DD221D /* Pods_CollegePosters.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CollegePosters.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4997281D62618CC43C5B174E /* Pods-CollegePostersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CollegePostersTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CollegePostersTests/Pods-CollegePostersTests.release.xcconfig"; sourceTree = "<group>"; };
+		576E6AD15ACF977781557463 /* Pods-CollegePostersTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CollegePostersTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CollegePostersTests/Pods-CollegePostersTests.debug.xcconfig"; sourceTree = "<group>"; };
+		63640EB320C74EBD0045A0F1 /* PostImagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImagesView.swift; sourceTree = "<group>"; };
+		63640EB520C74EFF0045A0F1 /* PostImagesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImagesViewCell.swift; sourceTree = "<group>"; };
+		63D40D2420C5E16000DBF059 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		BFB6DEDE88608C0C0BFBA801 /* Pods-CollegePosters.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CollegePosters.release.xcconfig"; path = "Pods/Target Support Files/Pods-CollegePosters/Pods-CollegePosters.release.xcconfig"; sourceTree = "<group>"; };
+		C74B41D4A16BAF559D7DB52F /* Pods_CollegePostersTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CollegePostersTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1B9BF67ACA9D8CB93697D7D /* Pods-CollegePosters.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CollegePosters.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CollegePosters/Pods-CollegePosters.debug.xcconfig"; sourceTree = "<group>"; };
 		EB4A881F20BEC4F400AF5587 /* CollegePosters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollegePosters.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB4A882220BEC4F400AF5587 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB4A882420BEC4F400AF5587 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -51,7 +64,6 @@
 		EB4A883A20BEC4F500AF5587 /* College_PostersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = College_PostersTests.swift; sourceTree = "<group>"; };
 		EB4A883C20BEC4F500AF5587 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB4A885520BF1A6D00AF5587 /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
-		EB4A885720BF1A7900AF5587 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		EB4A885920BF1A8800AF5587 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		EB4A885B20BF1A9E00AF5587 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		EB4A885D20BF1AC000AF5587 /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				299C885E20EFF44472BA215C /* Pods_CollegePosters.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,18 +89,41 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93CB93758FD07CEEA0422BEB /* Pods_CollegePostersTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		63EAC9F18A72C4CA7340EA1F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0CAE3A4F07D2613D19DD221D /* Pods_CollegePosters.framework */,
+				C74B41D4A16BAF559D7DB52F /* Pods_CollegePostersTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9BDB89C17E8424FA1B3ABF01 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E1B9BF67ACA9D8CB93697D7D /* Pods-CollegePosters.debug.xcconfig */,
+				BFB6DEDE88608C0C0BFBA801 /* Pods-CollegePosters.release.xcconfig */,
+				576E6AD15ACF977781557463 /* Pods-CollegePostersTests.debug.xcconfig */,
+				4997281D62618CC43C5B174E /* Pods-CollegePostersTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		EB4A881620BEC4F400AF5587 = {
 			isa = PBXGroup;
 			children = (
 				EB4A882120BEC4F400AF5587 /* CollegePosters */,
 				EB4A883920BEC4F500AF5587 /* CollegePostersTests */,
 				EB4A882020BEC4F400AF5587 /* Products */,
+				9BDB89C17E8424FA1B3ABF01 /* Pods */,
+				63EAC9F18A72C4CA7340EA1F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -136,11 +172,11 @@
 		EB4A887520C0A08900AF5587 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				63D40D2420C5E16000DBF059 /* PostViewController.swift */,
 				EB4A882420BEC4F400AF5587 /* ViewController.swift */,
 				EB4A885520BF1A6D00AF5587 /* DiscoverViewController.swift */,
 				EB4A885B20BF1A9E00AF5587 /* ProfileViewController.swift */,
 				EB4A885D20BF1AC000AF5587 /* ExploreViewController.swift */,
-				EB4A885720BF1A7900AF5587 /* PostViewController.swift */,
 				EB4A885920BF1A8800AF5587 /* MessageViewController.swift */,
 				EB4A886520BF6F0700AF5587 /* ExploreCollectionViewController.swift */,
 			);
@@ -155,6 +191,8 @@
 				EB4A888F20C6FD6900AF5587 /* TrendCell.swift */,
 				EB4A889320C7146400AF5587 /* FollowCell.swift */,
 				EB4A889520C71DA400AF5587 /* ExploreBaseCell.swift */,
+				63640EB320C74EBD0045A0F1 /* PostImagesView.swift */,
+				63640EB520C74EFF0045A0F1 /* PostImagesViewCell.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -166,9 +204,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB4A884A20BEC4F500AF5587 /* Build configuration list for PBXNativeTarget "CollegePosters" */;
 			buildPhases = (
+				97D2B1A47C64D43D6B53ED48 /* [CP] Check Pods Manifest.lock */,
 				EB4A881B20BEC4F400AF5587 /* Sources */,
 				EB4A881C20BEC4F400AF5587 /* Frameworks */,
 				EB4A881D20BEC4F400AF5587 /* Resources */,
+				8137016DF082286FD6F583F4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -183,6 +223,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB4A884D20BEC4F500AF5587 /* Build configuration list for PBXNativeTarget "CollegePostersTests" */;
 			buildPhases = (
+				1C07E2ABFB4A6E72D85341FB /* [CP] Check Pods Manifest.lock */,
 				EB4A883220BEC4F500AF5587 /* Sources */,
 				EB4A883320BEC4F500AF5587 /* Frameworks */,
 				EB4A883420BEC4F500AF5587 /* Resources */,
@@ -255,22 +296,87 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1C07E2ABFB4A6E72D85341FB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CollegePostersTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8137016DF082286FD6F583F4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-CollegePosters/Pods-CollegePosters-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BSGridCollectionViewLayout/BSGridCollectionViewLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/BSImagePicker/BSImagePicker.framework",
+				"${BUILT_PRODUCTS_DIR}/UIImageViewModeScaleAspect/UIImageViewModeScaleAspect.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BSGridCollectionViewLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BSImagePicker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIImageViewModeScaleAspect.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CollegePosters/Pods-CollegePosters-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		97D2B1A47C64D43D6B53ED48 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CollegePosters-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EB4A881B20BEC4F400AF5587 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+
 				EB4A889420C7146400AF5587 /* FollowCell.swift in Sources */,
 				EB4A889620C71DA400AF5587 /* ExploreBaseCell.swift in Sources */,
 				EB4A889020C6FD6900AF5587 /* TrendCell.swift in Sources */,
 				EB4A885820BF1A7900AF5587 /* PostViewController.swift in Sources */,
+				63640EB420C74EBD0045A0F1 /* PostImagesView.swift in Sources */,
 				EB4A882B20BEC4F400AF5587 /* College_Posters.xcdatamodeld in Sources */,
 				EB4A882520BEC4F400AF5587 /* ViewController.swift in Sources */,
 				EB4A882320BEC4F400AF5587 /* AppDelegate.swift in Sources */,
+				63D40D2520C5E16000DBF059 /* PostViewController.swift in Sources */,
 				EB4A885E20BF1AC000AF5587 /* ExploreViewController.swift in Sources */,
 				EB4A885620BF1A6D00AF5587 /* DiscoverViewController.swift in Sources */,
 				EB4A886620BF6F0700AF5587 /* ExploreCollectionViewController.swift in Sources */,
 				EB4A887320C09D8800AF5587 /* ExploreCell.swift in Sources */,
+				63640EB620C74EFF0045A0F1 /* PostImagesViewCell.swift in Sources */,
 				EB4A885C20BF1A9E00AF5587 /* ProfileViewController.swift in Sources */,
 				EB4A887120C06DA800AF5587 /* Poster.swift in Sources */,
 				EB4A885A20BF1A8800AF5587 /* MessageViewController.swift in Sources */,
@@ -432,6 +538,7 @@
 		};
 		EB4A884B20BEC4F500AF5587 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E1B9BF67ACA9D8CB93697D7D /* Pods-CollegePosters.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -454,6 +561,7 @@
 		};
 		EB4A884C20BEC4F500AF5587 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BFB6DEDE88608C0C0BFBA801 /* Pods-CollegePosters.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -476,6 +584,7 @@
 		};
 		EB4A884E20BEC4F500AF5587 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 576E6AD15ACF977781557463 /* Pods-CollegePostersTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -496,6 +605,7 @@
 		};
 		EB4A884F20BEC4F500AF5587 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4997281D62618CC43C5B174E /* Pods-CollegePostersTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

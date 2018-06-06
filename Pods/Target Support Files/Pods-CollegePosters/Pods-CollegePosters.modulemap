@@ -1,0 +1,6 @@
+framework module Pods_CollegePosters {
+  umbrella header "Pods-CollegePosters-umbrella.h"
+
+  export *
+  module * { export * }
+}
