@@ -88,9 +88,9 @@ class PostViewController: UIViewController, UINavigationControllerDelegate,
         }
         if notification.name == Notification.Name.UIKeyboardWillShow || notification.name == Notification.Name.UIKeyboardWillChangeFrame {
             
-            view.frame.origin.y = -keyBoardRect.height + (self.navigationController?.navigationBar.frame.size.height)! + (UIApplication.shared.statusBarFrame.height)
+            view.frame.origin.y = -keyBoardRect.height /*+ (self.navigationController?.navigationBar.frame.size.height)! + (UIApplication.shared.statusBarFrame.height)*/
         } else {
-            view.frame.origin.y = UIApplication.shared.statusBarFrame.height
+            view.frame.origin.y = 0/*UIApplication.shared.statusBarFrame.height*/
         }
         
     }
