@@ -8,20 +8,32 @@
 
 import UIKit
 
-class PostDetailsViewController: UIViewController, UITextFieldDelegate{
+class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate{
 
     @IBOutlet weak var categorySelection: UITextField!
-    @IBOutlet weak var postDescription: UITextField!
+    @IBOutlet weak var postDescription: UITextView!
+    @IBOutlet weak var sendButton: UIButton!
     
     let categories = ["Clubs", "Socials", "Academy", "Market", "Job"]
     var selectedCategory: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        sendButton.isEnabled = false
+        postDescription.delegate = self
+        categorySelection.delegate = self
+        postDescription.layer.borderColor = UIColor.black.cgColor;
+        postDescription.layer.borderWidth = 1.0;
+        postDescription.layer.cornerRadius = 0;
+        createToolBarDescription()
+        
+        /*categorySelection.addTarget(self, action: #selector(editingChanged), for: .editingChanged)*/
+        /*postDescription.addTarget(self, action: #selector(editingChanged), for: .editingChanged)*/
+        
         createCategoryPicker()
         createToolBarCategory()
-        postDescription.delegate = self
-        postDescription.contentVerticalAlignment = UIControlContentVerticalAlignment.top;
+        /*postDescription.delegate = self
+        postDescription.contentVerticalAlignment = UIControlContentVerticalAlignment.top;*/
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -34,6 +46,31 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate{
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
     }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        sendButton.isEnabled = !(postDescription.text?.isEmpty ?? true) && !(categorySelection.text?.isEmpty ?? true)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        sendButton.isEnabled = !(postDescription.text?.isEmpty ?? true) && !(categorySelection.text?.isEmpty ?? true)
+    }
+    
+    /*@objc func editingChanged(_ textField: UITextField) {
+        if textField.text?.count == 1 {
+            if textField.text?.first == " " {
+                textField.text = ""
+                return
+            }
+        }
+        guard
+            let category = categorySelection.text, !category.isEmpty/*,
+            let description = postDescription.text, !description.isEmpty*/
+        else {
+            self.sendButton.isEnabled = false
+            return
+        }
+        sendButton.isEnabled = true
+    }*/
     
     @objc func keyboardWillChange(notification: Notification) {
         guard let keyBoardRect = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
@@ -64,14 +101,25 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate{
         categorySelection.inputAccessoryView = toolBar
     }
     
+    func createToolBarDescription() {
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(PostDetailsViewController.dismissKeyboard))
+        toolBar.setItems([doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        
+        postDescription.inputAccessoryView = toolBar
+    }
+    
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    /*func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         postDescription.resignFirstResponder()
         return true
-    }
+    }*/
     
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

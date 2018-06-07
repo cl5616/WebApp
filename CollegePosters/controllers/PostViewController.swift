@@ -39,15 +39,18 @@ class PostViewController: UIViewController, UINavigationControllerDelegate,
                 self.selectedAssets.append(assets[i])
             }
             self.convertAssetsToImages()
+            /*if assets.count > 0 {
+                self.nextButton.isEnabled = true
+            }*/
         }, completion: nil)
         //self.selectButton.isHidden = true
-        self.nextButton.isEnabled = true
     }
 
     func convertAssetsToImages() -> Void {
         if selectedAssets.count != 0 {
-
-            //var contentWidth: CGFloat = 0.0
+            DispatchQueue.main.sync {
+                nextButton.isEnabled = !(self.titleTextField.text?.isEmpty ?? true)
+            }
             for i in 0..<selectedAssets.count {
                 let manager = PHImageManager.default()
                 let option = PHImageRequestOptions()
@@ -60,6 +63,7 @@ class PostViewController: UIViewController, UINavigationControllerDelegate,
                 let data = UIImageJPEGRepresentation(thumbnail, 0.7)
                 let newImage = UIImage(data: data!)
                 self.selectedPhotos.append(newImage! as UIImage)
+                //nextButton.isEnabled = enableNextButton()
             }
 
             previewImage.selectedPhotos = self.selectedPhotos
@@ -72,14 +76,27 @@ class PostViewController: UIViewController, UINavigationControllerDelegate,
     @IBAction func nextPressed(_ sender: Any) {
 
     }
+    
+    /*func enableNextButton() -> Bool {
+        var ret: Bool = false
+        DispatchQueue.main.sync {
+            ret = !(self.titleTextField.text?.isEmpty ?? true) && !self.selectedPhotos.isEmpty
+        }
+        return ret
+    }*/
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         titleTextField.resignFirstResponder()
+        nextButton.isEnabled = !(self.titleTextField.text?.isEmpty ?? true) && !self.selectedPhotos.isEmpty
         return true
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        nextButton.isEnabled = !(self.titleTextField.text?.isEmpty ?? true) && !self.selectedPhotos.isEmpty
     }
 
     @objc func keyboardWillChange(notification: Notification) {
@@ -96,15 +113,14 @@ class PostViewController: UIViewController, UINavigationControllerDelegate,
     }
 
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        nextButton.isEnabled = false
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
 
-        nextButton.isEnabled = false
         titleTextField.delegate = self
         self.navigationItem.rightBarButtonItem = nextButton
     }
