@@ -17,11 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        window?.makeKeyAndVisible()
+        //window?.makeKeyAndVisible()
         //nav bar eliminate border
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-        
+
+        if let status = UIApplication.shared.value(forKey: "statusBar") as? UIView {
+            status.backgroundColor = UIColor.white
+        }
+        /*
         //status bar
         let statusBackground = UIView()
         statusBackground.backgroundColor = UIColor.white
@@ -30,7 +34,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.addSubview(statusBackground)
         window?.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0(20)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": statusBackground]))
         window?.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": statusBackground]))
-
+        */
+        
+        
+        //set starting view controller
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        let mainStoryBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let startVC: UIViewController = mainStoryBoard.instantiateViewController(withIdentifier: "notSignedIn")
+        self.window?.rootViewController = startVC
+        self.window?.makeKeyAndVisible()
+        
         
         return true
     }

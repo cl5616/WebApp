@@ -15,6 +15,7 @@ class Poster: NSObject {
     var posterDescription: PosterDescription?
     var time: Date?
     
+    
 }
 
 class PosterDescription: NSObject {

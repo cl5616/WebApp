@@ -13,9 +13,12 @@ class ExploreCollectionViewController: UICollectionViewController, UICollectionV
     var postersSrcUrl: String?
     let trendId = "trendCell"
     let followId = "followCell"
-    let cat1ID = "cat1"
-    let cat2ID = "cat2"
-    let indexToIdMap = [0: "trendCell", 1: "followCell", 2: "cat1", 3: "cat2"]
+    let clubsId = "clubsCell"
+    let marketId = "marketCell"
+    let jobId = "jobCell"
+    let academyId = "academyCell"
+    let socialsId = "socialCell"
+    let indexToIdMap = [0: "trendCell", 1: "followCell", 2: "clubsCell", 3: "marketCell", 4: "jobCell", 5: "academyCell", 6: "socialCell"]
     var currentIdx = 0
     
     lazy var menuBar: ExploreMenuBar = {
@@ -34,8 +37,12 @@ class ExploreCollectionViewController: UICollectionViewController, UICollectionV
         // Register cell classes
         self.collectionView!.register(TrendCell.self, forCellWithReuseIdentifier: trendId)
         self.collectionView!.register(FollowCell.self, forCellWithReuseIdentifier: followId)
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cat1ID)
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cat2ID)
+        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: clubsId)
+        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: marketId)
+        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: jobId)
+        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: academyId)
+        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: socialsId)
+        
 
         // Do any additional setup after loading the view.
         
@@ -70,9 +77,8 @@ class ExploreCollectionViewController: UICollectionViewController, UICollectionV
         } else if self.currentIdx == 0 {
             menuBar.hbLeftAnchor?.constant = scrollView.contentOffset.x / 3
         } else {
-            menuBar.hbLeftAnchor?.constant = (scrollView.contentOffset.x - (CGFloat((indexToIdMap.count - 1)) * view.frame.width / 3)) / 3
+            menuBar.hbLeftAnchor?.constant = (scrollView.contentOffset.x - (CGFloat(indexToIdMap.count - 3) * view.frame.width)) / 3
         }
-        
     }
     
     func setupCollectionView() {
@@ -80,6 +86,7 @@ class ExploreCollectionViewController: UICollectionViewController, UICollectionV
             flowLayout.scrollDirection = .horizontal
         }
         
+        collectionView?.showsHorizontalScrollIndicator = false
         collectionView?.isPagingEnabled = true
     }
     
@@ -147,7 +154,7 @@ class ExploreCollectionViewController: UICollectionViewController, UICollectionV
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 4
+        return indexToIdMap.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -156,6 +163,17 @@ class ExploreCollectionViewController: UICollectionViewController, UICollectionV
         
         if indexPath.item == 3 {
             cell.backgroundColor = UIColor.orange
+        }
+        
+        switch indexPath.item {
+        case 3:
+            cell.backgroundColor = UIColor.orange
+        case 4:
+            cell.backgroundColor = UIColor.blue
+        case 5:
+            cell.backgroundColor = UIColor.brown
+        default:
+            break
         }
         
         return cell
