@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().shadowImage = UIImage()
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
 
+        //status bar
         if let status = UIApplication.shared.value(forKey: "statusBar") as? UIView {
             status.backgroundColor = UIColor.white
         }

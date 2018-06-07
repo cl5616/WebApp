@@ -172,6 +172,8 @@ class ExploreCollectionViewController: UICollectionViewController, UICollectionV
             cell.backgroundColor = UIColor.blue
         case 5:
             cell.backgroundColor = UIColor.brown
+        case 6:
+            cell.backgroundColor = UIColor.cyan
         default:
             break
         }

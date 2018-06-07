@@ -14,7 +14,6 @@
 		63D40D2520C5E16000DBF059 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D40D2420C5E16000DBF059 /* PostViewController.swift */; };
 		93CB93758FD07CEEA0422BEB /* Pods_CollegePostersTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74B41D4A16BAF559D7DB52F /* Pods_CollegePostersTests.framework */; };
 		EB4A882320BEC4F400AF5587 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A882220BEC4F400AF5587 /* AppDelegate.swift */; };
-		EB4A882520BEC4F400AF5587 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A882420BEC4F400AF5587 /* ViewController.swift */; };
 		EB4A882820BEC4F400AF5587 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB4A882620BEC4F400AF5587 /* Main.storyboard */; };
 		EB4A882B20BEC4F400AF5587 /* College_Posters.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EB4A882920BEC4F400AF5587 /* College_Posters.xcdatamodeld */; };
 		EB4A882D20BEC4F500AF5587 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB4A882C20BEC4F500AF5587 /* Assets.xcassets */; };
@@ -38,6 +37,12 @@
 		EB4A88A520C87FEA00AF5587 /* SocialsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A88A420C87FEA00AF5587 /* SocialsCell.swift */; };
 		EB4A88A720C8806500AF5587 /* AcademyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A88A620C8806500AF5587 /* AcademyCell.swift */; };
 		EB4A88A920C88EB800AF5587 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A88A820C88EB800AF5587 /* LogInViewController.swift */; };
+		EB4A88B120C9522600AF5587 /* Explore.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB4A88AF20C9522600AF5587 /* Explore.storyboard */; };
+		EB4A88B420C9525C00AF5587 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB4A88B220C9525C00AF5587 /* Search.storyboard */; };
+		EB4A88B720C9527B00AF5587 /* Post.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB4A88B520C9527B00AF5587 /* Post.storyboard */; };
+		EB4A88BA20C9529700AF5587 /* Message.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB4A88B820C9529700AF5587 /* Message.storyboard */; };
+		EB4A88BD20C952B100AF5587 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB4A88BB20C952B100AF5587 /* Profile.storyboard */; };
+		EB4A88C020C952CB00AF5587 /* LogIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB4A88BE20C952CB00AF5587 /* LogIn.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,7 +68,6 @@
 		E1B9BF67ACA9D8CB93697D7D /* Pods-CollegePosters.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CollegePosters.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CollegePosters/Pods-CollegePosters.debug.xcconfig"; sourceTree = "<group>"; };
 		EB4A881F20BEC4F400AF5587 /* CollegePosters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollegePosters.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB4A882220BEC4F400AF5587 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EB4A882420BEC4F400AF5587 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EB4A882720BEC4F400AF5587 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EB4A882A20BEC4F400AF5587 /* College_Posters.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = College_Posters.xcdatamodel; sourceTree = "<group>"; };
 		EB4A882C20BEC4F500AF5587 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -90,6 +94,12 @@
 		EB4A88A420C87FEA00AF5587 /* SocialsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialsCell.swift; sourceTree = "<group>"; };
 		EB4A88A620C8806500AF5587 /* AcademyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcademyCell.swift; sourceTree = "<group>"; };
 		EB4A88A820C88EB800AF5587 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		EB4A88B020C9522600AF5587 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Explore.storyboard; sourceTree = "<group>"; };
+		EB4A88B320C9525C00AF5587 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Search.storyboard; sourceTree = "<group>"; };
+		EB4A88B620C9527B00AF5587 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Post.storyboard; sourceTree = "<group>"; };
+		EB4A88B920C9529700AF5587 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Message.storyboard; sourceTree = "<group>"; };
+		EB4A88BC20C952B100AF5587 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Profile.storyboard; sourceTree = "<group>"; };
+		EB4A88BF20C952CB00AF5587 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LogIn.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,10 +165,16 @@
 		EB4A882120BEC4F400AF5587 /* CollegePosters */ = {
 			isa = PBXGroup;
 			children = (
+				EB4A88BE20C952CB00AF5587 /* LogIn.storyboard */,
+				EB4A88BB20C952B100AF5587 /* Profile.storyboard */,
+				EB4A88B820C9529700AF5587 /* Message.storyboard */,
+				EB4A88B520C9527B00AF5587 /* Post.storyboard */,
+				EB4A88B220C9525C00AF5587 /* Search.storyboard */,
 				EB4A886F20C06D7B00AF5587 /* model */,
 				EB4A887620C0A10500AF5587 /* view */,
 				EB4A887520C0A08900AF5587 /* controllers */,
 				EB4A882220BEC4F400AF5587 /* AppDelegate.swift */,
+				EB4A88AF20C9522600AF5587 /* Explore.storyboard */,
 				EB4A882620BEC4F400AF5587 /* Main.storyboard */,
 				EB4A882C20BEC4F500AF5587 /* Assets.xcassets */,
 				EB4A882E20BEC4F500AF5587 /* LaunchScreen.storyboard */,
@@ -190,7 +206,6 @@
 			isa = PBXGroup;
 			children = (
 				63D40D2420C5E16000DBF059 /* PostViewController.swift */,
-				EB4A882420BEC4F400AF5587 /* ViewController.swift */,
 				EB4A885520BF1A6D00AF5587 /* DiscoverViewController.swift */,
 				EB4A885B20BF1A9E00AF5587 /* ProfileViewController.swift */,
 				EB4A885920BF1A8800AF5587 /* MessageViewController.swift */,
@@ -204,21 +219,37 @@
 		EB4A887620C0A10500AF5587 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				EB4A88AC20C94F9100AF5587 /* ExploreViews */,
+				EB4A88AD20C94FA300AF5587 /* PostViews */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		EB4A88AC20C94F9100AF5587 /* ExploreViews */ = {
+			isa = PBXGroup;
+			children = (
 				EB4A887220C09D8800AF5587 /* ExploreCell.swift */,
 				EB4A88A420C87FEA00AF5587 /* SocialsCell.swift */,
 				EB4A888520C5E53A00AF5587 /* ExploreMenuBar.swift */,
 				EB4A888F20C6FD6900AF5587 /* TrendCell.swift */,
 				EB4A889320C7146400AF5587 /* FollowCell.swift */,
 				EB4A889520C71DA400AF5587 /* ExploreBaseCell.swift */,
-				63640EB320C74EBD0045A0F1 /* PostImagesView.swift */,
-				63640EB520C74EFF0045A0F1 /* PostImagesViewCell.swift */,
-				EB4A889A20C852D600AF5587 /* PosterImage.swift */,
 				EB4A889C20C87F6700AF5587 /* ClubsCell.swift */,
 				EB4A889E20C87F9C00AF5587 /* MarketCell.swift */,
 				EB4A88A020C87FBE00AF5587 /* JobCell.swift */,
 				EB4A88A620C8806500AF5587 /* AcademyCell.swift */,
 			);
-			path = view;
+			path = ExploreViews;
+			sourceTree = "<group>";
+		};
+		EB4A88AD20C94FA300AF5587 /* PostViews */ = {
+			isa = PBXGroup;
+			children = (
+				63640EB320C74EBD0045A0F1 /* PostImagesView.swift */,
+				63640EB520C74EFF0045A0F1 /* PostImagesViewCell.swift */,
+				EB4A889A20C852D600AF5587 /* PosterImage.swift */,
+			);
+			path = PostViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,9 +336,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB4A88B120C9522600AF5587 /* Explore.storyboard in Resources */,
 				EB4A883020BEC4F500AF5587 /* LaunchScreen.storyboard in Resources */,
+				EB4A88BD20C952B100AF5587 /* Profile.storyboard in Resources */,
 				EB4A882D20BEC4F500AF5587 /* Assets.xcassets in Resources */,
 				EB4A882820BEC4F400AF5587 /* Main.storyboard in Resources */,
+				EB4A88B720C9527B00AF5587 /* Post.storyboard in Resources */,
+				EB4A88B420C9525C00AF5587 /* Search.storyboard in Resources */,
+				EB4A88C020C952CB00AF5587 /* LogIn.storyboard in Resources */,
+				EB4A88BA20C9529700AF5587 /* Message.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,7 +431,6 @@
 				6362718120C888BC0003F236 /* PostDetailsViewController.swift in Sources */,
 				63640EB420C74EBD0045A0F1 /* PostImagesView.swift in Sources */,
 				EB4A882B20BEC4F400AF5587 /* College_Posters.xcdatamodeld in Sources */,
-				EB4A882520BEC4F400AF5587 /* ViewController.swift in Sources */,
 				EB4A889920C84CFB00AF5587 /* HttpApiService.swift in Sources */,
 				EB4A882320BEC4F400AF5587 /* AppDelegate.swift in Sources */,
 				EB4A88A520C87FEA00AF5587 /* SocialsCell.swift in Sources */,
@@ -447,6 +483,54 @@
 				EB4A882F20BEC4F500AF5587 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		EB4A88AF20C9522600AF5587 /* Explore.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EB4A88B020C9522600AF5587 /* Base */,
+			);
+			name = Explore.storyboard;
+			sourceTree = "<group>";
+		};
+		EB4A88B220C9525C00AF5587 /* Search.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EB4A88B320C9525C00AF5587 /* Base */,
+			);
+			name = Search.storyboard;
+			sourceTree = "<group>";
+		};
+		EB4A88B520C9527B00AF5587 /* Post.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EB4A88B620C9527B00AF5587 /* Base */,
+			);
+			name = Post.storyboard;
+			sourceTree = "<group>";
+		};
+		EB4A88B820C9529700AF5587 /* Message.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EB4A88B920C9529700AF5587 /* Base */,
+			);
+			name = Message.storyboard;
+			sourceTree = "<group>";
+		};
+		EB4A88BB20C952B100AF5587 /* Profile.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EB4A88BC20C952B100AF5587 /* Base */,
+			);
+			name = Profile.storyboard;
+			sourceTree = "<group>";
+		};
+		EB4A88BE20C952CB00AF5587 /* LogIn.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EB4A88BF20C952CB00AF5587 /* Base */,
+			);
+			name = LogIn.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
