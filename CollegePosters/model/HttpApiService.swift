@@ -18,6 +18,12 @@ class HttpApiService {
         
         //add new URLs to dictionary
         shs.urls["getSocialPosters"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getposts.php?category=social"
+        shs.urls["getTrendPosters"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getposts.php?category=trend"
+        shs.urls["getFollowPosters"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getposts.php?category=follow"
+        shs.urls["getClubsPosters"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getposts.php?category=clubs"
+        shs.urls["getMarketPosters"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getposts.php?category=market"
+        shs.urls["getJobPosters"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getposts.php?category=job"
+        shs.urls["getAcademyPosters"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getposts.php?category=academy"
         shs.urls["like"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/like.php?"
         shs.urls["unlike"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/unlike.php"
         
@@ -93,16 +99,20 @@ class HttpApiService {
                 
                 self.posters = [Poster]()
                 
-                for dict in json as! [[String: AnyObject]] {
-                    let newPoster = Poster()
-                    newPoster.posterTitle = dict["content"] as? String
-                    newPoster.time = dict["post_time"] as? String
-                    var ImageName = dict["picture"] as? String
-                    ImageName = ImageName == "null" ? "fire64" : ImageName
-                    newPoster.posterImageName = ImageName
-                    newPoster.postId = dict["msg_id"] as? Int
-                    self.posters?.append(newPoster)
+                if (json as? [String: AnyObject]) == nil {
+                    for dict in json as! [[String: AnyObject]] {
+                        let newPoster = Poster()
+                        newPoster.posterTitle = dict["content"] as? String
+                        newPoster.time = dict["post_time"] as? String
+                        var ImageName = dict["picture"] as? String
+                        ImageName = ImageName == "null" ? "fire64" : ImageName
+                        newPoster.posterImageName = ImageName
+                        newPoster.postId = dict["msg_id"] as? Int
+                        self.posters?.append(newPoster)
+                    }
                 }
+                
+                
                 
                 completion(self.posters!)
                 

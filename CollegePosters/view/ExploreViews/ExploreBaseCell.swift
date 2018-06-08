@@ -15,6 +15,7 @@ class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
     let posterGetter = HttpApiService.sharedHttpApiService
     var alreadyLoaded: Int = 0
     var isLoading = false
+    var section: String?
     
     lazy var cvt: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -39,12 +40,34 @@ class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
         //testing
         
         //test images
-        
-        fetchPosters(from: 0)
+        setSection()
+        if self.section == "getExplorePosters" || self.section == "getTrendPosters" {
+            testImages()
+        } else {
+            fetchPosters(from: 0)
+        }
+    }
+    
+    func setSection() {
+        return
     }
     
     func fetchPosters(from: Int) {
-        testImages()
+        if from == 0 {
+            if posters.count != 0 {
+                posters = [Poster]()
+            }
+            self.alreadyLoaded = 0
+        }
+        
+        posterGetter.fetchPosters(with: section!, from: from) { (posters) in
+            self.posters.append(contentsOf: posters)
+            self.alreadyLoaded += posters.count
+            DispatchQueue.main.async {
+                self.cvt.reloadData()
+                self.isLoading = false
+            }
+        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

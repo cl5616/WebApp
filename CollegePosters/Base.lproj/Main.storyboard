@@ -33,7 +33,7 @@
         <!--Navigation Controller-->
         <scene sceneID="geX-OZ-gIq">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IR3-Fa-zYJ" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Explore" automaticallyAdjustsScrollViewInsets="NO" id="IR3-Fa-zYJ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="fire64" selectedImage="firefilled64" id="7na-AY-6XR">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                         <color key="badgeColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>

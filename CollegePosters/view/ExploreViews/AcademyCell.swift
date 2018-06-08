@@ -9,5 +9,7 @@
 import UIKit
 
 class AcademyCell: ExploreBaseCell {
-
+    override func setSection() {
+        self.section = "getAcademyPosters"
+    }
 }

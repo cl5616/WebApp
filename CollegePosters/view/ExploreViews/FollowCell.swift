@@ -21,4 +21,8 @@ class FollowCell: ExploreBaseCell {
         posters = [test1Poster, test2Poster]
     }
     
+    override func setSection() {
+        self.section = "getFollowPosters"
+    }
+    
 }

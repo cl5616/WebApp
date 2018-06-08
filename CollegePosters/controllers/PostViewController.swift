@@ -22,6 +22,13 @@ class PostViewController: UIViewController, UINavigationControllerDelegate,
     var selectedPhotos = [UIImage]()
 
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destViewController: PostDetailsViewController = segue.destination as! PostDetailsViewController
+        
+        destViewController.selectedPhotos = selectedPhotos
+        destViewController.titleText = titleTextField.text!
+    }
+    
     @IBAction func selectPressed(_ sender: Any) {
         selectedAssets = []
         selectedPhotos = []
@@ -40,14 +47,13 @@ class PostViewController: UIViewController, UINavigationControllerDelegate,
             }
             self.convertAssetsToImages()
         }, completion: nil)
-        //self.selectButton.isHidden = true
-        self.nextButton.isEnabled = true
     }
 
     func convertAssetsToImages() -> Void {
         if selectedAssets.count != 0 {
-
-            //var contentWidth: CGFloat = 0.0
+            DispatchQueue.main.sync {
+                nextButton.isEnabled = !(self.titleTextField.text?.isEmpty ?? true)
+            }
             for i in 0..<selectedAssets.count {
                 let manager = PHImageManager.default()
                 let option = PHImageRequestOptions()
@@ -57,7 +63,7 @@ class PostViewController: UIViewController, UINavigationControllerDelegate,
                 manager.requestImage(for: selectedAssets[i], targetSize: CGSize(width: 200, height: 200), contentMode: .aspectFill, options: option, resultHandler: {(result, info) -> Void in thumbnail = result!
                 })
 
-                let data = UIImageJPEGRepresentation(thumbnail, 0.7)
+                let data = UIImageJPEGRepresentation(thumbnail, 1)
                 let newImage = UIImage(data: data!)
                 self.selectedPhotos.append(newImage! as UIImage)
             }
@@ -75,11 +81,16 @@ class PostViewController: UIViewController, UINavigationControllerDelegate,
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         titleTextField.resignFirstResponder()
+        nextButton.isEnabled = !(self.titleTextField.text?.isEmpty ?? true) && !self.selectedPhotos.isEmpty
         return true
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        nextButton.isEnabled = !(self.titleTextField.text?.isEmpty ?? true) && !self.selectedPhotos.isEmpty
     }
 
     @objc func keyboardWillChange(notification: Notification) {
@@ -88,23 +99,22 @@ class PostViewController: UIViewController, UINavigationControllerDelegate,
         }
         if notification.name == Notification.Name.UIKeyboardWillShow || notification.name == Notification.Name.UIKeyboardWillChangeFrame {
 
-            view.frame.origin.y = -keyBoardRect.height /*+ (self.navigationController?.navigationBar.frame.size.height)! + (UIApplication.shared.statusBarFrame.height)*/
+            view.frame.origin.y = -keyBoardRect.height
         } else {
-            view.frame.origin.y = 0/*UIApplication.shared.statusBarFrame.height*/
+            view.frame.origin.y = 0
         }
 
     }
 
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        nextButton.isEnabled = false
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
 
-        nextButton.isEnabled = false
         titleTextField.delegate = self
         self.navigationItem.rightBarButtonItem = nextButton
     }
