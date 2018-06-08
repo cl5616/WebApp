@@ -9,5 +9,7 @@
 import UIKit
 
 class JobCell: ExploreBaseCell {
-
+    override func setSection() {
+        self.section = "getJobPosters"
+    }
 }

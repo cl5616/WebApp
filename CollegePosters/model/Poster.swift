@@ -15,7 +15,7 @@ class Poster: NSObject {
     var posterDescription: PosterDescription?
     var time: String?
     var postId: Int?
-    
+    var liked: Bool = false
 }
 
 class PosterDescription: NSObject {

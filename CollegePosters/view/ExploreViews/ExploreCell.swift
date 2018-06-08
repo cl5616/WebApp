@@ -13,10 +13,17 @@ class ExploreCell : UICollectionViewCell {
     var poster: Poster? {
         didSet {
             cellLabel.text = poster?.posterTitle
+            dateLabel.text = poster?.time
             if let imageName = poster?.posterImageName {
                 setImage(withName: imageName)
             }
             likebtn.posterId = poster?.postId
+            likebtn.poster = poster
+            if (poster?.liked)! {
+                likebtn.imageView?.image = UIImage(named: "heartfilled33")
+            } else {
+                likebtn.imageView?.image = UIImage(named: "heart33")
+            }
         }
     }
     
@@ -90,7 +97,14 @@ class ExploreCell : UICollectionViewCell {
         return label
     }()
 
-
+    let dateLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = UIColor.white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = label.font.withSize(13)
+        label.textColor = UIColor.gray
+        return label
+    }()
 
     var likebtn : likeButton = {
         let likeImage = UIImage(named: "heart33")
@@ -113,10 +127,16 @@ class ExploreCell : UICollectionViewCell {
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0(1)]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": separator]))
 
         addSubview(cellLabel)
-        addConstraint(NSLayoutConstraint(item: cellLabel, attribute: .top, relatedBy: .equal, toItem: posterImage, attribute: .bottom, multiplier: 1, constant: 8))
-        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0(44)]-8-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": cellLabel]))
+        addConstraint(NSLayoutConstraint(item: cellLabel, attribute: .top, relatedBy: .equal, toItem: posterImage, attribute: .bottom, multiplier: 1, constant: 0))
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0(44)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": cellLabel]))
         addConstraint(NSLayoutConstraint(item: cellLabel, attribute: .leading, relatedBy: .equal, toItem: posterImage, attribute: .leading, multiplier: 1, constant: 20))
         addConstraint(NSLayoutConstraint(item: cellLabel, attribute: .trailing, relatedBy: .equal, toItem: posterImage, attribute: .trailing, multiplier: 1, constant: -50))
+        
+        addSubview(dateLabel)
+        addConstraint(NSLayoutConstraint(item: dateLabel, attribute: .top, relatedBy: .equal, toItem: cellLabel, attribute: .bottom, multiplier: 1, constant: -10))
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0(22)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": dateLabel]))
+        addConstraint(NSLayoutConstraint(item: dateLabel, attribute: .leading, relatedBy: .equal, toItem: cellLabel, attribute: .leading, multiplier: 1, constant: 0))
+        addConstraint(NSLayoutConstraint(item: dateLabel, attribute: .trailing, relatedBy: .equal, toItem: cellLabel, attribute: .trailing, multiplier: 1, constant: 0))
 
         addSubview(likebtn)
         addConstraint(NSLayoutConstraint(item: likebtn, attribute: .top, relatedBy: .equal, toItem: posterImage, attribute: .bottom, multiplier: 1, constant: 15))
@@ -128,4 +148,6 @@ class ExploreCell : UICollectionViewCell {
 class likeButton: UIButton {
     var posterId: Int?
     var likeBtnPressed: Bool = false
+    var liked: Bool = false
+    var poster: Poster?
 }

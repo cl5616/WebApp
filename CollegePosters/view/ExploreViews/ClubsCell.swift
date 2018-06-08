@@ -9,5 +9,7 @@
 import UIKit
 
 class ClubsCell: ExploreBaseCell {
-
+    override func setSection() {
+        self.section = "getClubsPosters"
+    }
 }
