@@ -12,10 +12,10 @@ class FollowCell: ExploreBaseCell {
     
     override func testImages() {
         let test2Poster = Poster()
-        test2Poster.posterImageName = "heart33"
+        test2Poster.posterImageName = "fire64"
         test2Poster.posterTitle = "Some stupid title"
         let test1Poster = Poster()
-        test1Poster.posterImageName = "test2"
+        test1Poster.posterImageName = "fire64"
         test1Poster.posterTitle = "Some other stupid title"
         
         posters = [test1Poster, test2Poster]

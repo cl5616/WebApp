@@ -14,9 +14,43 @@ class ExploreCell : UICollectionViewCell {
         didSet {
             cellLabel.text = poster?.posterTitle
             if let imageName = poster?.posterImageName {
-                posterImage.image = UIImage(named: imageName)
+                setImage(withName: imageName)
             }
+            likebtn.posterId = poster?.postId
         }
+    }
+    
+    func setImage(withName: String) {
+        
+        if withName == "fire64" {
+            return
+        }
+
+        posterImage.url = withName
+        
+        let picFolderUrl = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/pic/"
+        let combinedUrl = picFolderUrl + withName
+        let url = URL(string: combinedUrl)
+        
+        if let imageFromCache = imageCache.object(forKey: withName as NSString) {
+            posterImage.image = imageFromCache
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url!) { (data, response, error) in
+            if error != nil {
+                print(error!)
+                return
+            }
+            
+            DispatchQueue.main.async {
+                let imageToCache = UIImage(data: data!)
+                imageCache.setObject(imageToCache!, forKey: withName as NSString)
+                if self.posterImage.url == withName {
+                    self.posterImage.image = imageToCache
+                }
+            }
+        }.resume()
     }
 
     override init(frame: CGRect) {
@@ -29,10 +63,10 @@ class ExploreCell : UICollectionViewCell {
     }
 
 
-    let posterImage: UIImageView = {
-        let imageView = UIImageView()
+    let posterImage: CellImageView = {
+        let imageView = CellImageView()
         imageView.backgroundColor = UIColor.gray
-        imageView.image = UIImage(named: "test2")
+        imageView.image = nil
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -58,9 +92,9 @@ class ExploreCell : UICollectionViewCell {
 
 
 
-    var likebtn : UIButton = {
+    var likebtn : likeButton = {
         let likeImage = UIImage(named: "heart33")
-        let btn = UIButton(type: .custom)
+        let btn = likeButton(type: .custom)
         btn.frame = CGRect(x: 0,y: 0,width: 33,height: 33)
         btn.setImage(likeImage, for: .normal)
         btn.translatesAutoresizingMaskIntoConstraints = false
@@ -89,4 +123,9 @@ class ExploreCell : UICollectionViewCell {
         addConstraint(NSLayoutConstraint(item: likebtn, attribute: .trailing, relatedBy: .equal, toItem: posterImage, attribute: .trailing, multiplier: 1, constant: -7))
     }
 
+}
+
+class likeButton: UIButton {
+    var posterId: Int?
+    var likeBtnPressed: Bool = false
 }

@@ -8,9 +8,13 @@
 
 import UIKit
 
-class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
+    
     let cellId = "cellId"
     var posters: [Poster] = [Poster]()
+    let posterGetter = HttpApiService.sharedHttpApiService
+    var alreadyLoaded: Int = 0
+    var isLoading = false
     
     lazy var cvt: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -35,7 +39,31 @@ class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
         //testing
         
         //test images
+        
+        fetchPosters(from: 0)
+    }
+    
+    func fetchPosters(from: Int) {
         testImages()
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let height = scrollView.frame.size.height
+        let contentOffSetY = scrollView.contentOffset.y
+        print(contentOffSetY)
+        print("height: \(height)")
+       
+        if contentOffSetY < -100 && !isLoading{
+            isLoading = true
+            fetchPosters(from: 0)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.item == alreadyLoaded - 1{
+            isLoading = true
+            fetchPosters(from: alreadyLoaded)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -47,11 +75,15 @@ class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ExploreCell
         
         // Configure the cell
-        // Configure like button
-        cell.likebtn.addTarget(self, action: #selector(likeBtnTapped), for: .touchUpInside)
+        if !isLoading {
+            // Configure like button
+            cell.likebtn.addTarget(self, action: #selector(likeBtnTapped), for: .touchUpInside)
         
-        // Render poster on cell
-        cell.poster = posters[indexPath.item]
+            cell.posterImage.image = nil
+            
+            // Render poster on cell
+            cell.poster = posters[indexPath.item]
+        }
         
         return cell
     }
@@ -69,14 +101,21 @@ class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
     
     @IBAction func likeBtnTapped(sender: UIButton!) -> Void {
         print("like btn tapped")
-        let liked = UIImage(named: "heartfilled33")
         let unliked = UIImage(named: "heart33")
         
-        if sender.imageView!.image!.isEqual(liked) {
-            sender.setImage(unliked , for: .normal)
-        } else {
-            sender.setImage(liked, for: .normal)
+        
+        guard let sender = sender as? likeButton else {
+            print("button type casting failed")
+            return
         }
+        
+        if !sender.likeBtnPressed {
+            sender.likeBtnPressed = true
+            let like = sender.imageView!.image!.isEqual(unliked)
+            like ? print("is liking") : print("is unliking")
+            HttpApiService.sharedHttpApiService.likeBtnPressed(with: sender.posterId!, btn: sender, like: like)
+        }
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

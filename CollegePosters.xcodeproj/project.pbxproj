@@ -43,6 +43,7 @@
 		EB4A88BA20C9529700AF5587 /* Message.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB4A88B820C9529700AF5587 /* Message.storyboard */; };
 		EB4A88BD20C952B100AF5587 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB4A88BB20C952B100AF5587 /* Profile.storyboard */; };
 		EB4A88C020C952CB00AF5587 /* LogIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB4A88BE20C952CB00AF5587 /* LogIn.storyboard */; };
+		EB4A88C220C990B500AF5587 /* CellImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A88C120C990B500AF5587 /* CellImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,7 @@
 		EB4A88B920C9529700AF5587 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Message.storyboard; sourceTree = "<group>"; };
 		EB4A88BC20C952B100AF5587 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Profile.storyboard; sourceTree = "<group>"; };
 		EB4A88BF20C952CB00AF5587 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LogIn.storyboard; sourceTree = "<group>"; };
+		EB4A88C120C990B500AF5587 /* CellImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,15 +167,15 @@
 		EB4A882120BEC4F400AF5587 /* CollegePosters */ = {
 			isa = PBXGroup;
 			children = (
+				EB4A886F20C06D7B00AF5587 /* model */,
+				EB4A887620C0A10500AF5587 /* view */,
+				EB4A887520C0A08900AF5587 /* controllers */,
+				EB4A882220BEC4F400AF5587 /* AppDelegate.swift */,
 				EB4A88BE20C952CB00AF5587 /* LogIn.storyboard */,
 				EB4A88BB20C952B100AF5587 /* Profile.storyboard */,
 				EB4A88B820C9529700AF5587 /* Message.storyboard */,
 				EB4A88B520C9527B00AF5587 /* Post.storyboard */,
 				EB4A88B220C9525C00AF5587 /* Search.storyboard */,
-				EB4A886F20C06D7B00AF5587 /* model */,
-				EB4A887620C0A10500AF5587 /* view */,
-				EB4A887520C0A08900AF5587 /* controllers */,
-				EB4A882220BEC4F400AF5587 /* AppDelegate.swift */,
 				EB4A88AF20C9522600AF5587 /* Explore.storyboard */,
 				EB4A882620BEC4F400AF5587 /* Main.storyboard */,
 				EB4A882C20BEC4F500AF5587 /* Assets.xcassets */,
@@ -198,6 +200,7 @@
 			children = (
 				EB4A887020C06DA800AF5587 /* Poster.swift */,
 				EB4A889820C84CFB00AF5587 /* HttpApiService.swift */,
+				EB4A88C120C990B500AF5587 /* CellImageView.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 				EB4A889920C84CFB00AF5587 /* HttpApiService.swift in Sources */,
 				EB4A882320BEC4F400AF5587 /* AppDelegate.swift in Sources */,
 				EB4A88A520C87FEA00AF5587 /* SocialsCell.swift in Sources */,
+				EB4A88C220C990B500AF5587 /* CellImageView.swift in Sources */,
 				63D40D2520C5E16000DBF059 /* PostViewController.swift in Sources */,
 				EB4A885620BF1A6D00AF5587 /* DiscoverViewController.swift in Sources */,
 				EB4A889B20C852D600AF5587 /* PosterImage.swift in Sources */,
