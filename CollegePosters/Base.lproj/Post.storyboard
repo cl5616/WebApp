@@ -128,6 +128,9 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="SEND"/>
+                                <connections>
+                                    <action selector="sendPressed:" destination="5wP-SZ-X0J" eventType="touchUpInside" id="bpQ-aN-dpA"/>
+                                </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lbX-xj-d3n">
                                 <rect key="frame" x="33" y="180" width="308" height="252"/>

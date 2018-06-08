@@ -22,6 +22,13 @@ class PostViewController: UIViewController, UINavigationControllerDelegate,
     var selectedPhotos = [UIImage]()
 
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destViewController: PostDetailsViewController = segue.destination as! PostDetailsViewController
+        
+        destViewController.selectedPhotos = selectedPhotos
+        destViewController.titleText = titleTextField.text!
+    }
+    
     @IBAction func selectPressed(_ sender: Any) {
         selectedAssets = []
         selectedPhotos = []
@@ -39,11 +46,7 @@ class PostViewController: UIViewController, UINavigationControllerDelegate,
                 self.selectedAssets.append(assets[i])
             }
             self.convertAssetsToImages()
-            /*if assets.count > 0 {
-                self.nextButton.isEnabled = true
-            }*/
         }, completion: nil)
-        //self.selectButton.isHidden = true
     }
 
     func convertAssetsToImages() -> Void {
@@ -60,10 +63,9 @@ class PostViewController: UIViewController, UINavigationControllerDelegate,
                 manager.requestImage(for: selectedAssets[i], targetSize: CGSize(width: 200, height: 200), contentMode: .aspectFill, options: option, resultHandler: {(result, info) -> Void in thumbnail = result!
                 })
 
-                let data = UIImageJPEGRepresentation(thumbnail, 0.7)
+                let data = UIImageJPEGRepresentation(thumbnail, 1)
                 let newImage = UIImage(data: data!)
                 self.selectedPhotos.append(newImage! as UIImage)
-                //nextButton.isEnabled = enableNextButton()
             }
 
             previewImage.selectedPhotos = self.selectedPhotos
@@ -76,14 +78,6 @@ class PostViewController: UIViewController, UINavigationControllerDelegate,
     @IBAction func nextPressed(_ sender: Any) {
 
     }
-    
-    /*func enableNextButton() -> Bool {
-        var ret: Bool = false
-        DispatchQueue.main.sync {
-            ret = !(self.titleTextField.text?.isEmpty ?? true) && !self.selectedPhotos.isEmpty
-        }
-        return ret
-    }*/
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         titleTextField.resignFirstResponder()
@@ -105,9 +99,9 @@ class PostViewController: UIViewController, UINavigationControllerDelegate,
         }
         if notification.name == Notification.Name.UIKeyboardWillShow || notification.name == Notification.Name.UIKeyboardWillChangeFrame {
 
-            view.frame.origin.y = -keyBoardRect.height /*+ (self.navigationController?.navigationBar.frame.size.height)! + (UIApplication.shared.statusBarFrame.height)*/
+            view.frame.origin.y = -keyBoardRect.height
         } else {
-            view.frame.origin.y = 0/*UIApplication.shared.statusBarFrame.height*/
+            view.frame.origin.y = 0
         }
 
     }

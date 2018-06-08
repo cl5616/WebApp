@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		299C885E20EFF44472BA215C /* Pods_CollegePosters.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CAE3A4F07D2613D19DD221D /* Pods_CollegePosters.framework */; };
+		631E0BCC20C9AAEE00908267 /* PostDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631E0BCB20C9AAEE00908267 /* PostDetails.swift */; };
 		6362718120C888BC0003F236 /* PostDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6362718020C888BC0003F236 /* PostDetailsViewController.swift */; };
 		63640EB420C74EBD0045A0F1 /* PostImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63640EB320C74EBD0045A0F1 /* PostImagesView.swift */; };
 		63640EB620C74EFF0045A0F1 /* PostImagesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63640EB520C74EFF0045A0F1 /* PostImagesViewCell.swift */; };
@@ -59,6 +60,7 @@
 		0CAE3A4F07D2613D19DD221D /* Pods_CollegePosters.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CollegePosters.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4997281D62618CC43C5B174E /* Pods-CollegePostersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CollegePostersTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CollegePostersTests/Pods-CollegePostersTests.release.xcconfig"; sourceTree = "<group>"; };
 		576E6AD15ACF977781557463 /* Pods-CollegePostersTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CollegePostersTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CollegePostersTests/Pods-CollegePostersTests.debug.xcconfig"; sourceTree = "<group>"; };
+		631E0BCB20C9AAEE00908267 /* PostDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetails.swift; sourceTree = "<group>"; };
 		6362718020C888BC0003F236 /* PostDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsViewController.swift; sourceTree = "<group>"; };
 		63640EB320C74EBD0045A0F1 /* PostImagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImagesView.swift; sourceTree = "<group>"; };
 		63640EB520C74EFF0045A0F1 /* PostImagesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImagesViewCell.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 			children = (
 				EB4A887020C06DA800AF5587 /* Poster.swift */,
 				EB4A889820C84CFB00AF5587 /* HttpApiService.swift */,
+				631E0BCB20C9AAEE00908267 /* PostDetails.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				EB4A882320BEC4F400AF5587 /* AppDelegate.swift in Sources */,
 				EB4A88A520C87FEA00AF5587 /* SocialsCell.swift in Sources */,
 				63D40D2520C5E16000DBF059 /* PostViewController.swift in Sources */,
+				631E0BCC20C9AAEE00908267 /* PostDetails.swift in Sources */,
 				EB4A885620BF1A6D00AF5587 /* DiscoverViewController.swift in Sources */,
 				EB4A889B20C852D600AF5587 /* PosterImage.swift in Sources */,
 				EB4A88A120C87FBE00AF5587 /* JobCell.swift in Sources */,
