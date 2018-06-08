@@ -41,11 +41,7 @@ class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
         
         //test images
         setSection()
-        if self.section == "getExplorePosters" || self.section == "getTrendPosters" {
-            testImages()
-        } else {
-            fetchPosters(from: 0)
-        }
+        fetchPosters(from: 0)
     }
     
     func setSection() {
@@ -103,6 +99,11 @@ class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
             cell.likebtn.addTarget(self, action: #selector(likeBtnTapped), for: .touchUpInside)
         
             cell.posterImage.image = nil
+            //if cell.likebtn.liked {
+            //    cell.likebtn.imageView?.image = UIImage(named: "heartfilled33")
+            //} else {
+            cell.likebtn.imageView?.image = UIImage(named: "heart33")
+            //}
             
             // Render poster on cell
             cell.poster = posters[indexPath.item]
