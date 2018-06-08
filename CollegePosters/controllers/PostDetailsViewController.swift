@@ -14,7 +14,7 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
     @IBOutlet weak var postDescription: UITextView!
     @IBOutlet weak var sendButton: UIButton!
     
-    let categories = ["Clubs", "Socials", "Academy", "Market", "Job"]
+    let categories = ["Clubs", "Social", "Academy", "Market", "Job"]
     var selectedCategory: String?
     var selectedPhotos: [UIImage] = []
     var titleText: String = ""
@@ -71,6 +71,10 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
         let dataBody = createDataBody(withParams: parameters, media: mediaImages, boundary: boundary)
         request.httpBody = dataBody
         let session = URLSession.shared
+        let category = categorySelection.text?.lowercased() ?? ""
+        let description = self.postDescription.text ?? ""
+        let title = self.titleText
+        
         session.dataTask(with: request) { (data, response, error) in
             if let response = response {
                 print(response)
@@ -79,16 +83,31 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
                 do {
                     let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String : Any]
                     let filename = json["filename"] as! String
+                    print(filename)
                     print(json)
                     let url1 = URL(string: "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/addpost.php")
                     var request1 = URLRequest(url: url1!)
                     request1.httpMethod = "POST"
                     request1.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-                    let postDetailStr = "category=\(self.categorySelection.text ?? "")&content=\(self.postDescription.text)&title=\(self.titleText)&picture=\(filename)&anonymous=1"
-                    request1.httpBody = postDetailStr.data(using: .utf8)
+                    let postDetailStr = "category=\(category)&content=\(description)&title=\(title)&picture=\(filename)&anonymous=1"
+                        request1.httpBody = postDetailStr.data(using: .utf8)
                     let session1 = URLSession.shared
-                    session.dataTask(with: request1) {_,_,_ in 
-                    }
+                    session1.dataTask(with: request1) {(data, repsonse, error) in
+                        if let response = response {
+                            print(response)
+                        }
+                        if let data = data {
+                            do {
+                                let json = try JSONSerialization.jsonObject(with: data, options: [])
+                                print(json)
+                            } catch {
+                                print(error)
+                            }
+                        }
+                        if let error = error {
+                            print(error)
+                        }
+                    }.resume()
                 } catch {
                     print(data)
                     print(error)
