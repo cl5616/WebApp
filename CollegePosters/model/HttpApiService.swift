@@ -67,13 +67,15 @@ class HttpApiService {
             do {
                 let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! [String: AnyObject]
                 
+                print("status:  \((json["status"] as! Int))")
+                
                 if json["status"] as! Int == 1 {
-                    if like {
-                        btn.poster?.liked = true
-                    } else {
-                        btn.poster?.liked = false
-                    }
                     DispatchQueue.main.async {
+                        if like {
+                            btn.poster?.liked = true
+                        } else {
+                            btn.poster?.liked = false
+                        }
                         if (btnId == btn.posterId!) {
                             like ? btn.setImage(liked, for: .normal) : btn.setImage(unliked , for: .normal)
                             btn.likeBtnPressed = false

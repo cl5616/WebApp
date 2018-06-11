@@ -52,7 +52,9 @@ class ExploreCell : UICollectionViewCell {
             
             DispatchQueue.main.async {
                 let imageToCache = UIImage(data: data!)
-                imageCache.setObject(imageToCache!, forKey: withName as NSString)
+                if let imageToCache = imageToCache {
+                    imageCache.setObject(imageToCache, forKey: withName as NSString)
+                }
                 if self.posterImage.url == withName {
                     self.posterImage.image = imageToCache
                 }
