@@ -109,18 +109,14 @@ class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         posterDetail.exitGesture.edges = .left
         posterDetail.exitGesture.addTarget(self, action: #selector(handleSwipe(_:)))
-        posterDetail.showPosterDetail()
+        posterDetail.showPosterDetail(posters[indexPath.item])
         originC = posterDetail.mainV?.center
     }
     
     @objc func handleSwipe(_ sender: UIScreenEdgePanGestureRecognizer) {
-        print("swiping right")
-        
         if sender.state == .began || sender.state == .changed {
             let translation = sender.translation(in: sender.view)
             let changeX = (sender.view?.center.x)! + translation.x
-            print("translation: \(translation.x)")
-            print(changeX)
             
             sender.view?.center = CGPoint(x: changeX, y: originC!.y)
             sender.setTranslation(.zero, in: sender.view)

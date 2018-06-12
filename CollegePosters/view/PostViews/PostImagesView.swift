@@ -13,6 +13,22 @@ class PostImagesView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     //ar postImagesController: PostViewController?
     var cellID = "adfj"
     var selectedPhotos: [UIImage]?
+    let imageViewer: ImageViewer = {
+        let iv = ImageViewer()
+        iv.exitGesture.addTarget(self, action: #selector(handleTap(_:)))
+        return iv
+    }()
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer) {
+        
+        if sender.state != .cancelled && sender.state != .failed{
+            let v = sender.view as! UIImageView
+            //v.image = nil
+            v.removeFromSuperview()
+            selectedOne = false
+        }
+    }
+    
     lazy var cv: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -62,6 +78,18 @@ class PostImagesView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+    
+    var selectedOne = false
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if (!selectedOne) {
+            selectedOne = true
+            print("selected: \(indexPath.item)")
+            let sp = selectedPhotos![indexPath.item]
+            imageViewer.exitGesture.addTarget(self, action: #selector(handleTap(_:)))
+            imageViewer.showImage(sp)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
