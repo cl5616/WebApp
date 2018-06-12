@@ -41,7 +41,6 @@ class PostImagesView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     }()
 
     override init(frame: CGRect) {
-        print("initialising uiview")
         super.init(frame: frame)
         addSubview(cv)
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": cv]))

@@ -72,11 +72,8 @@ class PosterDetailLauncher : NSObject{
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             view.frame = keyWindow.frame
         }) { (completedAnimation) in
-            //view.backgroundColor = .red
+            
         }
-        
-        print("x: \(view.frame.minX)")
-        print("y: \(view.frame.minY)")
         
         view.addGestureRecognizer(exitGesture)
         

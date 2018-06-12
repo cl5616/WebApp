@@ -8,8 +8,7 @@
 
 import UIKit
 
-class PosterDetailUserCellCollectionViewCell: UICollectionViewCell {
-    
+class PosterDetailUserCellCollectionViewCell: PostDetailCell {
     
     let profileImage: CellImageView = {
         let imageView = CellImageView()
@@ -38,14 +37,7 @@ class PosterDetailUserCellCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        backgroundColor = .white
-        
-        buildCell()
-    }
-    
-    func buildCell() {
+    override func buildCell() {
         addSubview(profileImage)
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-8-[v0(40)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": profileImage]))
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:|-8-[v0(40)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": profileImage]))
@@ -57,9 +49,5 @@ class PosterDetailUserCellCollectionViewCell: UICollectionViewCell {
         addSubview(separator)
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[v0]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": separator]))
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0(1)]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": separator]))
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

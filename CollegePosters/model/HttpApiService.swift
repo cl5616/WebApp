@@ -113,16 +113,25 @@ class HttpApiService {
                 if (json as? [String: AnyObject]) == nil {
                     for dict in json as! [[String: AnyObject]] {
                         let newPoster = Poster()
+                        
+                        //title
                         newPoster.posterTitle = dict["title"] as? String
+                        //content
                         newPoster.posterDescription = dict["content"] as? String
-                        newPoster.time = dict["post_time"] as? String
+                        //image name
                         var ImageName = dict["picture"] as? String
                         ImageName = ImageName == "null" ? "fire64" : ImageName
                         newPoster.posterImageName = ImageName
                         newPoster.postId = dict["msg_id"] as? Int
+                        //time
                         let time = dict["post_time"] as? String
                         let subTime = time?.prefix(19)
                         newPoster.time = String(subTime!)
+                        //postId
+                        newPoster.postId = dict["msg_id"] as? Int
+                        //userId
+                        newPoster.userId = dict["poster_id"] as? Int
+                        
                         self.posters?.append(newPoster)
                     }
                 }

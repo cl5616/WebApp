@@ -8,15 +8,27 @@
 
 import UIKit
 
-class PosterDetailContentCollectionViewCell: UICollectionViewCell {
+class PosterDetailContentCollectionViewCell: PostDetailCell {
     
-    var poster: Poster? {
+    override var poster: Poster? {
         didSet {
             if let description = poster?.posterDescription {
                 contentLabel.text = description
             }
+            cmtbtn.isReply = false
+            cmtbtn.postId = poster?.postId
         }
     }
+    
+    var cmtbtn : CommentBtn = {
+        let cmtImage = UIImage(named: "comment33")
+        let btn = CommentBtn(type: .custom)
+        btn.frame = CGRect(x: 0,y: 0,width: 33,height: 33)
+        btn.setImage(cmtImage, for: .normal)
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        btn.isReply = false
+        return btn
+    }()
     
     let contentLabel : UILabel = {
         let label = UILabel()
@@ -34,23 +46,23 @@ class PosterDetailContentCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        backgroundColor = .white
-        buildCell()
-    }
-    
-    func buildCell() {
+    override func buildCell() {
         addSubview(contentLabel)
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[v0]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": contentLabel]))
-        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0]-5-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": contentLabel]))
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:|-35-[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": contentLabel]))
+        
+        addSubview(cmtbtn)
+        addConstraint(NSLayoutConstraint(item: cmtbtn, attribute: .bottom, relatedBy: .equal, toItem: contentLabel, attribute: .top, multiplier: 1, constant: 2))
+        addConstraint(NSLayoutConstraint(item: cmtbtn, attribute: .trailing, relatedBy: .equal, toItem: contentLabel, attribute: .trailing, multiplier: 1, constant: 0))
         
         addSubview(separator)
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[v0]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": separator]))
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0(1)]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": separator]))
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+}
+
+class CommentBtn : UIButton {
+    var isReply: Bool?
+    var commenter: Int?
+    var postId: Int?
 }

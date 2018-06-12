@@ -17,6 +17,7 @@ class Poster: NSObject {
     var postId: Int?
     var liked: Bool = false
     var posterImage: UIImage?
+    var userId: Int?
 }
 
 class PosterDescription: NSObject {
