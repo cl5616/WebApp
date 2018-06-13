@@ -37,11 +37,11 @@ class ExploreCollectionViewController: UICollectionViewController, UICollectionV
         // Register cell classes
         self.collectionView!.register(TrendCell.self, forCellWithReuseIdentifier: trendId)
         self.collectionView!.register(FollowCell.self, forCellWithReuseIdentifier: followId)
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: clubsId)
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: marketId)
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: jobId)
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: academyId)
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: socialsId)
+        self.collectionView!.register(ClubsCell.self, forCellWithReuseIdentifier: clubsId)
+        self.collectionView!.register(MarketCell.self, forCellWithReuseIdentifier: marketId)
+        self.collectionView!.register(JobCell.self, forCellWithReuseIdentifier: jobId)
+        self.collectionView!.register(AcademyCell.self, forCellWithReuseIdentifier: academyId)
+        self.collectionView!.register(SocialsCell.self, forCellWithReuseIdentifier: socialsId)
         
 
         // Do any additional setup after loading the view.

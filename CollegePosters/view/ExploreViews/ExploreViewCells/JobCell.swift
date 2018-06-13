@@ -1,5 +1,5 @@
 //
-//  ClubsCell.swift
+//  JobCell.swift
 //  CollegePosters
 //
 //  Created by 姜曦 on 06/06/2018.
@@ -8,6 +8,8 @@
 
 import UIKit
 
-class ClubsCell: ExploreBaseCell {
-
+class JobCell: ExploreBaseCell {
+    override func setSection() {
+        self.section = "getJobPosters"
+    }
 }

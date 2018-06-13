@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SC7-aT-qhD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SC7-aT-qhD">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -93,7 +93,7 @@
         <!--Details-->
         <scene sceneID="v1g-KI-koA">
             <objects>
-                <viewController title="Details" id="5wP-SZ-X0J" customClass="PostDetailsViewController" customModule="CollegePosters" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="lastStepPost" title="Details" id="5wP-SZ-X0J" customClass="PostDetailsViewController" customModule="CollegePosters" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3Pg-z5-0cy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -130,6 +130,7 @@
                                 <state key="normal" title="SEND"/>
                                 <connections>
                                     <action selector="sendPressed:" destination="5wP-SZ-X0J" eventType="touchUpInside" id="bpQ-aN-dpA"/>
+                                    <segue destination="RcW-DM-eos" kind="show" id="o8t-Ab-jcf"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lbX-xj-d3n">
@@ -169,6 +170,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rUh-Sk-UAG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2797.5999999999999" y="1084.4077961019491"/>
+        </scene>
+        <!--Explore-->
+        <scene sceneID="k97-aL-ftK">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="Explore" storyboardName="Main" referencedIdentifier="Explore" id="RcW-DM-eos" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="09w-Pf-mBG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3561" y="1258"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

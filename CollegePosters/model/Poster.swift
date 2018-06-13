@@ -12,10 +12,12 @@ class Poster: NSObject {
     
     var posterImageName: String?
     var posterTitle: String?
-    var posterDescription: PosterDescription?
-    var time: Date?
-    
-    
+    var posterDescription: String?
+    var time: String?
+    var postId: Int?
+    var liked: Bool = false
+    var posterImage: UIImage?
+    var userId: Int?
 }
 
 class PosterDescription: NSObject {

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -13,7 +17,7 @@
             <objects>
                 <viewController storyboardIdentifier="notSignedIn" id="HKd-Q8-PkP" customClass="LogInViewController" customModule="CollegePosters" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qup-AF-Mua">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exampleLogin" translatesAutoresizingMaskIntoConstraints="NO" id="e5h-1u-bCE">
@@ -45,13 +49,13 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EN6-ja-n8p">
-                                        <rect key="frame" x="30" y="207" width="240" height="30"/>
-                                        <state key="normal" title="Log in / Register">
+                                        <rect key="frame" x="30" y="207" width="120" height="30"/>
+                                        <state key="normal" title="Log in ">
                                             <color key="titleShadowColor" red="0.68413895629999999" green="0.94954386239999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="15"/>
+                                                <integer key="value" value="10"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="2"/>
                                         </userDefinedRuntimeAttributes>
@@ -59,19 +63,32 @@
                                             <action selector="tryLogIn:" destination="HKd-Q8-PkP" eventType="touchUpInside" id="y72-Ef-SNz"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gd4-14-ddY">
+                                        <rect key="frame" x="150" y="207" width="120" height="30"/>
+                                        <state key="normal" title="Register"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="2"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="XAa-y1-VZO" firstAttribute="width" secondItem="668-IX-4cm" secondAttribute="width" multiplier="0.8" id="A7c-45-T60"/>
                                     <constraint firstItem="XAa-y1-VZO" firstAttribute="centerX" secondItem="668-IX-4cm" secondAttribute="centerX" id="Dyp-0Y-T0W"/>
-                                    <constraint firstItem="EN6-ja-n8p" firstAttribute="width" secondItem="XAa-y1-VZO" secondAttribute="width" id="Jbd-Wq-GVf"/>
+                                    <constraint firstItem="EN6-ja-n8p" firstAttribute="width" secondItem="XAa-y1-VZO" secondAttribute="width" multiplier="0.5" id="GuW-uE-RPB"/>
                                     <constraint firstItem="NCc-gj-wnP" firstAttribute="width" secondItem="XAa-y1-VZO" secondAttribute="width" id="KLu-Ra-1sL"/>
                                     <constraint firstItem="XAa-y1-VZO" firstAttribute="top" secondItem="NCc-gj-wnP" secondAttribute="bottom" constant="49" id="L1J-vz-8Y9"/>
+                                    <constraint firstItem="EN6-ja-n8p" firstAttribute="leading" secondItem="XAa-y1-VZO" secondAttribute="leading" id="NDU-xT-4t4"/>
                                     <constraint firstItem="NCc-gj-wnP" firstAttribute="centerX" secondItem="668-IX-4cm" secondAttribute="centerX" id="PXf-iX-zqc"/>
                                     <constraint firstAttribute="width" secondItem="668-IX-4cm" secondAttribute="height" multiplier="287:274" id="ahP-LV-soU"/>
-                                    <constraint firstItem="EN6-ja-n8p" firstAttribute="centerX" secondItem="668-IX-4cm" secondAttribute="centerX" id="pli-sJ-q2P"/>
+                                    <constraint firstItem="gd4-14-ddY" firstAttribute="leading" secondItem="EN6-ja-n8p" secondAttribute="trailing" id="i52-cz-zZB"/>
+                                    <constraint firstItem="gd4-14-ddY" firstAttribute="top" secondItem="XAa-y1-VZO" secondAttribute="bottom" constant="49" id="jAe-cz-9It"/>
+                                    <constraint firstItem="EN6-ja-n8p" firstAttribute="top" secondItem="XAa-y1-VZO" secondAttribute="bottom" constant="49" id="n4Y-95-fMJ"/>
+                                    <constraint firstItem="gd4-14-ddY" firstAttribute="width" secondItem="EN6-ja-n8p" secondAttribute="width" id="oQk-p3-a2h"/>
                                     <constraint firstItem="XAa-y1-VZO" firstAttribute="centerY" secondItem="668-IX-4cm" secondAttribute="centerY" id="udq-MV-CJK"/>
-                                    <constraint firstItem="EN6-ja-n8p" firstAttribute="top" secondItem="XAa-y1-VZO" secondAttribute="bottom" constant="49" id="yRb-ep-y7r"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">

@@ -9,12 +9,23 @@
 import Foundation
 import UIKit
 
+let imageCache = NSCache<NSString, UIImage>()
+
 class HttpApiService {
     
     static let sharedHttpApiService: HttpApiService = {
         let shs = HttpApiService()
         
         //add new URLs to dictionary
+        shs.urls["getSocialPosters"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getposts.php?category=social"
+        shs.urls["getTrendPosters"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getposts.php?sort=1"
+        shs.urls["getFollowPosters"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getposts.php?category=follow"
+        shs.urls["getClubsPosters"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getposts.php?category=clubs"
+        shs.urls["getMarketPosters"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getposts.php?category=market"
+        shs.urls["getJobPosters"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getposts.php?category=job"
+        shs.urls["getAcademyPosters"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getposts.php?category=academy"
+        shs.urls["like"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/like.php?"
+        shs.urls["unlike"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/unlike.php"
         
         return shs
     }()
@@ -26,9 +37,64 @@ class HttpApiService {
         
     }
     
-    func fetchPosters(with: String, from: UICollectionViewScrollPosition, completion: ([Poster]) -> ()) {
+    func likeBtnPressed(with: Int, btn: likeButton, like: Bool) {
+        let liked = UIImage(named: "heartfilled33")
+        let unliked = UIImage(named: "heart33")
         
-        let url = URL(string: urls[with]!)
+        let btnId = btn.posterId!
+        
+        let action = like ? "like" : "unlike"
+        let url = URL(string: urls[action]!)
+        var request = URLRequest(url: url!)
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        let postString = "post_id=\(with)"
+        request.httpBody = postString.data(using: .utf8)
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if error != nil {
+                btn.likeBtnPressed = false
+                print(error!)
+                return
+            }
+            
+            guard let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode == 200 else {
+                btn.likeBtnPressed = false
+                print("like failed")
+                print("response: \(response!)")
+                return
+            }
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! [String: AnyObject]
+                
+                print("status:  \((json["status"] as! Int))")
+                
+                if json["status"] as! Int == 1 {
+                    DispatchQueue.main.async {
+                        if like {
+                            btn.poster?.liked = true
+                        } else {
+                            btn.poster?.liked = false
+                        }
+                        if (btnId == btn.posterId!) {
+                            like ? btn.setImage(liked, for: .normal) : btn.setImage(unliked , for: .normal)
+                            btn.likeBtnPressed = false
+                        }
+                    }
+                }
+                
+            } catch let jsonErr {
+                print(jsonErr)
+            }
+        }.resume()
+    }
+    
+    func fetchPosters(with: String, from: Int, completion: @escaping ([Poster]) -> ()) {
+        
+        let rawUrl = urls[with]!
+        let combinedUrl = rawUrl + "&limit=5&offset=\(from)"
+        
+        let url = URL(string: combinedUrl)
         URLSession.shared.dataTask(with: url!) { (data, response, error) in
             if error != nil {
                 print(error!)
@@ -44,15 +110,35 @@ class HttpApiService {
                 
                 self.posters = [Poster]()
                 
-                for dict in json as! [[String: AnyObject]] {
-                    let newPoster = Poster()
-                    newPoster.posterTitle = dict["posterTitle"] as? String
-                    self.posters?.append(newPoster)
+                if (json as? [String: AnyObject]) == nil {
+                    for dict in json as! [[String: AnyObject]] {
+                        let newPoster = Poster()
+                        
+                        //title
+                        newPoster.posterTitle = dict["title"] as? String
+                        //content
+                        newPoster.posterDescription = dict["content"] as? String
+                        //image name
+                        var ImageName = dict["picture"] as? String
+                        ImageName = ImageName == "null" ? "fire64" : ImageName
+                        newPoster.posterImageName = ImageName
+                        newPoster.postId = dict["msg_id"] as? Int
+                        //time
+                        let time = dict["post_time"] as? String
+                        let subTime = time?.prefix(19)
+                        newPoster.time = String(subTime!)
+                        //postId
+                        newPoster.postId = dict["msg_id"] as? Int
+                        //userId
+                        newPoster.userId = dict["poster_id"] as? Int
+                        
+                        self.posters?.append(newPoster)
+                    }
                 }
                 
-                if from == .top {
-                    
-                }
+                
+                
+                completion(self.posters!)
                 
             } catch let jsonError {
                 print(jsonError)

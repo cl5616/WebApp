@@ -9,5 +9,7 @@
 import UIKit
 
 class MarketCell: ExploreBaseCell {
-    
+    override func setSection() {
+        self.section = "getMarketPosters"
+    }
 }

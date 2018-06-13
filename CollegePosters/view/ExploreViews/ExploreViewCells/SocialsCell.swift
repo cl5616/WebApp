@@ -10,4 +10,7 @@ import UIKit
 
 class SocialsCell: ExploreBaseCell {
 
+    override func setSection() {
+        self.section = "getSocialPosters"
+    }
 }
