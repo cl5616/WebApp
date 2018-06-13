@@ -54,6 +54,9 @@
 		EB4A88C020C952CB00AF5587 /* LogIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB4A88BE20C952CB00AF5587 /* LogIn.storyboard */; };
 		EB4A88C220C990B500AF5587 /* CellImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A88C120C990B500AF5587 /* CellImageView.swift */; };
 		EB88B68D20D003D900CE89B1 /* PosterDescriptionCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB88B68C20D003D900CE89B1 /* PosterDescriptionCollectionView.swift */; };
+		EB8C0B1C20D16AE1002A36D4 /* CommentAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8C0B1B20D16AE1002A36D4 /* CommentAction.swift */; };
+		EBB79DB420D19B7F00B28886 /* PosterDetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB79DB320D19B7F00B28886 /* PosterDetailsCollectionViewCell.swift */; };
+		EBB79DB620D1BDFB00B28886 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB79DB520D1BDFB00B28886 /* User.swift */; };
 		EBDBA69820CF052E00DCB6DC /* PosterDetailLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDBA69720CF052E00DCB6DC /* PosterDetailLauncher.swift */; };
 /* End PBXBuildFile section */
 
@@ -123,6 +126,9 @@
 		EB4A88BF20C952CB00AF5587 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LogIn.storyboard; sourceTree = "<group>"; };
 		EB4A88C120C990B500AF5587 /* CellImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellImageView.swift; sourceTree = "<group>"; };
 		EB88B68C20D003D900CE89B1 /* PosterDescriptionCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterDescriptionCollectionView.swift; sourceTree = "<group>"; };
+		EB8C0B1B20D16AE1002A36D4 /* CommentAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentAction.swift; sourceTree = "<group>"; };
+		EBB79DB320D19B7F00B28886 /* PosterDetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterDetailsCollectionViewCell.swift; sourceTree = "<group>"; };
+		EBB79DB520D1BDFB00B28886 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EBDBA69720CF052E00DCB6DC /* PosterDetailLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterDetailLauncher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -172,6 +178,7 @@
 				EB31AC1120D0286000474B9E /* PosterDetailUserCellCollectionViewCell.swift */,
 				EB31AC1320D0290A00474B9E /* PosterDetailContentCollectionViewCell.swift */,
 				EB31AC1520D0291E00474B9E /* PosterDetailCommentCollectionViewCell.swift */,
+				EBB79DB320D19B7F00B28886 /* PosterDetailsCollectionViewCell.swift */,
 				EB31AC1920D0536D00474B9E /* PostDetailCell.swift */,
 			);
 			path = postDetailViewCells;
@@ -272,6 +279,8 @@
 				EBDBA69720CF052E00DCB6DC /* PosterDetailLauncher.swift */,
 				EB31AC1720D03E2500474B9E /* ImageViewer.swift */,
 				EB31AC1D20D059C000474B9E /* Comment.swift */,
+				EB8C0B1B20D16AE1002A36D4 /* CommentAction.swift */,
+				EBB79DB520D1BDFB00B28886 /* User.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -508,6 +517,7 @@
 				EB4A88A520C87FEA00AF5587 /* SocialsCell.swift in Sources */,
 				EB4A88C220C990B500AF5587 /* CellImageView.swift in Sources */,
 				EB31AC1620D0291E00474B9E /* PosterDetailCommentCollectionViewCell.swift in Sources */,
+				EB8C0B1C20D16AE1002A36D4 /* CommentAction.swift in Sources */,
 				63D40D2520C5E16000DBF059 /* PostViewController.swift in Sources */,
 				EBDBA69820CF052E00DCB6DC /* PosterDetailLauncher.swift in Sources */,
 				631E0BCC20C9AAEE00908267 /* PostDetails.swift in Sources */,
@@ -516,8 +526,10 @@
 				EB4A885620BF1A6D00AF5587 /* DiscoverViewController.swift in Sources */,
 				EB31AC2120D066E800474B9E /* StringExtension.swift in Sources */,
 				EB4A889B20C852D600AF5587 /* PosterImage.swift in Sources */,
+				EBB79DB620D1BDFB00B28886 /* User.swift in Sources */,
 				EB4A88A120C87FBE00AF5587 /* JobCell.swift in Sources */,
 				EB4A886620BF6F0700AF5587 /* ExploreCollectionViewController.swift in Sources */,
+				EBB79DB420D19B7F00B28886 /* PosterDetailsCollectionViewCell.swift in Sources */,
 				EB4A887320C09D8800AF5587 /* ExploreCell.swift in Sources */,
 				63640EB620C74EFF0045A0F1 /* PostImagesViewCell.swift in Sources */,
 				EB4A885C20BF1A9E00AF5587 /* ProfileViewController.swift in Sources */,

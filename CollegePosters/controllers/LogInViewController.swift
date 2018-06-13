@@ -23,8 +23,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         var authenticated: Bool = true
         //todo parse email -> send to server for authentication
         
-        
-        
         if  authenticated {
             // store cookies
             // store user session

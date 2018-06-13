@@ -34,60 +34,17 @@ class ExploreCell : UICollectionViewCell {
             return
         }
 
-        posterImage.url = withName
-        let picFolderUrl = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/pic/"
-        var combinedUrls = [URL]()
-        let subNames = withName.split(separator: ";")
-        for picName in subNames {
-            let newName = String(picName)
-            let newCombinedUrl = picFolderUrl + newName
-            combinedUrls.append(URL(string: newCombinedUrl)!)
+        var countDown = 1000
+        while poster?.posterImage.count == 0 && countDown > 0{
+            countDown -= 1
         }
         
-        if let imageFromPoster = poster?.posterImage, let fstImg = imageFromPoster.first {
-            posterImage.image = fstImg
+        if countDown <= 0 {
+            posterImage.image = nil
             return
         }
         
-        if let fstSubname = subNames.first, let imageFromCache = imageCache.object(forKey: String(fstSubname) as NSString) {
-            posterImage.image = imageFromCache
-            return
-        }
-        poster?.posterImage = [UIImage]()
-        URLSession.shared.dataTask(with: combinedUrls.first!) { (data, response, error) in
-            if error != nil {
-                print(error!)
-                return
-            }
-            
-            DispatchQueue.main.async {
-                let imageToCache = UIImage(data: data!)
-                if let imageToCache = imageToCache {
-                    imageCache.setObject(imageToCache, forKey: String(subNames.first!) as NSString)
-                    self.poster?.posterImage?.append(imageToCache)
-                }
-                if self.posterImage.url == withName {
-                    self.posterImage.image = imageToCache
-                }
-            }
-        }.resume()
-        let rest = combinedUrls.suffix(from: 1)
-        for idx in 1...rest.count {
-            URLSession.shared.dataTask(with: rest[idx]) { (data, response, error) in
-                if error != nil {
-                    print(error!)
-                    return
-                }
-                
-                DispatchQueue.main.async {
-                    let imageToCache = UIImage(data: data!)
-                    if let imageToCache = imageToCache {
-                        imageCache.setObject(imageToCache, forKey: String(subNames[idx]) as NSString)
-                        self.poster?.posterImage?.append(imageToCache)
-                    }
-                }
-            }.resume()
-        }
+        posterImage.image = poster?.posterImage.first!
     }
 
     override init(frame: CGRect) {

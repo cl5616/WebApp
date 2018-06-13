@@ -26,6 +26,8 @@ class HttpApiService {
         shs.urls["getAcademyPosters"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getposts.php?category=academy"
         shs.urls["like"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/like.php?"
         shs.urls["unlike"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/unlike.php"
+        shs.urls["comment"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/addcomment.php"
+        shs.urls["getComments"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getcomments.php?"
         
         return shs
     }()
@@ -35,6 +37,78 @@ class HttpApiService {
     
     private init() {
         
+    }
+    
+    func fetchComment(postId: Int, from: Int, completion: @escaping ([Comment]) -> ()) {
+        let rawUrl = urls["getComments"]!
+        let combinedUrl = rawUrl + "offset=\(from)&limit=5&msg_id=\(postId)"
+        
+        let url = URL(string: combinedUrl)
+        URLSession.shared.dataTask(with: url!) { (data, response, error) in
+            if error != nil {
+                print(error!)
+                return
+            }
+            var comments = [Comment]()
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
+                if let json = json as? [[String: AnyObject]] {
+                    for dict in json {
+                        let newComment = Comment()
+                        //commenterId
+                        newComment.commenterId = dict["poster_id"] as? Int
+                        //commentId
+                        newComment.commentId = dict["id"] as? Int
+                        //commentTime
+                        let time = dict["comment_time"] as? String
+                        let subTime = time?.prefix(19)
+                        newComment.commentTime = String(subTime!)
+                        //content
+                        newComment.content = dict["content"] as? String
+                        //replyId
+                        let ri = dict["reply_id"] as? String
+                        if let ri = ri {
+                            newComment.replyId = Int(ri)
+                        }
+                        comments.append(newComment)
+                    }
+                }
+            } catch let jsonErr {
+                print(jsonErr)
+            }
+            completion(comments)
+        }.resume()
+    }
+    
+    func sendComment(postId: Int, replyId: Int?, content: String) {
+        let url = URL(string: urls["comment"]!)
+        var request = URLRequest(url: url!)
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        var postString = "msg_id=\(postId)&content=\(content)"
+        if let replyId = replyId {
+            postString += "&reply_id=\(replyId)"
+        }
+        request.httpBody = postString.data(using: .utf8)
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if error != nil {
+                print(error!)
+                return
+            }
+            guard let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode == 200 else {
+                print(response!)
+                return
+            }
+            
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! [String: AnyObject]
+                print("comment status: \(json["status"] as! Int)")
+                
+            } catch {
+                print(error)
+            }
+        }.resume()
     }
     
     func likeBtnPressed(with: Int, btn: likeButton, like: Bool) {
@@ -122,6 +196,8 @@ class HttpApiService {
                         var ImageName = dict["picture"] as? String
                         ImageName = ImageName == "" ? "fire64" : ImageName
                         newPoster.posterImageName = ImageName
+                        //set images 
+                        self.setImages(withName: ImageName!, poster: newPoster)
                         //image counts
                         newPoster.numOfPoster = ImageName?.split(separator: ";").count
                         //time
@@ -146,6 +222,31 @@ class HttpApiService {
             }
         }.resume()
         
+    }
+    
+    func setImages(withName: String, poster: Poster) {
+        let picFolderUrl = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/pic/"
+        var combinedUrls = [URL]()
+        let subNames = withName.split(separator: ";")
+        for picName in subNames {
+            let newName = String(picName)
+            let newCombinedUrl = picFolderUrl + newName
+            combinedUrls.append(URL(string: newCombinedUrl)!)
+        }
+        
+        for idx in 0...combinedUrls.count - 1 {
+            URLSession.shared.dataTask(with: combinedUrls[idx]) { (data, response, error) in
+                if error != nil {
+                    print(error!)
+                    return
+                }
+                let imageToCache = UIImage(data: data!)
+                if let imageToCache = imageToCache {
+                    imageCache.setObject(imageToCache, forKey: String(subNames[idx]) as NSString)
+                    poster.posterImage.append(imageToCache)
+                }
+            }.resume()
+        }
     }
     
 }

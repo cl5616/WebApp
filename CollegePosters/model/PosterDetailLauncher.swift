@@ -56,7 +56,11 @@ class PosterDetailLauncher : NSObject{
         DescriptionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
         DescriptionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         
-        posterDetailView.selectedPhotos = poster.posterImage!
+        
+        if poster.posterImage.count == 0 {
+            
+        }
+        posterDetailView.selectedPhotos = poster.posterImage
         DispatchQueue.main.async {
             self.posterDetailView.cv.reloadData()
         }
