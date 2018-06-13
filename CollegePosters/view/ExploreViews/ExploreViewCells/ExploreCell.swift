@@ -39,6 +39,11 @@ class ExploreCell : UICollectionViewCell {
         let combinedUrl = picFolderUrl + withName
         let url = URL(string: combinedUrl)
         
+        if let imageFromPoster = poster?.posterImage {
+            posterImage.image = imageFromPoster
+            return
+        }
+        
         if let imageFromCache = imageCache.object(forKey: withName as NSString) {
             posterImage.image = imageFromCache
             return
@@ -52,7 +57,10 @@ class ExploreCell : UICollectionViewCell {
             
             DispatchQueue.main.async {
                 let imageToCache = UIImage(data: data!)
-                imageCache.setObject(imageToCache!, forKey: withName as NSString)
+                if let imageToCache = imageToCache {
+                    imageCache.setObject(imageToCache, forKey: withName as NSString)
+                    self.poster?.posterImage = imageToCache
+                }
                 if self.posterImage.url == withName {
                     self.posterImage.image = imageToCache
                 }

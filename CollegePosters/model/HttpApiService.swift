@@ -67,13 +67,15 @@ class HttpApiService {
             do {
                 let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! [String: AnyObject]
                 
+                print("status:  \((json["status"] as! Int))")
+                
                 if json["status"] as! Int == 1 {
-                    if like {
-                        btn.poster?.liked = true
-                    } else {
-                        btn.poster?.liked = false
-                    }
                     DispatchQueue.main.async {
+                        if like {
+                            btn.poster?.liked = true
+                        } else {
+                            btn.poster?.liked = false
+                        }
                         if (btnId == btn.posterId!) {
                             like ? btn.setImage(liked, for: .normal) : btn.setImage(unliked , for: .normal)
                             btn.likeBtnPressed = false
@@ -111,15 +113,25 @@ class HttpApiService {
                 if (json as? [String: AnyObject]) == nil {
                     for dict in json as! [[String: AnyObject]] {
                         let newPoster = Poster()
-                        newPoster.posterTitle = dict["content"] as? String
-                        newPoster.time = dict["post_time"] as? String
+                        
+                        //title
+                        newPoster.posterTitle = dict["title"] as? String
+                        //content
+                        newPoster.posterDescription = dict["content"] as? String
+                        //image name
                         var ImageName = dict["picture"] as? String
                         ImageName = ImageName == "null" ? "fire64" : ImageName
                         newPoster.posterImageName = ImageName
                         newPoster.postId = dict["msg_id"] as? Int
+                        //time
                         let time = dict["post_time"] as? String
                         let subTime = time?.prefix(19)
                         newPoster.time = String(subTime!)
+                        //postId
+                        newPoster.postId = dict["msg_id"] as? Int
+                        //userId
+                        newPoster.userId = dict["poster_id"] as? Int
+                        
                         self.posters?.append(newPoster)
                     }
                 }

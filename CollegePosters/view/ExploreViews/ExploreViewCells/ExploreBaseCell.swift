@@ -16,6 +16,8 @@ class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
     var alreadyLoaded: Int = 0
     var isLoading = false
     var section: String?
+    let posterDetail = PosterDetailLauncher()
+    var originC: CGPoint?
     
     lazy var cvt: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -36,8 +38,6 @@ class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
         
         cvt.register(ExploreCell.self, forCellWithReuseIdentifier: cellId)
         cvt.backgroundColor = UIColor.white
-        
-        //testing
         
         //test images
         setSection()
@@ -67,10 +67,7 @@ class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let height = scrollView.frame.size.height
         let contentOffSetY = scrollView.contentOffset.y
-        print(contentOffSetY)
-        print("height: \(height)")
        
         if contentOffSetY < -100 && !isLoading{
             isLoading = true
@@ -99,11 +96,8 @@ class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
             cell.likebtn.addTarget(self, action: #selector(likeBtnTapped), for: .touchUpInside)
         
             cell.posterImage.image = nil
-            //if cell.likebtn.liked {
-            //    cell.likebtn.imageView?.image = UIImage(named: "heartfilled33")
-            //} else {
+
             cell.likebtn.imageView?.image = UIImage(named: "heart33")
-            //}
             
             // Render poster on cell
             cell.poster = posters[indexPath.item]
@@ -112,6 +106,58 @@ class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        posterDetail.exitGesture.edges = .left
+        posterDetail.exitGesture.addTarget(self, action: #selector(handleSwipe(_:)))
+        posterDetail.showPosterDetail(posters[indexPath.item])
+        originC = posterDetail.mainV?.center
+    }
+    
+    @objc func handleSwipe(_ sender: UIScreenEdgePanGestureRecognizer) {
+        if sender.state == .began || sender.state == .changed {
+            let translation = sender.translation(in: sender.view)
+            let changeX = (sender.view?.center.x)! + translation.x
+            
+            sender.view?.center = CGPoint(x: changeX, y: originC!.y)
+            sender.setTranslation(.zero, in: sender.view)
+        }
+        
+        if sender.state == .ended {
+            if (sender.view?.center.x)! > frame.width {
+                UIView.animate(withDuration: 0.3, animations: {
+                    sender.view?.center = CGPoint(x: self.frame.width + self.frame.width / 2, y: (self.originC?.y)!)
+                }) { (completed) in
+                    if completed {
+                        sender.view?.removeFromSuperview()
+                    }
+                }
+            } else {
+                UIView.animate(withDuration: 0.3) {
+                    sender.view?.center = self.originC!
+                }
+            }
+            
+            sender.setTranslation(.zero, in: sender.view)
+        }
+        
+        if sender.state == .cancelled {
+            if (sender.view?.center.x)! > frame.width {
+                UIView.animate(withDuration: 0.3, animations: {
+                    sender.view?.center = CGPoint(x: self.frame.width + self.frame.width / 2, y: (self.originC?.y)!)
+                }) { (completed) in
+                    if completed {
+                        sender.view?.removeFromSuperview()
+                    }
+                }
+            } else {
+                UIView.animate(withDuration: 0.3) {
+                    sender.view?.center = self.originC!
+                }
+            }
+            sender.setTranslation(.zero, in: sender.view)
+        }
+        
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = frame.width
