@@ -58,6 +58,8 @@ class PosterDetailCommentCollectionViewCell: PostDetailCell {
         fbtn.frame = CGRect(x: 0,y: 0,width: 33,height: 33)
         fbtn.setImage(fcmtImage, for: .normal)
         fbtn.translatesAutoresizingMaskIntoConstraints = false
+        fbtn.commentId = first?.commentId
+        fbtn.isReply = true
         cmbBtns.append(fbtn)
         addSubview(fbtn)
         addConstraint(NSLayoutConstraint(item: fbtn, attribute: .top, relatedBy: .equal, toItem: fpi, attribute: .top, multiplier: 1, constant: 0))
@@ -72,12 +74,10 @@ class PosterDetailCommentCollectionViewCell: PostDetailCell {
         }
         if let replyId = first?.replyId{
             frl.text = "\(commenterId) replies \(replyId)"
-            fbtn.isReply = true
+
         } else {
             frl.text = String(commenterId)
-            fbtn.isReply = false
         }
-        fbtn.commenter = commenterId
         addSubview(frl)
         addConstraint(NSLayoutConstraint(item: frl, attribute: .bottom, relatedBy: .equal, toItem: fpi, attribute: .bottom, multiplier: 1, constant: 0))
         addConstraint(NSLayoutConstraint(item: frl, attribute: .leading, relatedBy: .equal, toItem: fpi, attribute: .trailing, multiplier: 1, constant: 8))
@@ -130,6 +130,8 @@ class PosterDetailCommentCollectionViewCell: PostDetailCell {
             btn.frame = CGRect(x: 0,y: 0,width: 33,height: 33)
             btn.setImage(cmtImage, for: .normal)
             btn.translatesAutoresizingMaskIntoConstraints = false
+            btn.commentId = comment.commentId
+            btn.isReply = true
             cmbBtns.append(btn)
             addSubview(btn)
             addConstraint(NSLayoutConstraint(item: btn, attribute: .top, relatedBy: .equal, toItem: pi, attribute: .top, multiplier: 1, constant: 0))
@@ -144,12 +146,9 @@ class PosterDetailCommentCollectionViewCell: PostDetailCell {
             }
             if let replyId = comment.replyId{
                 rl.text = "\(commenterId) replies \(replyId)"
-                btn.isReply = true
             } else {
                 rl.text = String(commenterId)
-                btn.isReply = false
             }
-            btn.commenter = commenterId
             addSubview(rl)
             addConstraint(NSLayoutConstraint(item: rl, attribute: .bottom, relatedBy: .equal, toItem: pi, attribute: .bottom, multiplier: 1, constant: 0))
             addConstraint(NSLayoutConstraint(item: rl, attribute: .leading, relatedBy: .equal, toItem: pi, attribute: .trailing, multiplier: 1, constant: 8))

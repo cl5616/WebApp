@@ -120,9 +120,10 @@ class HttpApiService {
                         newPoster.posterDescription = dict["content"] as? String
                         //image name
                         var ImageName = dict["picture"] as? String
-                        ImageName = ImageName == "null" ? "fire64" : ImageName
+                        ImageName = ImageName == "" ? "fire64" : ImageName
                         newPoster.posterImageName = ImageName
-                        newPoster.postId = dict["msg_id"] as? Int
+                        //image counts
+                        newPoster.numOfPoster = ImageName?.split(separator: ";").count
                         //time
                         let time = dict["post_time"] as? String
                         let subTime = time?.prefix(19)
