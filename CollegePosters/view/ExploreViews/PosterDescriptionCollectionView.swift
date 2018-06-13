@@ -56,13 +56,14 @@ class PosterDescriptionCollectionView: UIView, UICollectionViewDataSource, UICol
     func fetchComment() {
         for i in 1...5 {
             let newC = Comment()
-            newC.commenterId = i
+            newC.commenterId = i + alreadyLoadedComment
             newC.replyId = 1
-            newC.commentId = 3
+            newC.commentId = i + alreadyLoadedComment
             newC.commentTime = "example Time"
             newC.content = "sample contentfaksjdfka sl;dfklkf a;klsdfkl nas;ldnf lncjlvjz;xj ;afsa;kdlfjkasjd;klf  fjlkdjf asdf asd fsd  fasd fasdf asdf asdf asdf adnsdf lkajsk;ldn cklnxcjlvfasdlkjf kalsjkln lk;vlakj ;klansdml flnks dvjlclvl anlsd mkcvl ckljvkl; sklnf asjkldnf joajdk;lf nalsdn fljankc;vklac ;lma jofn nzl;k nj"
             comments.append(newC)
         }
+        alreadyLoadedComment += 5
     }
     
     func heightForComments() -> CGFloat {
@@ -145,7 +146,7 @@ class PosterDescriptionCollectionView: UIView, UICollectionViewDataSource, UICol
     @IBAction func cmtBtnTapped(sender: UIButton!) -> Void {
         let btn = sender as! CommentBtn
         if btn.isReply! {
-            print("cmt button pressed: replying \(btn.commenter!) on \(btn.postId!)")
+            print("cmt button pressed: replying \(btn.commentId!) on \(btn.postId!)")
         } else {
             print("cmt button pressed: commenting on \(btn.postId!)")
         }

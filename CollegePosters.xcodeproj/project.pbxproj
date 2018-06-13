@@ -21,6 +21,7 @@
 		EB31AC1A20D0536D00474B9E /* PostDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB31AC1920D0536D00474B9E /* PostDetailCell.swift */; };
 		EB31AC1E20D059C000474B9E /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB31AC1D20D059C000474B9E /* Comment.swift */; };
 		EB31AC2120D066E800474B9E /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB31AC2020D066E800474B9E /* StringExtension.swift */; };
+		EB31AC2420D12C3B00474B9E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB31AC2320D12C3B00474B9E /* Utils.swift */; };
 		EB4A882320BEC4F400AF5587 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A882220BEC4F400AF5587 /* AppDelegate.swift */; };
 		EB4A882820BEC4F400AF5587 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB4A882620BEC4F400AF5587 /* Main.storyboard */; };
 		EB4A882B20BEC4F400AF5587 /* College_Posters.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EB4A882920BEC4F400AF5587 /* College_Posters.xcdatamodeld */; };
@@ -85,6 +86,7 @@
 		EB31AC1920D0536D00474B9E /* PostDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailCell.swift; sourceTree = "<group>"; };
 		EB31AC1D20D059C000474B9E /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		EB31AC2020D066E800474B9E /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		EB31AC2320D12C3B00474B9E /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		EB4A881F20BEC4F400AF5587 /* CollegePosters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollegePosters.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB4A882220BEC4F400AF5587 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB4A882720BEC4F400AF5587 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -199,6 +201,14 @@
 			path = extension;
 			sourceTree = "<group>";
 		};
+		EB31AC2220D12C2600474B9E /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				EB31AC2320D12C3B00474B9E /* Utils.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
 		EB4A881620BEC4F400AF5587 = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +232,7 @@
 		EB4A882120BEC4F400AF5587 /* CollegePosters */ = {
 			isa = PBXGroup;
 			children = (
+				EB31AC2220D12C2600474B9E /* utils */,
 				EB31AC1F20D066D400474B9E /* extension */,
 				EB4A886F20C06D7B00AF5587 /* model */,
 				EB4A887620C0A10500AF5587 /* view */,
@@ -491,6 +502,7 @@
 				6362718120C888BC0003F236 /* PostDetailsViewController.swift in Sources */,
 				63640EB420C74EBD0045A0F1 /* PostImagesView.swift in Sources */,
 				EB4A882B20BEC4F400AF5587 /* College_Posters.xcdatamodeld in Sources */,
+				EB31AC2420D12C3B00474B9E /* Utils.swift in Sources */,
 				EB4A889920C84CFB00AF5587 /* HttpApiService.swift in Sources */,
 				EB4A882320BEC4F400AF5587 /* AppDelegate.swift in Sources */,
 				EB4A88A520C87FEA00AF5587 /* SocialsCell.swift in Sources */,

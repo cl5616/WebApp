@@ -30,26 +30,31 @@ class ExploreCell : UICollectionViewCell {
     func setImage(withName: String) {
         
         if withName == "fire64" {
+            posterImage.image = UIImage(named: withName)
             return
         }
 
         posterImage.url = withName
-        
         let picFolderUrl = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/pic/"
-        let combinedUrl = picFolderUrl + withName
-        let url = URL(string: combinedUrl)
+        var combinedUrls = [URL]()
+        let subNames = withName.split(separator: ";")
+        for picName in subNames {
+            let newName = String(picName)
+            let newCombinedUrl = picFolderUrl + newName
+            combinedUrls.append(URL(string: newCombinedUrl)!)
+        }
         
-        if let imageFromPoster = poster?.posterImage {
-            posterImage.image = imageFromPoster
+        if let imageFromPoster = poster?.posterImage, let fstImg = imageFromPoster.first {
+            posterImage.image = fstImg
             return
         }
         
-        if let imageFromCache = imageCache.object(forKey: withName as NSString) {
+        if let fstSubname = subNames.first, let imageFromCache = imageCache.object(forKey: String(fstSubname) as NSString) {
             posterImage.image = imageFromCache
             return
         }
-        
-        URLSession.shared.dataTask(with: url!) { (data, response, error) in
+        poster?.posterImage = [UIImage]()
+        URLSession.shared.dataTask(with: combinedUrls.first!) { (data, response, error) in
             if error != nil {
                 print(error!)
                 return
@@ -58,14 +63,31 @@ class ExploreCell : UICollectionViewCell {
             DispatchQueue.main.async {
                 let imageToCache = UIImage(data: data!)
                 if let imageToCache = imageToCache {
-                    imageCache.setObject(imageToCache, forKey: withName as NSString)
-                    self.poster?.posterImage = imageToCache
+                    imageCache.setObject(imageToCache, forKey: String(subNames.first!) as NSString)
+                    self.poster?.posterImage?.append(imageToCache)
                 }
                 if self.posterImage.url == withName {
                     self.posterImage.image = imageToCache
                 }
             }
         }.resume()
+        let rest = combinedUrls.suffix(from: 1)
+        for idx in 1...rest.count {
+            URLSession.shared.dataTask(with: rest[idx]) { (data, response, error) in
+                if error != nil {
+                    print(error!)
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    let imageToCache = UIImage(data: data!)
+                    if let imageToCache = imageToCache {
+                        imageCache.setObject(imageToCache, forKey: String(subNames[idx]) as NSString)
+                        self.poster?.posterImage?.append(imageToCache)
+                    }
+                }
+            }.resume()
+        }
     }
 
     override init(frame: CGRect) {

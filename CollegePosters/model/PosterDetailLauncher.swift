@@ -15,12 +15,6 @@ class PosterDetailLauncher : NSObject{
         if let keyWindow = UIApplication.shared.keyWindow {
             let piv = PostImagesView()
             piv.translatesAutoresizingMaskIntoConstraints = false
-            //test
-            let img1 = UIImage(named: "heart33")
-            let img2 = UIImage(named: "fire64")
-            let img3 = UIImage(named: "mag33")
-            piv.selectedPhotos = [img1, img2, img3] as? [UIImage]
-            
             return piv
         }
         print("failed to intialize posterDetailView")
@@ -62,7 +56,7 @@ class PosterDetailLauncher : NSObject{
         DescriptionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0).isActive = true
         DescriptionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         
-        posterDetailView.selectedPhotos = [poster.posterImage] as? [UIImage]
+        posterDetailView.selectedPhotos = poster.posterImage!
         DispatchQueue.main.async {
             self.posterDetailView.cv.reloadData()
         }
