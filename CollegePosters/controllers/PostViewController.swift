@@ -33,6 +33,7 @@ class PostViewController: UIViewController, UINavigationControllerDelegate,
         selectedAssets = []
         selectedPhotos = []
         let mulPicker = BSImagePickerViewController()
+        mulPicker.maxNumberOfSelections = 3
 
         self.bs_presentImagePickerController(mulPicker, animated: true, select: { (asset: PHAsset) -> Void in
 

@@ -130,7 +130,7 @@
                                 <state key="normal" title="SEND"/>
                                 <connections>
                                     <action selector="sendPressed:" destination="5wP-SZ-X0J" eventType="touchUpInside" id="bpQ-aN-dpA"/>
-                                    <segue destination="RcW-DM-eos" kind="show" id="o8t-Ab-jcf"/>
+                                    <segue destination="SC7-aT-qhD" kind="show" id="D5r-5m-dpD"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lbX-xj-d3n">
@@ -174,10 +174,10 @@
         <!--Explore-->
         <scene sceneID="k97-aL-ftK">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="Explore" storyboardName="Main" referencedIdentifier="Explore" id="RcW-DM-eos" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="Main" storyboardName="Main" referencedIdentifier="Explore" id="RcW-DM-eos" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="09w-Pf-mBG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3561" y="1258"/>
+            <point key="canvasLocation" x="3594" y="1083"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
