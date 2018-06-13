@@ -96,7 +96,7 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
         
         for i in 0...selectedPhotos.count - 1 {
             while filename_array[i] == "" {
-                print("picture name not set yet for \(i)")
+                //print("picture name not set yet for \(i)")
             }
         }
 
