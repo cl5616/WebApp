@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		299C885E20EFF44472BA215C /* Pods_CollegePosters.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CAE3A4F07D2613D19DD221D /* Pods_CollegePosters.framework */; };
 		631E0BCC20C9AAEE00908267 /* PostDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631E0BCB20C9AAEE00908267 /* PostDetails.swift */; };
+		634169A220D19A0900C6E680 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634169A120D19A0900C6E680 /* RegisterViewController.swift */; };
+		634169A420D1A13700C6E680 /* RegisterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634169A320D1A13700C6E680 /* RegisterDetailViewController.swift */; };
 		6362718120C888BC0003F236 /* PostDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6362718020C888BC0003F236 /* PostDetailsViewController.swift */; };
 		63640EB420C74EBD0045A0F1 /* PostImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63640EB320C74EBD0045A0F1 /* PostImagesView.swift */; };
 		63640EB620C74EFF0045A0F1 /* PostImagesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63640EB520C74EFF0045A0F1 /* PostImagesViewCell.swift */; };
@@ -72,6 +74,8 @@
 		4997281D62618CC43C5B174E /* Pods-CollegePostersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CollegePostersTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CollegePostersTests/Pods-CollegePostersTests.release.xcconfig"; sourceTree = "<group>"; };
 		576E6AD15ACF977781557463 /* Pods-CollegePostersTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CollegePostersTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CollegePostersTests/Pods-CollegePostersTests.debug.xcconfig"; sourceTree = "<group>"; };
 		631E0BCB20C9AAEE00908267 /* PostDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetails.swift; sourceTree = "<group>"; };
+		634169A120D19A0900C6E680 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		634169A320D1A13700C6E680 /* RegisterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDetailViewController.swift; sourceTree = "<group>"; };
 		6362718020C888BC0003F236 /* PostDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsViewController.swift; sourceTree = "<group>"; };
 		63640EB320C74EBD0045A0F1 /* PostImagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImagesView.swift; sourceTree = "<group>"; };
 		63640EB520C74EFF0045A0F1 /* PostImagesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImagesViewCell.swift; sourceTree = "<group>"; };
@@ -286,6 +290,8 @@
 				EB4A886520BF6F0700AF5587 /* ExploreCollectionViewController.swift */,
 				6362718020C888BC0003F236 /* PostDetailsViewController.swift */,
 				EB4A88A820C88EB800AF5587 /* LogInViewController.swift */,
+				634169A120D19A0900C6E680 /* RegisterViewController.swift */,
+				634169A320D1A13700C6E680 /* RegisterDetailViewController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -507,6 +513,7 @@
 				EB4A882320BEC4F400AF5587 /* AppDelegate.swift in Sources */,
 				EB4A88A520C87FEA00AF5587 /* SocialsCell.swift in Sources */,
 				EB4A88C220C990B500AF5587 /* CellImageView.swift in Sources */,
+				634169A220D19A0900C6E680 /* RegisterViewController.swift in Sources */,
 				EB31AC1620D0291E00474B9E /* PosterDetailCommentCollectionViewCell.swift in Sources */,
 				63D40D2520C5E16000DBF059 /* PostViewController.swift in Sources */,
 				EBDBA69820CF052E00DCB6DC /* PosterDetailLauncher.swift in Sources */,
@@ -524,6 +531,7 @@
 				EB4A88A720C8806500AF5587 /* AcademyCell.swift in Sources */,
 				EB31AC1A20D0536D00474B9E /* PostDetailCell.swift in Sources */,
 				EB4A88A920C88EB800AF5587 /* LogInViewController.swift in Sources */,
+				634169A420D1A13700C6E680 /* RegisterDetailViewController.swift in Sources */,
 				EB4A887120C06DA800AF5587 /* Poster.swift in Sources */,
 				EB4A885A20BF1A8800AF5587 /* MessageViewController.swift in Sources */,
 				EB4A888620C5E53A00AF5587 /* ExploreMenuBar.swift in Sources */,

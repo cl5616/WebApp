@@ -76,17 +76,16 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
             request.httpBody = dataBody
             
             session.dataTask(with: request) { (data, response, error) in
-                if let response = response {
+                /*if let response = response {
                     print(response)
-                }
+                }*/
                 if let data = data {
                     do {
                         let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String : Any]
                         let filename = json["filename"] as! String
-                        print(filename)
-                        print(json)
+                        //print(filename)
+                        //print(json)
                         filename_array[i] = filename
-                        dump(filename_array)
                     } catch {
                         print(data)
                         print(error)
@@ -103,36 +102,8 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
 
         
         let filenames = String(filename_array.joined(separator: ";"))
-        print("combined filename ->")
-        print("joined filename: \(filenames)")
-        
-        //let boundary = generateBoundary()
-        //request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-type")
-        
-        //let parameters = ["type": "1", "id": "\(arc4random())"]
-        
-//        let dataBody = createDataBody(withParams: parameters, media: mediaImages, boundary: boundary)
-//        request.httpBody = dataBody
-        //let session = URLSession.shared
-        
-        
-        /*session.dataTask(with: request) { (data, response, error) in
-            if let response = response {
-                print(response)
-            }
-            if let data = data {
-                do {
-                    let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String : Any]
-                    let filename = json["filename"] as! String
-                    print(filename)
-                    print(json)
-                    
-                } catch {
-                    print(data)
-                    print(error)
-                }
-            }
-        }.resume()*/
+        //print("combined filename ->")
+        //print("joined filename: \(filenames)")
         
         let category = categorySelection.text?.lowercased() ?? ""
         let description = self.postDescription.text ?? ""
@@ -146,16 +117,16 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
         request1.httpBody = postDetailStr.data(using: .utf8)
         let session1 = URLSession.shared
         session1.dataTask(with: request1) {(data, response, error) in
-            if let response = response {
+            /*if let response = response {
                 print(response)
-            }
+            }*/
             if let data = data {
                 do {
-                    if data.count == 0 {
+                    /*if data.count == 0 {
                         print("wrong data")
-                    }
+                    }*/
                     let json = try JSONSerialization.jsonObject(with: data, options: [])
-                    print(json)
+                    //print(json)
                 } catch {
                     print(data)
                     print(error)
