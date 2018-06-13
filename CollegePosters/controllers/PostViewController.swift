@@ -118,10 +118,6 @@ class PostViewController: UIViewController, UINavigationControllerDelegate,
 
         titleTextField.delegate = self
         self.navigationItem.rightBarButtonItem = nextButton
-        
-        let filenames = ["1.jpg", "2.jpg"]
-        let filename = filenames.joined(separator: ";")
-        print("combined filename is: \(filename)")
     }
 
     deinit {
