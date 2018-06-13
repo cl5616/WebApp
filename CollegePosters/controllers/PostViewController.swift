@@ -99,7 +99,7 @@ class PostViewController: UIViewController, UINavigationControllerDelegate,
         }
         if notification.name == Notification.Name.UIKeyboardWillShow || notification.name == Notification.Name.UIKeyboardWillChangeFrame {
 
-            view.frame.origin.y = -keyBoardRect.height
+            view.frame.origin.y = -keyBoardRect.height + (self.navigationController?.navigationBar.frame.height)! + UIApplication.shared.statusBarFrame.size.height
         } else {
             view.frame.origin.y = 0
         }
@@ -117,6 +117,10 @@ class PostViewController: UIViewController, UINavigationControllerDelegate,
 
         titleTextField.delegate = self
         self.navigationItem.rightBarButtonItem = nextButton
+        
+        let filenames = ["1.jpg", "2.jpg"]
+        let filename = filenames.joined(separator: ";")
+        print("combined filename is: \(filename)")
     }
 
     deinit {
