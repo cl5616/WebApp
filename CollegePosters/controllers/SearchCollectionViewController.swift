@@ -89,7 +89,7 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
     
         // Configure the cell
-        cell.backgroundColor = .red
+        //cell.backgroundColor = .red
     
         return cell
     }

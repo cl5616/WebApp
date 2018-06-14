@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //set starting view controller
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let mainStoryBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let startVC: UIViewController = mainStoryBoard.instantiateViewController(withIdentifier: "SignedIn")
+        let startVC: UIViewController = mainStoryBoard.instantiateViewController(withIdentifier: "notSignedIn")
         self.window?.rootViewController = startVC
         self.window?.makeKeyAndVisible()
         

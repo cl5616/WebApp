@@ -15,5 +15,6 @@ class User: NSObject {
     var profileImg: UIImage?
     var username: String?
     var userEmail: String?
+    var profileImgName: String?
     
 }

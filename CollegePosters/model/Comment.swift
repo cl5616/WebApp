@@ -16,4 +16,6 @@ class Comment {
     var commentTime: String?
     var replyId: Int?
     var replyUser: Int?
+    var replyUserProfile: User?
+    var commenterProfile: User?
 }

@@ -95,6 +95,9 @@ class CommentAction: NSObject {
         let btn = sender as! CommentBtn
         
         HttpApiService.sharedHttpApiService.sendComment(postId: btn.postId!, replyId: btn.commentId, content: textview.text)
+        HttpApiService.sharedHttpApiService.fetchUserProfile(3) { (user) -> () in
+            print("get user completed")
+        }
         
         textview.text = ""
         dismissBV()
