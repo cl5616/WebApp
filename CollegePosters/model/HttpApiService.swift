@@ -208,6 +208,8 @@ class HttpApiService {
                         newPoster.postId = dict["msg_id"] as? Int
                         //userId
                         newPoster.userId = dict["poster_id"] as? Int
+                        //is not search result
+                        newPoster.isSearchResult = false
                         
                         self.posters?.append(newPoster)
                     }

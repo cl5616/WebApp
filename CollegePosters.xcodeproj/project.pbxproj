@@ -59,6 +59,7 @@
 		EB8C0B1C20D16AE1002A36D4 /* CommentAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8C0B1B20D16AE1002A36D4 /* CommentAction.swift */; };
 		EBB79DB420D19B7F00B28886 /* PosterDetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB79DB320D19B7F00B28886 /* PosterDetailsCollectionViewCell.swift */; };
 		EBB79DB620D1BDFB00B28886 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB79DB520D1BDFB00B28886 /* User.swift */; };
+		EBB79DB820D284F300B28886 /* SearchCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB79DB720D284F300B28886 /* SearchCollectionViewController.swift */; };
 		EBDBA69820CF052E00DCB6DC /* PosterDetailLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDBA69720CF052E00DCB6DC /* PosterDetailLauncher.swift */; };
 /* End PBXBuildFile section */
 
@@ -133,6 +134,7 @@
 		EB8C0B1B20D16AE1002A36D4 /* CommentAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentAction.swift; sourceTree = "<group>"; };
 		EBB79DB320D19B7F00B28886 /* PosterDetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterDetailsCollectionViewCell.swift; sourceTree = "<group>"; };
 		EBB79DB520D1BDFB00B28886 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		EBB79DB720D284F300B28886 /* SearchCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewController.swift; sourceTree = "<group>"; };
 		EBDBA69720CF052E00DCB6DC /* PosterDetailLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterDetailLauncher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -301,6 +303,7 @@
 				EB4A88A820C88EB800AF5587 /* LogInViewController.swift */,
 				634169A120D19A0900C6E680 /* RegisterViewController.swift */,
 				634169A320D1A13700C6E680 /* RegisterDetailViewController.swift */,
+				EBB79DB720D284F300B28886 /* SearchCollectionViewController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 		EB4A887620C0A10500AF5587 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				EBB79DB920D2852900B28886 /* SearchViews */,
 				EB4A88AC20C94F9100AF5587 /* ExploreViews */,
 				EB4A88AD20C94FA300AF5587 /* PostViews */,
 			);
@@ -333,6 +337,13 @@
 				EB4A889A20C852D600AF5587 /* PosterImage.swift */,
 			);
 			path = PostViews;
+			sourceTree = "<group>";
+		};
+		EBB79DB920D2852900B28886 /* SearchViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SearchViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -534,6 +545,7 @@
 				EB31AC2120D066E800474B9E /* StringExtension.swift in Sources */,
 				EB4A889B20C852D600AF5587 /* PosterImage.swift in Sources */,
 				EBB79DB620D1BDFB00B28886 /* User.swift in Sources */,
+				EBB79DB820D284F300B28886 /* SearchCollectionViewController.swift in Sources */,
 				EB4A88A120C87FBE00AF5587 /* JobCell.swift in Sources */,
 				EB4A886620BF6F0700AF5587 /* ExploreCollectionViewController.swift in Sources */,
 				EBB79DB420D19B7F00B28886 /* PosterDetailsCollectionViewCell.swift in Sources */,

@@ -76,6 +76,7 @@ class PosterDetailLauncher : NSObject{
         view.addGestureRecognizer(exitGesture)
         
     }
+
 }
 
 
