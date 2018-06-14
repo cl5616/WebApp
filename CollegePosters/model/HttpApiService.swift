@@ -29,7 +29,8 @@ class HttpApiService {
         shs.urls["comment"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/addcomment.php"
         shs.urls["getComments"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getcomments.php?"
         shs.urls["getUserProfile"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getprofile.php"
-        
+        shs.urls["searchPoster"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/searchposts.php?"
+        shs.urls["checkLike"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/iflike.php?"
         return shs
     }()
     
@@ -38,6 +39,34 @@ class HttpApiService {
     
     private init() {
         
+    }
+    
+    func checkLikeStatus(posterId: Int, poster: Poster) {
+        let rawUrl = urls["checkLike"]!
+        let combinedUrl = rawUrl + "post_id=\(posterId)"
+        
+        let url = URL(string: combinedUrl)
+        
+        URLSession.shared.dataTask(with: url!) { (data, response, error) in
+            if error != nil {
+                print(error!)
+                return
+            }
+            
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! [String: AnyObject]
+                let status = json["status"] as! Int
+                if status == 0 {
+                    print("http error while checking like status")
+                }
+                let like = json["like"]
+                poster.liked = (like as! Int == 1)
+                poster.checkedLikeStatus = true
+                
+            } catch let jsonErr {
+                print(jsonErr)
+            }
+        }.resume()
     }
     
     func createAnonymousUser() -> User{
@@ -200,7 +229,7 @@ class HttpApiService {
             do {
                 let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! [String: AnyObject]
                 
-                print("status:  \((json["status"] as! Int))")
+                print("like button action status:  \((json["status"] as! Int))")
                 
                 if json["status"] as! Int == 1 {
                     DispatchQueue.main.async {
@@ -222,9 +251,13 @@ class HttpApiService {
         }.resume()
     }
     
-    func fetchPosters(with: String, from: Int, completion: @escaping ([Poster]) -> ()) {
+    func fetchPosters(with: String, from: Int, keyword: String?, completion: @escaping ([Poster]) -> ()) {
         
-        let rawUrl = urls[with]!
+        var rawUrl = urls[with]!
+        if let keyword = keyword {
+            rawUrl = urls["searchPoster"]!
+            rawUrl += "search=\(keyword)"
+        }
         let combinedUrl = rawUrl + "&limit=5&offset=\(from)"
         
         let url = URL(string: combinedUrl)
@@ -233,11 +266,7 @@ class HttpApiService {
                 print(error!)
                 return
             }
-            /*
-            let httpResp: HTTPURLResponse = response as! HTTPURLResponse
-            let httpCookies: [HTTPCookie] = HTTPCookie.cookies(withResponseHeaderFields: httpResp.allHeaderFields as! [String: String], for: httpResp.url!)
-            HTTPCookieStorage.shared.setCookies(httpCookies, for: response?.url!, mainDocumentURL: nil)
-            */
+            
             do {
                 let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
                 
@@ -273,6 +302,8 @@ class HttpApiService {
                         self.fetchUserProfile(newPoster.userId!, completion: { (user) in
                             newPoster.user = user
                         })
+                        //check like status
+                        self.checkLikeStatus(posterId: newPoster.postId!, poster: newPoster)
                         
                         
                         self.posters?.append(newPoster)
@@ -302,6 +333,10 @@ class HttpApiService {
         
         if let poster = poster {
             for idx in 0...combinedUrls.count - 1 {
+                if let imageFromCache = imageCache.object(forKey: NSString(string: String(subNames[idx]))) {
+                    poster.posterImage.append(imageFromCache)
+                    continue
+                }
                 URLSession.shared.dataTask(with: combinedUrls[idx]) { (data, response, error) in
                     if error != nil {
                         print(error!)
@@ -317,6 +352,12 @@ class HttpApiService {
         }
         
         if let user = user {
+            
+            if let imageFromCache = imageCache.object(forKey: NSString(string: withName)) {
+                user.profileImg = imageFromCache
+                return
+            }
+            
             URLSession.shared.dataTask(with: combinedUrls[0]) { (data, response, error) in
                 if error != nil {
                     print(error!)

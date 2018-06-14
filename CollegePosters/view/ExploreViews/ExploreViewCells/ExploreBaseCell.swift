@@ -67,7 +67,7 @@ class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
             self.alreadyLoaded = 0
         }
         
-        posterGetter.fetchPosters(with: section!, from: from) { (posters) in
+        posterGetter.fetchPosters(with: section!, from: from, keyword: nil) { (posters) in
             self.posters.append(contentsOf: posters)
             self.alreadyLoaded += posters.count
             DispatchQueue.main.async {
@@ -109,9 +109,8 @@ class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
         return cell
     }
     
-    let newL = PosterDetailLauncher()
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let newL = PosterDetailLauncher()
         newL.exitGesture.edges = .left
         newL.exitGesture.addTarget(self, action: #selector(handleSwipe(_:)))
         newL.showPosterDetail(posters[indexPath.item])
@@ -119,49 +118,11 @@ class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
     }
     
     @objc func handleSwipe(_ sender: UIScreenEdgePanGestureRecognizer) {
-        if sender.state == .began || sender.state == .changed {
-            let translation = sender.translation(in: sender.view)
-            let changeX = (sender.view?.center.x)! + translation.x
-            
-            sender.view?.center = CGPoint(x: changeX, y: originC!.y)
-            sender.setTranslation(.zero, in: sender.view)
-        }
-        
-        if sender.state == .ended {
-            if (sender.view?.center.x)! > frame.width {
-                UIView.animate(withDuration: 0.3, animations: {
-                    sender.view?.center = CGPoint(x: self.frame.width + self.frame.width / 2, y: (self.originC?.y)!)
-                }) { (completed) in
-                    if completed {
-                        sender.view?.removeFromSuperview()
-                    }
-                }
-            } else {
-                UIView.animate(withDuration: 0.3) {
-                    sender.view?.center = self.originC!
-                }
-            }
-            
-            sender.setTranslation(.zero, in: sender.view)
-        }
-        
-        if sender.state == .cancelled {
-            if (sender.view?.center.x)! > frame.width {
-                UIView.animate(withDuration: 0.3, animations: {
-                    sender.view?.center = CGPoint(x: self.frame.width + self.frame.width / 2, y: (self.originC?.y)!)
-                }) { (completed) in
-                    if completed {
-                        sender.view?.removeFromSuperview()
-                    }
-                }
-            } else {
-                UIView.animate(withDuration: 0.3) {
-                    sender.view?.center = self.originC!
-                }
-            }
-            sender.setTranslation(.zero, in: sender.view)
-        }
-        
+        BtnActions().handleSwipe(sender, originC: originC!, frame: frame)
+    }
+    
+    @IBAction func likeBtnTapped(sender: UIButton!) -> Void {
+        BtnActions().likeBtnTapped(sender: sender)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -172,25 +133,6 @@ class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
-    }
-    
-    @IBAction func likeBtnTapped(sender: UIButton!) -> Void {
-        print("like btn tapped")
-        let unliked = UIImage(named: "heart33")
-        
-        
-        guard let sender = sender as? likeButton else {
-            print("button type casting failed")
-            return
-        }
-        
-        if !sender.likeBtnPressed {
-            sender.likeBtnPressed = true
-            let like = sender.imageView!.image!.isEqual(unliked)
-            like ? print("is liking") : print("is unliking")
-            HttpApiService.sharedHttpApiService.likeBtnPressed(with: sender.posterId!, btn: sender, like: like)
-        }
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
