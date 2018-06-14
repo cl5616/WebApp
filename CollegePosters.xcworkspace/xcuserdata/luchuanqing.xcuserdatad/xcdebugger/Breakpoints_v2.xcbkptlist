@@ -47,8 +47,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "24"
             endingLineNumber = "24"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -63,7 +63,23 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "45"
             endingLineNumber = "45"
-            landmarkName = "sendSearchRequest(keyword:)"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CollegePosters/controllers/ProfileViewController.swift"
+            timestampString = "550689849.809499"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "display(id:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
