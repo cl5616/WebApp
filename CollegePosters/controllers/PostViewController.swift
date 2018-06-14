@@ -33,6 +33,7 @@ class PostViewController: UIViewController, UINavigationControllerDelegate,
         selectedAssets = []
         selectedPhotos = []
         let mulPicker = BSImagePickerViewController()
+        mulPicker.maxNumberOfSelections = 3
 
         self.bs_presentImagePickerController(mulPicker, animated: true, select: { (asset: PHAsset) -> Void in
 
@@ -99,7 +100,7 @@ class PostViewController: UIViewController, UINavigationControllerDelegate,
         }
         if notification.name == Notification.Name.UIKeyboardWillShow || notification.name == Notification.Name.UIKeyboardWillChangeFrame {
 
-            view.frame.origin.y = -keyBoardRect.height
+            view.frame.origin.y = -keyBoardRect.height + (self.navigationController?.navigationBar.frame.height)! + UIApplication.shared.statusBarFrame.size.height
         } else {
             view.frame.origin.y = 0
         }

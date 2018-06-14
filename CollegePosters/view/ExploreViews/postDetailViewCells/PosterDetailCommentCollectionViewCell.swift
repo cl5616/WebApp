@@ -10,12 +10,17 @@ import UIKit
 
 class PosterDetailCommentCollectionViewCell: PostDetailCell {
  
+    var idxx = 0
+    
     var comments: [Comment]? {
         didSet {
             idx = 0
             dict = [Int: UILabel]()
             cmbBtns = [CommentBtn]()
-            buildCell()
+            if idxx <= 1 {
+                buildCell()
+                idxx += 1
+            }
         }
     }
     var idx = 0
@@ -58,6 +63,8 @@ class PosterDetailCommentCollectionViewCell: PostDetailCell {
         fbtn.frame = CGRect(x: 0,y: 0,width: 33,height: 33)
         fbtn.setImage(fcmtImage, for: .normal)
         fbtn.translatesAutoresizingMaskIntoConstraints = false
+        fbtn.commentId = first?.commentId
+        fbtn.isReply = true
         cmbBtns.append(fbtn)
         addSubview(fbtn)
         addConstraint(NSLayoutConstraint(item: fbtn, attribute: .top, relatedBy: .equal, toItem: fpi, attribute: .top, multiplier: 1, constant: 0))
@@ -72,12 +79,10 @@ class PosterDetailCommentCollectionViewCell: PostDetailCell {
         }
         if let replyId = first?.replyId{
             frl.text = "\(commenterId) replies \(replyId)"
-            fbtn.isReply = true
+
         } else {
             frl.text = String(commenterId)
-            fbtn.isReply = false
         }
-        fbtn.commenter = commenterId
         addSubview(frl)
         addConstraint(NSLayoutConstraint(item: frl, attribute: .bottom, relatedBy: .equal, toItem: fpi, attribute: .bottom, multiplier: 1, constant: 0))
         addConstraint(NSLayoutConstraint(item: frl, attribute: .leading, relatedBy: .equal, toItem: fpi, attribute: .trailing, multiplier: 1, constant: 8))
@@ -98,6 +103,14 @@ class PosterDetailCommentCollectionViewCell: PostDetailCell {
         addConstraint(NSLayoutConstraint(item: fcl, attribute: .leading, relatedBy: .equal, toItem: fpi, attribute: .trailing, multiplier: 1, constant: 8))
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0(\(fclh!))]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": fcl]))
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": fcl]))
+        //separator
+        let fsp = UIView()
+        fsp.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
+        fsp.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(fsp)
+        addConstraint(NSLayoutConstraint(item: fsp, attribute: .top, relatedBy: .equal, toItem: fcl, attribute: .bottom, multiplier: 1, constant: 5))
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0(1)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": fsp]))
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[v0]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": fsp]))
         
         dict[idx] = fcl
         idx += 1
@@ -130,6 +143,8 @@ class PosterDetailCommentCollectionViewCell: PostDetailCell {
             btn.frame = CGRect(x: 0,y: 0,width: 33,height: 33)
             btn.setImage(cmtImage, for: .normal)
             btn.translatesAutoresizingMaskIntoConstraints = false
+            btn.commentId = comment.commentId
+            btn.isReply = true
             cmbBtns.append(btn)
             addSubview(btn)
             addConstraint(NSLayoutConstraint(item: btn, attribute: .top, relatedBy: .equal, toItem: pi, attribute: .top, multiplier: 1, constant: 0))
@@ -144,12 +159,9 @@ class PosterDetailCommentCollectionViewCell: PostDetailCell {
             }
             if let replyId = comment.replyId{
                 rl.text = "\(commenterId) replies \(replyId)"
-                btn.isReply = true
             } else {
                 rl.text = String(commenterId)
-                btn.isReply = false
             }
-            btn.commenter = commenterId
             addSubview(rl)
             addConstraint(NSLayoutConstraint(item: rl, attribute: .bottom, relatedBy: .equal, toItem: pi, attribute: .bottom, multiplier: 1, constant: 0))
             addConstraint(NSLayoutConstraint(item: rl, attribute: .leading, relatedBy: .equal, toItem: pi, attribute: .trailing, multiplier: 1, constant: 8))
@@ -170,6 +182,14 @@ class PosterDetailCommentCollectionViewCell: PostDetailCell {
             addConstraint(NSLayoutConstraint(item: cl, attribute: .leading, relatedBy: .equal, toItem: pi, attribute: .trailing, multiplier: 1, constant: 8))
             NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0(\(clh!))]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": cl]))
             NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": cl]))
+            //separator
+            let sp = UIView()
+            sp.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
+            sp.translatesAutoresizingMaskIntoConstraints = false
+            addSubview(sp)
+            addConstraint(NSLayoutConstraint(item: sp, attribute: .top, relatedBy: .equal, toItem: cl, attribute: .bottom, multiplier: 1, constant: 5))
+            NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0(1)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": sp]))
+            NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[v0]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": sp]))
             
             dict[idx] = cl
             idx += 1

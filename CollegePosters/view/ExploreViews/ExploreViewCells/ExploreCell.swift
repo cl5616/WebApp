@@ -30,42 +30,21 @@ class ExploreCell : UICollectionViewCell {
     func setImage(withName: String) {
         
         if withName == "fire64" {
+            posterImage.image = UIImage(named: withName)
             return
         }
 
-        posterImage.url = withName
+        var countDown = 1000
+        while poster?.posterImage.count == 0 && countDown > 0{
+            countDown -= 1
+        }
         
-        let picFolderUrl = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/pic/"
-        let combinedUrl = picFolderUrl + withName
-        let url = URL(string: combinedUrl)
-        
-        if let imageFromPoster = poster?.posterImage {
-            posterImage.image = imageFromPoster
+        if countDown <= 0 {
+            posterImage.image = nil
             return
         }
         
-        if let imageFromCache = imageCache.object(forKey: withName as NSString) {
-            posterImage.image = imageFromCache
-            return
-        }
-        
-        URLSession.shared.dataTask(with: url!) { (data, response, error) in
-            if error != nil {
-                print(error!)
-                return
-            }
-            
-            DispatchQueue.main.async {
-                let imageToCache = UIImage(data: data!)
-                if let imageToCache = imageToCache {
-                    imageCache.setObject(imageToCache, forKey: withName as NSString)
-                    self.poster?.posterImage = imageToCache
-                }
-                if self.posterImage.url == withName {
-                    self.posterImage.image = imageToCache
-                }
-            }
-        }.resume()
+        posterImage.image = poster?.posterImage.first!
     }
 
     override init(frame: CGRect) {

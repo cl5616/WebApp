@@ -94,7 +94,7 @@ class PostImagesView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         //fatalError("init(coder:) has not been implemented")
-        print("required init")
+        //print("required init")
         addSubview(cv)
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": cv]))
         

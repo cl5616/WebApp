@@ -12,7 +12,7 @@ class PosterDescriptionCollectionView: UIView, UICollectionViewDataSource, UICol
     
     let idxToIdMap = [0: "user", 1: "content", 2: "comment", 3: "refresh"]
     let imageViewer = ImageViewer()
-    
+    var rc = UIRefreshControl()
     
     lazy var cvt: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -41,8 +41,11 @@ class PosterDescriptionCollectionView: UIView, UICollectionViewDataSource, UICol
         
         cvt.register(PosterDetailUserCellCollectionViewCell.self, forCellWithReuseIdentifier: "user")
         cvt.register(PosterDetailContentCollectionViewCell.self, forCellWithReuseIdentifier: "content")
-        cvt.register(PosterDetailCommentCollectionViewCell.self, forCellWithReuseIdentifier: "comment")
-        cvt.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "refresh")
+        cvt.register(PosterDetailsCollectionViewCell.self, forCellWithReuseIdentifier: "comment")
+        
+        cvt.refreshControl = rc
+        rc.tintColor = .black
+        rc.addTarget(self, action: #selector(refreshAllComments), for: .valueChanged)
         
         addSubview(cvt)
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": cvt]))
@@ -53,15 +56,42 @@ class PosterDescriptionCollectionView: UIView, UICollectionViewDataSource, UICol
         
     }
     
-    func fetchComment() {
-        for i in 1...5 {
-            let newC = Comment()
-            newC.commenterId = i
-            newC.replyId = 1
-            newC.commentId = 3
-            newC.commentTime = "example Time"
-            newC.content = "sample contentfaksjdfka sl;dfklkf a;klsdfkl nas;ldnf lncjlvjz;xj ;afsa;kdlfjkasjd;klf  fjlkdjf asdf asd fsd  fasd fasdf asdf asdf asdf adnsdf lkajsk;ldn cklnxcjlvfasdlkjf kalsjkln lk;vlakj ;klansdml flnks dvjlclvl anlsd mkcvl ckljvkl; sklnf asjkldnf joajdk;lf nalsdn fljankc;vklac ;lma jofn nzl;k nj"
-            comments.append(newC)
+    @objc func refreshAllComments() {
+        if !isFetchingComment {
+            print("refreshing all comments")
+            fetchComment(postId: (poster?.postId)!, from: 0)
+        }
+    }
+    
+    func fetchComment(postId: Int, from: Int) {
+        
+        if from == 0 {
+            comments = [Comment]()
+            alreadyLoadedComment = 0
+        }
+        
+        HttpApiService.sharedHttpApiService.fetchComment(postId: postId, from: from) { (comments) in
+            self.sortComment(comments)
+            self.comments.append(contentsOf: comments)
+            self.alreadyLoadedComment += comments.count
+            self.isFetchingComment = false
+            DispatchQueue.main.async {
+                self.cvt.reloadData()
+                self.rc.endRefreshing()
+            }
+        }
+        
+    }
+    
+    func sortComment(_ comments: [Comment]) {
+        for comment in comments {
+            if comment.replyUser == nil && comment.replyId != nil{
+                for otherComment in comments {
+                    if otherComment.commentId! == comment.replyId {
+                        comment.replyUser = otherComment.commenterId
+                    }
+                }
+            }
         }
     }
     
@@ -81,39 +111,38 @@ class PosterDescriptionCollectionView: UIView, UICollectionViewDataSource, UICol
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return comments.count + 2
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let idx = indexPath.item
+        var idx = indexPath.item
+        if idx > 2 {
+            idx = 2
+        }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: idxToIdMap[idx]!, for: indexPath)
-        
+ 
         if idx == 1 {
             let cell = cell as! PosterDetailContentCollectionViewCell
             cell.poster = poster
             cell.cmtbtn.addTarget(self, action: #selector(cmtBtnTapped(sender:)), for: .touchUpInside)
-        } else if idx == 2 {
-            let cell = cell as! PosterDetailCommentCollectionViewCell
-            cell.comments = comments
-            for btn in cell.cmbBtns {
-                btn.addTarget(self, action: #selector(cmtBtnTapped(sender:)), for: .touchUpInside)
-                btn.postId = poster?.postId
-            }
-        } else if idx == 3 {
-            cell.backgroundColor = .cyan
+        } else if idx == 2 && comments.count > 0{
+            let cell = cell as! PosterDetailsCollectionViewCell
+            cell.comment = comments[indexPath.item - 2]
+            cell.cmtBtn.addTarget(self, action: #selector(cmtBtnTapped(sender:)), for: .touchUpInside)
+            cell.cmtBtn.postId = poster?.postId
         }
-        
-        cell.sizeToFit()
-        
         return cell
     }
     
+    var isFetchingComment = false
+    
+    
+    
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.item == 3 {
-            fetchComment()
-            DispatchQueue.main.async {
-                self.cvt.reloadData()
-            }
+        if indexPath.item == alreadyLoadedComment + 1 && !isFetchingComment{
+            cvt.cellForItem(at: IndexPath(item: 1, section: 1))?.clearsContextBeforeDrawing = true
+            isFetchingComment = true
+            fetchComment(postId: (poster?.postId)!, from: alreadyLoadedComment)
         }
     }
     
@@ -126,15 +155,13 @@ class PosterDescriptionCollectionView: UIView, UICollectionViewDataSource, UICol
             return CGSize(width: width, height: 56)
         case 1:
             return CGSize(width: width, height: 200)
-        case 2:
-            if comments.count == 0 {
-                return CGSize(width: width, height: 50)
-            } else {
-                let height = heightForComments()
-                return CGSize(width: width, height: height)
-            }
         default:
-            return CGSize(width: width, height: 30)
+            if comments.count == 0 {
+                return CGSize(width: width, height: 100)
+            } else {
+                let height = comments[indexPath.item - 2].content?.height(withConstrainedWidth: frame.width - 56)
+                return CGSize(width: width, height: height! + 56)
+            }
         }
     }
     
@@ -142,13 +169,10 @@ class PosterDescriptionCollectionView: UIView, UICollectionViewDataSource, UICol
         return 0
     }
     
+    let action = CommentAction()
+    
     @IBAction func cmtBtnTapped(sender: UIButton!) -> Void {
-        let btn = sender as! CommentBtn
-        if btn.isReply! {
-            print("cmt button pressed: replying \(btn.commenter!) on \(btn.postId!)")
-        } else {
-            print("cmt button pressed: commenting on \(btn.postId!)")
-        }
+        action.showCommentEditor(sender)
     }
     
     required init?(coder aDecoder: NSCoder) {

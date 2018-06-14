@@ -53,61 +53,80 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
         let url = URL(string: "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/uploadpic.php")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-
-        var mediaImages: [PostDetails] = []
-        
-        for photo in selectedPhotos {
-            guard let mediaImage = PostDetails(withImage: photo, forType: "image/jpg") else {
-              return
-            }
-            mediaImages.append(mediaImage)
-        }
-        
+        let session = URLSession.shared
         let boundary = generateBoundary()
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-type")
         
-        let parameters = ["type": "1", "id": "\(arc4random())"]
+        var filename_array: [String] = []
+
+//        var mediaImages: [PostDetails] = []
         
-        let dataBody = createDataBody(withParams: parameters, media: mediaImages, boundary: boundary)
-        request.httpBody = dataBody
-        let session = URLSession.shared
+        for _ in 1...selectedPhotos.count {
+            filename_array.append("")
+        }
+        
+        for i in 0...selectedPhotos.count - 1 {
+            let photo = selectedPhotos[i]
+            guard let mediaImage = PostDetails(withImage: photo, forType: "image/jpg") else {
+              return
+            }
+            
+            let parameters = ["type": "1", "id": "\(arc4random())"]
+            let dataBody = createDataBody(withParams: parameters, media: [mediaImage], boundary: boundary)
+            request.httpBody = dataBody
+            
+            session.dataTask(with: request) { (data, response, error) in
+                /*if let response = response {
+                    print(response)
+                }*/
+                if let data = data {
+                    do {
+                        let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String : Any]
+                        let filename = json["filename"] as! String
+                        //print(filename)
+                        //print(json)
+                        filename_array[i] = filename
+                    } catch {
+                        print(data)
+                        print(error)
+                    }
+                }
+            }.resume()
+        }
+        
+        for i in 0...selectedPhotos.count - 1 {
+            while filename_array[i] == "" {
+                //print("picture name not set yet for \(i)")
+            }
+        }
+
+        
+        let filenames = String(filename_array.joined(separator: ";"))
+        //print("combined filename ->")
+        //print("joined filename: \(filenames)")
+        
         let category = categorySelection.text?.lowercased() ?? ""
         let description = self.postDescription.text ?? ""
         let title = self.titleText
         
-        session.dataTask(with: request) { (data, response, error) in
-            if let response = response {
+        let url1 = URL(string: "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/addpost.php")
+        var request1 = URLRequest(url: url1!)
+        request1.httpMethod = "POST"
+        request1.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        let postDetailStr = "category=\(category)&content=\(description)&title=\(title)&picture=\(filenames)&anonymous=1"
+        request1.httpBody = postDetailStr.data(using: .utf8)
+        let session1 = URLSession.shared
+        session1.dataTask(with: request1) {(data, response, error) in
+            /*if let response = response {
                 print(response)
-            }
+            }*/
             if let data = data {
                 do {
-                    let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String : Any]
-                    let filename = json["filename"] as! String
-                    print(filename)
-                    print(json)
-                    let url1 = URL(string: "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/addpost.php")
-                    var request1 = URLRequest(url: url1!)
-                    request1.httpMethod = "POST"
-                    request1.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-                    let postDetailStr = "category=\(category)&content=\(description)&title=\(title)&picture=\(filename)&anonymous=1"
-                        request1.httpBody = postDetailStr.data(using: .utf8)
-                    let session1 = URLSession.shared
-                    session1.dataTask(with: request1) {(data, repsonse, error) in
-                        if let response = response {
-                            print(response)
-                        }
-                        if let data = data {
-                            do {
-                                let json = try JSONSerialization.jsonObject(with: data, options: [])
-                                print(json)
-                            } catch {
-                                print(error)
-                            }
-                        }
-                        if let error = error {
-                            print(error)
-                        }
-                    }.resume()
+                    /*if data.count == 0 {
+                        print("wrong data")
+                    }*/
+                    let json = try JSONSerialization.jsonObject(with: data, options: [])
+                    //print(json)
                 } catch {
                     print(data)
                     print(error)

@@ -18,6 +18,7 @@ class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
     var section: String?
     let posterDetail = PosterDetailLauncher()
     var originC: CGPoint?
+    var rc = UIRefreshControl()
     
     lazy var cvt: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -38,10 +39,20 @@ class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
         
         cvt.register(ExploreCell.self, forCellWithReuseIdentifier: cellId)
         cvt.backgroundColor = UIColor.white
+        cvt.refreshControl = rc
+        rc.tintColor = .black
+        rc.addTarget(self, action: #selector(refreshAllPost), for: .valueChanged)
         
         //test images
         setSection()
         fetchPosters(from: 0)
+    }
+    
+    @objc func refreshAllPost() {
+        if !isLoading{
+            isLoading = true
+            fetchPosters(from: 0)
+        }
     }
     
     func setSection() {
@@ -60,23 +71,15 @@ class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
             self.posters.append(contentsOf: posters)
             self.alreadyLoaded += posters.count
             DispatchQueue.main.async {
-                self.cvt.reloadData()
                 self.isLoading = false
+                self.cvt.reloadData()
+                self.rc.endRefreshing()
             }
         }
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let contentOffSetY = scrollView.contentOffset.y
-       
-        if contentOffSetY < -100 && !isLoading{
-            isLoading = true
-            fetchPosters(from: 0)
-        }
-    }
-    
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.item == alreadyLoaded - 1{
+        if indexPath.item == alreadyLoaded - 1 && !isLoading{
             isLoading = true
             fetchPosters(from: alreadyLoaded)
         }
@@ -107,10 +110,11 @@ class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        posterDetail.exitGesture.edges = .left
-        posterDetail.exitGesture.addTarget(self, action: #selector(handleSwipe(_:)))
-        posterDetail.showPosterDetail(posters[indexPath.item])
-        originC = posterDetail.mainV?.center
+        let newL = PosterDetailLauncher()
+        newL.exitGesture.edges = .left
+        newL.exitGesture.addTarget(self, action: #selector(handleSwipe(_:)))
+        newL.showPosterDetail(posters[indexPath.item])
+        originC = newL.mainV?.center
     }
     
     @objc func handleSwipe(_ sender: UIScreenEdgePanGestureRecognizer) {

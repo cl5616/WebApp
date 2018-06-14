@@ -63,6 +63,6 @@ class PosterDetailContentCollectionViewCell: PostDetailCell {
 
 class CommentBtn : UIButton {
     var isReply: Bool?
-    var commenter: Int?
+    var commentId: Int?
     var postId: Int?
 }
