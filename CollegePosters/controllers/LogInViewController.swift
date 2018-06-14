@@ -14,26 +14,30 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var passwordTxt: UITextField!
 
-
     @IBOutlet weak var logInView: UIView!
 
     var keyboardPresent: Bool = false
     var errorMessage = ""
     var authenticated: Bool = false {
         didSet {
-            if  authenticated {
+            if authenticated {
                 DispatchQueue.main.async(execute: {
                     self.performSegue(withIdentifier: "logInSegue", sender: nil)
                 })
             } else {
                 if errorMessage == "login failed" {
-                    print("login failed")
-                    //wrongLoginAlert()
+                    //print("login failed")
+                    DispatchQueue.main.async(execute: {
+                        self.wrongLoginAlert()
+                        self.passwordTxt.text = ""
+                    })
                 } else if errorMessage == "argument \"password\" cannot be empty" {
-                    //emptyPasswordAlert()
-                    print("password cannot be empty")
+                    DispatchQueue.main.async(execute: {
+                        self.emptyPasswordAlert()
+                        self.passwordTxt.text = ""
+                        //print("password cannot be empty")
+                    })
                 }
-                passwordTxt.text = ""
             }
         }
     }
@@ -53,9 +57,9 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         let session = URLSession.shared
         //var errorMessage = ""
         session.dataTask(with: request) {(data, response, error) in
-            if let response = response {
+            /*if let response = response {
                 print(response)
-            }
+            }*/
             if let data = data {
                 do {
                     /*if data.count == 0 {
@@ -71,6 +75,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                         let uid = json["id"] as! Int
                         userId.userid = uid
                     } else if status == 0 {
+                        self.authenticated = false
                         let errorMsg = json["error"] as! String
                         self.errorMessage = errorMsg
                     }

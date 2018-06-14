@@ -120,7 +120,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1a6-hz-KHC">
-                                <rect key="frame" x="120" y="479" width="135" height="60"/>
+                                <rect key="frame" x="120" y="496" width="135" height="60"/>
                                 <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="1a6-hz-KHC" secondAttribute="height" multiplier="9:4" id="Efu-U6-Cu9"/>
@@ -142,6 +142,24 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="NON-ANONYMOUS" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1gE-b8-MSg">
+                                <rect key="frame" x="90" y="460" width="116" height="15"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Axa-4P-p2w">
+                                <rect key="frame" x="32" y="443" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="67M-DF-apn"/>
+                                    <constraint firstAttribute="width" constant="50" id="O3M-7G-qM0"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="anonymousPressed:" destination="5wP-SZ-X0J" eventType="touchUpInside" id="CoZ-N0-BSR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -149,19 +167,27 @@
                             <constraint firstItem="ll1-d7-Sl7" firstAttribute="trailing" secondItem="Pec-b7-LWt" secondAttribute="trailing" constant="34" id="5D6-Vp-Oft"/>
                             <constraint firstItem="Pec-b7-LWt" firstAttribute="top" secondItem="Lx8-Ee-0Cl" secondAttribute="bottom" constant="14" id="6fU-rh-RoD"/>
                             <constraint firstItem="Lx8-Ee-0Cl" firstAttribute="leading" secondItem="ll1-d7-Sl7" secondAttribute="leading" constant="33" id="9V7-qc-KHy"/>
+                            <constraint firstItem="1gE-b8-MSg" firstAttribute="leading" secondItem="Axa-4P-p2w" secondAttribute="trailing" constant="8" id="9WZ-56-Yhd"/>
                             <constraint firstItem="lbX-xj-d3n" firstAttribute="leading" secondItem="ll1-d7-Sl7" secondAttribute="leading" constant="33" id="Aq2-ku-m95"/>
                             <constraint firstItem="ll1-d7-Sl7" firstAttribute="trailing" secondItem="1a6-hz-KHC" secondAttribute="trailing" constant="120" id="HH1-sd-yTM"/>
+                            <constraint firstItem="1a6-hz-KHC" firstAttribute="leading" secondItem="Axa-4P-p2w" secondAttribute="trailing" constant="38" id="Mh3-aw-X7S"/>
+                            <constraint firstItem="1gE-b8-MSg" firstAttribute="top" secondItem="lbX-xj-d3n" secondAttribute="bottom" constant="28" id="NZa-D0-dun"/>
                             <constraint firstItem="1a6-hz-KHC" firstAttribute="leading" secondItem="ll1-d7-Sl7" secondAttribute="leading" constant="120" id="Ne6-oO-RDD"/>
+                            <constraint firstItem="Axa-4P-p2w" firstAttribute="leading" secondItem="ll1-d7-Sl7" secondAttribute="leading" constant="32" id="U3v-O6-O5Y"/>
+                            <constraint firstItem="1a6-hz-KHC" firstAttribute="top" secondItem="Axa-4P-p2w" secondAttribute="bottom" constant="3" id="V8y-Uv-Zbt"/>
                             <constraint firstItem="4lp-nB-GEb" firstAttribute="top" secondItem="Pec-b7-LWt" secondAttribute="bottom" constant="34" id="Xzb-T7-jPj"/>
                             <constraint firstItem="Lx8-Ee-0Cl" firstAttribute="top" secondItem="ll1-d7-Sl7" secondAttribute="top" constant="26" id="Y1g-2n-3q6"/>
                             <constraint firstItem="4lp-nB-GEb" firstAttribute="leading" secondItem="ll1-d7-Sl7" secondAttribute="leading" constant="33" id="anJ-I6-p2a"/>
                             <constraint firstItem="Pec-b7-LWt" firstAttribute="leading" secondItem="ll1-d7-Sl7" secondAttribute="leading" constant="33" id="f5u-0T-gYH"/>
                             <constraint firstItem="ll1-d7-Sl7" firstAttribute="trailing" secondItem="lbX-xj-d3n" secondAttribute="trailing" constant="34" id="g5P-8Q-1Qa"/>
-                            <constraint firstItem="1a6-hz-KHC" firstAttribute="top" secondItem="lbX-xj-d3n" secondAttribute="bottom" constant="47" id="qKr-gA-cK8"/>
+                            <constraint firstItem="1a6-hz-KHC" firstAttribute="top" secondItem="lbX-xj-d3n" secondAttribute="bottom" constant="64" id="qKr-gA-cK8"/>
+                            <constraint firstItem="Axa-4P-p2w" firstAttribute="top" secondItem="lbX-xj-d3n" secondAttribute="bottom" constant="11" id="u4T-yM-hJl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ll1-d7-Sl7"/>
                     </view>
                     <connections>
+                        <outlet property="anonymousButton" destination="Axa-4P-p2w" id="m7H-zK-A2d"/>
+                        <outlet property="anonymousTxt" destination="1gE-b8-MSg" id="h2F-vT-5g0"/>
                         <outlet property="categorySelection" destination="Pec-b7-LWt" id="UQO-sj-7eM"/>
                         <outlet property="postDescription" destination="lbX-xj-d3n" id="TSj-2X-UUi"/>
                         <outlet property="sendButton" destination="1a6-hz-KHC" id="kLc-VJ-tdh"/>
