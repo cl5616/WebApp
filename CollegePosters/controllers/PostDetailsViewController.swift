@@ -126,7 +126,7 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
                         print("wrong data")
                     }*/
                     let json = try JSONSerialization.jsonObject(with: data, options: [])
-                    //print(json)
+                    print(json)
                 } catch {
                     print(data)
                     print(error)

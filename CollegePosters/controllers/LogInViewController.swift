@@ -34,9 +34,9 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         let session = URLSession.shared
         var errorMessage = ""
         session.dataTask(with: request) {(data, response, error) in
-            /*if let response = response {
+            if let response = response {
                 print(response)
-            }*/
+            }
             if let data = data {
                 do {
                     /*if data.count == 0 {
@@ -49,12 +49,14 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                     let status = json["status"] as! Int
                     if status == 1 {
                         authenticated = true
+                        let uid = json["id"] as! Int
+                        userId.userid = uid
                     } else if status == 0 {
                         let errorMsg = json["error"] as! String
                         //print("Error msg is \(errorMsg)")
                         errorMessage = errorMsg
                     }
-                    //print(json)
+                    print(json)
                 } catch {
                     print(data)
                     print(error)
@@ -62,7 +64,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             }
         }.resume()
 
-        var sleep = 99999999
+        var sleep = 155555555
 
         while sleep > 0 {
             sleep -= 1
@@ -82,6 +84,10 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             passwordTxt.text = ""
         }
 
+    }
+    
+    struct userId {
+        static var userid = Int()
     }
 
     func wrongLoginAlert() {
@@ -120,12 +126,12 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
 
     @objc func keyboardWillShow(notification: NSNotification) {
         if !keyboardPresent{
-            self.logInView.frame.origin.y -= 40
+            //self.logInView.frame.origin.y = -5
         }
     }
 
     @objc func keyboardWillHide(notification: NSNotification) {
-            self.logInView.frame.origin.y += 40
+            self.logInView.frame.origin.y = 0
     }
 
 }
