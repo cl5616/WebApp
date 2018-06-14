@@ -30,15 +30,15 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destViewController: RegisterDetailViewController = segue.destination as! RegisterDetailViewController
-        
-        destViewController.emailAdd = emailTxt.text!
+        if let destVC = segue.destination as? RegisterDetailViewController {
+          destVC.emailAdd = emailTxt.text!
+        }
     }
-    
     
     @IBAction func nextPressed(_ sender: Any) {
         performSegue(withIdentifier: "registerDetail", sender: nil)
     }
+    
     @IBAction func sendCodePressed(_ sender: Any) {
         // todo: send confirmation code to the email,
         // and verify the email address

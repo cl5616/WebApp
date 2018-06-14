@@ -14,14 +14,37 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var passwordTxt: UITextField!
 
-
     @IBOutlet weak var logInView: UIView!
 
     var keyboardPresent: Bool = false
+    var errorMessage = ""
+    var authenticated: Bool = false {
+        didSet {
+            if authenticated {
+                DispatchQueue.main.async(execute: {
+                    self.performSegue(withIdentifier: "logInSegue", sender: nil)
+                })
+            } else {
+                if errorMessage == "login failed" {
+                    //print("login failed")
+                    DispatchQueue.main.async(execute: {
+                        self.wrongLoginAlert()
+                        self.passwordTxt.text = ""
+                    })
+                } else if errorMessage == "argument \"password\" cannot be empty" {
+                    DispatchQueue.main.async(execute: {
+                        self.emptyPasswordAlert()
+                        self.passwordTxt.text = ""
+                        //print("password cannot be empty")
+                    })
+                }
+            }
+        }
+    }
 
     @IBAction func tryLogIn(_ sender: Any) {
 
-        var authenticated: Bool = false
+        //var authenticated: Bool = false
         //todo parse email -> send to server for authentication
         let email = usernameTxt.text?.lowercased() ?? ""
         let password = passwordTxt.text ?? ""
@@ -32,7 +55,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         let loginDetailStr = "email=\(email)&password=\(password)"
         request.httpBody = loginDetailStr.data(using: .utf8)
         let session = URLSession.shared
-        var errorMessage = ""
+        //var errorMessage = ""
         session.dataTask(with: request) {(data, response, error) in
             /*if let response = response {
                 print(response)
@@ -52,11 +75,13 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                     let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String : Any]
                     let status = json["status"] as! Int
                     if status == 1 {
-                        authenticated = true
+                        self.authenticated = true
+                        let uid = json["id"] as! Int
+                        userId.userid = uid
                     } else if status == 0 {
+                        self.authenticated = false
                         let errorMsg = json["error"] as! String
-                        //print("Error msg is \(errorMsg)")
-                        errorMessage = errorMsg
+                        self.errorMessage = errorMsg
                     }
                     //print(json)
                 } catch {
@@ -66,7 +91,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             }
         }.resume()
 
-        var sleep = 99999999
+        /*var sleep = 155555555
 
         while sleep > 0 {
             sleep -= 1
@@ -84,8 +109,12 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                 emptyPasswordAlert()
             }
             passwordTxt.text = ""
-        }
+        }*/
 
+    }
+    
+    struct userId {
+        static var userid = Int()
     }
 
     func wrongLoginAlert() {
@@ -124,12 +153,12 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
 
     @objc func keyboardWillShow(notification: NSNotification) {
         if !keyboardPresent{
-            self.logInView.frame.origin.y -= 40
+            //self.logInView.frame.origin.y = -5
         }
     }
 
     @objc func keyboardWillHide(notification: NSNotification) {
-            self.logInView.frame.origin.y += 40
+            self.logInView.frame.origin.y = 0
     }
 
 }

@@ -13,15 +13,18 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
     @IBOutlet weak var categorySelection: UITextField!
     @IBOutlet weak var postDescription: UITextView!
     @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var anonymousButton: UIButton!
+    @IBOutlet weak var anonymousTxt: UITextField!
     
     let categories = ["Clubs", "Social", "Academy", "Market", "Job"]
     var selectedCategory: String?
     var selectedPhotos: [UIImage] = []
     var titleText: String = ""
-    // TODO: anonymous ...
+    var anonymousity: String = "1"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        anonymousButton.setImage(UIImage(named: "anonymous"), for: .normal)
         sendButton.isEnabled = false
         postDescription.delegate = self
         categorySelection.delegate = self
@@ -45,6 +48,17 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
     }
     
+    @IBAction func anonymousPressed(_ sender: Any) {
+        if (anonymousButton.image(for: .normal) == UIImage(named: "anonymous")) {
+            anonymousButton.setImage(UIImage(named: "anonymousfilled"), for: .normal)
+            anonymousTxt.text = "ANONYMOUS"
+            anonymousity = "0"
+        } else {
+            anonymousButton.setImage(UIImage(named: "anonymous"), for: .normal)
+            anonymousTxt.text = "NON-ANONYMOUS"
+            anonymousity = "1"
+        }
+    }
     @IBAction func sendPressed(_ sender: Any) {
         postUploadRequest()
     }
@@ -72,7 +86,7 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
             }
             
             let parameters = ["type": "1", "id": "\(arc4random())"]
-            let dataBody = createDataBody(withParams: parameters, media: [mediaImage], boundary: boundary)
+            let dataBody = PostDetailsViewController.createDataBody(withParams: parameters, media: [mediaImage], boundary: boundary)
             request.httpBody = dataBody
             
             session.dataTask(with: request) { (data, response, error) in
@@ -113,7 +127,8 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
         var request1 = URLRequest(url: url1!)
         request1.httpMethod = "POST"
         request1.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        let postDetailStr = "category=\(category)&content=\(description)&title=\(title)&picture=\(filenames)&anonymous=1"
+        let postDetailStr = "category=\(category)&content=\(description)&title=\(title)&picture=\(filenames)&anonymous=\(anonymousity)"
+        print(postDetailStr)
         request1.httpBody = postDetailStr.data(using: .utf8)
         let session1 = URLSession.shared
         session1.dataTask(with: request1) {(data, response, error) in
@@ -125,7 +140,7 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
                     /*if data.count == 0 {
                         print("wrong data")
                     }*/
-                    let json = try JSONSerialization.jsonObject(with: data, options: [])
+                    /*let json = */try JSONSerialization.jsonObject(with: data, options: [])
                     //print(json)
                 } catch {
                     print(data)
@@ -139,7 +154,7 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
         return "Boundary-\(NSUUID().uuidString)"
     }
     
-    func createDataBody(withParams params: [String : String]?, media: [PostDetails]?, boundary: String) -> Data {
+    static func createDataBody(withParams params: [String : String]?, media: [PostDetails]?, boundary: String) -> Data {
         let separator = "\r\n"
         var body = Data()
         
