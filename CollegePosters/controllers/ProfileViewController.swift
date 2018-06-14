@@ -16,10 +16,9 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var nickNameLbl: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        let userID = "3"
-        display(id: userID)
-        
-        
+        let userID = LogInViewController.userId.userid
+        display(id: String(userID))
+        print(userID)
     }
     func display(id: String){
         let url = URL(string:"https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getprofile.php")!
@@ -36,7 +35,7 @@ class ProfileViewController: UIViewController {
                     print(json)
                     self.nickNameLbl.text = json["nickname"] as? String
                     self.emailLbl.text = json["email"] as? String
-                    if (json["image"] as! String != "") {
+                    if (json["image"] as? String ?? "" != "") {
                         self.profileImage.image = UIImage(named:json["image"] as! String)
                     }
                     self.introduction.text = json["introduction"] as? String
