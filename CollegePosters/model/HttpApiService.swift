@@ -322,7 +322,7 @@ class HttpApiService {
     }
     
     func setImages(withName: String, poster: Poster?, user: User?) {
-        let picFolderUrl = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/pic/"
+        let picFolderUrl = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/pic/"
         var combinedUrls = [URL]()
         let subNames = withName.split(separator: ";")
         for picName in subNames {
