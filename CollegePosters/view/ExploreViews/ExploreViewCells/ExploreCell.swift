@@ -35,6 +35,13 @@ class ExploreCell : UICollectionViewCell {
             posterImage.image = UIImage(named: withName)
             return
         }
+        
+        let subNames = withName.split(separator: ";")
+        
+        if let imageFromCache = imageCache.object(forKey: NSString(string: String(subNames[0]))) {
+            posterImage.image = imageFromCache
+            return
+        }
 
         var countDown = 1000
         while poster?.posterImage.count == 0 && countDown > 0{

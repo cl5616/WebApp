@@ -14,7 +14,14 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
 
     let searchBarHeight = 40
     
-    var searchResult: [Poster]?
+    var searchResult: [Poster] = [Poster]()
+    var alreadyLoadedSearchResult = 0
+    var isSearching: Bool = false
+    let tap: UITapGestureRecognizer = {
+        let t = UITapGestureRecognizer()
+        t.addTarget(self, action: #selector(dismissKeyboardFromSearch))
+        return t
+    }()
     
     lazy var searchBar: UISearchBar = {
         let sb = UISearchBar()
@@ -31,18 +38,52 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
         self.collectionView!.register(ExploreCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
+        self.collectionView?.isUserInteractionEnabled = true
         view.addSubview(searchBar)
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0(\(searchBarHeight))]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": searchBar]))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": searchBar]))
         searchBar.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
+    }
+    
+    func searchForPosters(keyword: String, from: Int) {
         
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardFromSearch))
-        view.addGestureRecognizer(tap)
+        if !isSearching {
+            isSearching = true
+            if from == 0{
+                searchResult = [Poster]()
+                alreadyLoadedSearchResult = 0
+            }
+            
+            HttpApiService.sharedHttpApiService.fetchPosters(with: "getTrendPosters", from: alreadyLoadedSearchResult, keyword: keyword) { (posters) in
+                self.searchResult.append(contentsOf: posters)
+                self.alreadyLoadedSearchResult += posters.count
+                DispatchQueue.main.async {
+                    self.isSearching = false
+                    self.collectionView!.reloadData()
+                }
+            }
+        }
     }
 
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        view.addGestureRecognizer(tap)
+        return true
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        print("end editting")
+        view.removeGestureRecognizer(self.tap)
+    }
+    
     @objc func dismissKeyboardFromSearch() {
         searchBar.endEditing(true)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("searching " + searchBar.text!)
+        searchForPosters(keyword: searchBar.text!, from: 0)
+        searchBar.endEditing(true)
+        view.removeGestureRecognizer(self.tap)
     }
     
     override func didReceiveMemoryWarning() {
@@ -57,10 +98,7 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
         return 1
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("searching " + searchBar.text!)
-        searchBar.endEditing(true)
-    }
+    
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = view.frame.width / 2 - 15
@@ -78,7 +116,7 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return searchResult?.count ?? 8
+        return searchResult.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -86,12 +124,50 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ExploreCell
     
         // Configure the cell
         //cell.backgroundColor = .red
+        if !isSearching {
+            
+            cell.likebtn.addTarget(self, action: #selector(likeBtnTapped), for: .touchUpInside)
+            
+            cell.posterImage.image = nil
+            
+            cell.likebtn.imageView?.image = UIImage(named: "heart33")
+            
+            cell.poster = searchResult[indexPath.item]
+            
+        }
     
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.item == alreadyLoadedSearchResult - 1 {
+            if let text = searchBar.text {
+                searchForPosters(keyword: text, from: alreadyLoadedSearchResult)
+            }
+        }
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("selecting: \(indexPath.item)")
+        let newL = PosterDetailLauncher()
+        newL.exitGesture.edges = .left
+        newL.exitGesture.addTarget(self, action: #selector(handleSwipe(_:)))
+        newL.showPosterDetail(searchResult[indexPath.item])
+        originC = newL.mainV?.center
+    }
+    
+    var originC: CGPoint?
+    
+    @objc func handleSwipe(_ sender: UIScreenEdgePanGestureRecognizer) {
+        BtnActions().handleSwipe(sender, originC: originC!, frame: (collectionView?.frame)!)
+    }
+    
+    @IBAction func likeBtnTapped(sender: UIButton!) -> Void {
+        BtnActions().likeBtnTapped(sender: sender)
     }
 
 }

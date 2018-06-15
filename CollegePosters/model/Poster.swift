@@ -21,6 +21,7 @@ class Poster: NSObject {
     var userId: Int?
     var user: User?
     var isSearchResult: Bool?
+    var checkedLikeStatus = false
     
 }
 

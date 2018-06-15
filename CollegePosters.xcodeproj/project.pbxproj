@@ -61,6 +61,7 @@
 		EBB79DB420D19B7F00B28886 /* PosterDetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB79DB320D19B7F00B28886 /* PosterDetailsCollectionViewCell.swift */; };
 		EBB79DB620D1BDFB00B28886 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB79DB520D1BDFB00B28886 /* User.swift */; };
 		EBB79DB820D284F300B28886 /* SearchCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB79DB720D284F300B28886 /* SearchCollectionViewController.swift */; };
+		EBB79DBD20D3050000B28886 /* BtnActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB79DBC20D3050000B28886 /* BtnActions.swift */; };
 		EBDBA69820CF052E00DCB6DC /* PosterDetailLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDBA69720CF052E00DCB6DC /* PosterDetailLauncher.swift */; };
 /* End PBXBuildFile section */
 
@@ -137,6 +138,7 @@
 		EBB79DB320D19B7F00B28886 /* PosterDetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterDetailsCollectionViewCell.swift; sourceTree = "<group>"; };
 		EBB79DB520D1BDFB00B28886 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EBB79DB720D284F300B28886 /* SearchCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewController.swift; sourceTree = "<group>"; };
+		EBB79DBC20D3050000B28886 /* BtnActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BtnActions.swift; sourceTree = "<group>"; };
 		EBDBA69720CF052E00DCB6DC /* PosterDetailLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterDetailLauncher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -289,6 +291,7 @@
 				EB31AC1D20D059C000474B9E /* Comment.swift */,
 				EB8C0B1B20D16AE1002A36D4 /* CommentAction.swift */,
 				EBB79DB520D1BDFB00B28886 /* User.swift */,
+				EBB79DBC20D3050000B28886 /* BtnActions.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -550,6 +553,7 @@
 				EBB79DB620D1BDFB00B28886 /* User.swift in Sources */,
 				EBB79DB820D284F300B28886 /* SearchCollectionViewController.swift in Sources */,
 				EB4A88A120C87FBE00AF5587 /* JobCell.swift in Sources */,
+				EBB79DBD20D3050000B28886 /* BtnActions.swift in Sources */,
 				EB4A886620BF6F0700AF5587 /* ExploreCollectionViewController.swift in Sources */,
 				EBB79DB420D19B7F00B28886 /* PosterDetailsCollectionViewCell.swift in Sources */,
 				31B910E020D325A200C1D61D /* ProfileCredentialViewController.swift in Sources */,
