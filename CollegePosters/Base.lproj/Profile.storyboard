@@ -83,6 +83,9 @@
                                 <state key="normal" title="Logout">
                                     <color key="titleColor" red="0.94577128499999996" green="0.94577128499999996" blue="0.94577128499999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="H08-Sg-iSv" kind="presentation" id="8y5-fF-EyL"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -133,6 +136,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cfy-nI-ZAP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1892" y="2619.9400299850076"/>
+        </scene>
+        <!--notSignedIn-->
+        <scene sceneID="SPa-6K-9Hg">
+            <objects>
+                <viewControllerPlaceholder storyboardName="LogIn" referencedIdentifier="notSignedIn" id="H08-Sg-iSv" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="dga-wT-DUH"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RGB-Xr-Oab" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1910" y="3084"/>
         </scene>
         <!--Profile Credential View Controller-->
         <scene sceneID="W7T-YF-bqz">
