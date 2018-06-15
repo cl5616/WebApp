@@ -25,6 +25,7 @@ class ProfileCredentialViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        changeNameField.delegate = self
         oldPassword.delegate = self
         newPassword.delegate = self
         newPasswordTwice.delegate = self

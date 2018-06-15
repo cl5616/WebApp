@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var introduction: UITextField!
     @IBOutlet weak var profileImage: UIImageView!
@@ -24,6 +24,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     var didChangeNewProfilePic = false
     
     func update() {
+        //print(update)
         DispatchQueue.main.async {
             self.nickNameLbl.text = self.user?.username
             self.introduction.text = self.user?.intro
@@ -36,16 +37,19 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("called")
+        //print("called")
         if (ProfileCredentialViewController.pressButton) {
             self.user = ProfileViewController.connectUser
             ProfileCredentialViewController.pressButton = false
         }
-        update()
+        if (!didChangeNewProfilePic) {
+            update()
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        introduction.delegate = self
         let userID = LogInViewController.userId.userid
         if user != nil {
             update()
@@ -69,8 +73,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             
             if let data = data {
                 do {
-                    let json = try JSONSerialization.jsonObject(with: data, options: [])
-                    print(json)
+                    _ = try JSONSerialization.jsonObject(with: data, options: [])
+                    //print(json)
                 } catch {
                     print(data)
                     print(error)
@@ -137,6 +141,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                         let filename = json["filename"] as! String
                         //print(filename)
                         //print(json)
+                        //print("jaskdjkasjd")
                         filename_array[i] = filename
                     } catch {
                         print(data)
@@ -161,6 +166,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     @IBAction func uploadImageAction(_ sender: Any) {
+        //print("update image")
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.allowsEditing = true
@@ -169,26 +175,47 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]){
-        
+        /*
         var selectedImageFromPicker: UIImage?
         
         if let editedImage = info["UIImagePickerControllerEditedImage"] as? UIImage{
             selectedImageFromPicker = editedImage
+            print(1)
         } else if let originalImage = info["UIImagePickerControllerOriginalImage"] as? UIImage{
             selectedImageFromPicker = originalImage
+            print(2)
         }
         if let selectedImage = selectedImageFromPicker{
             profileImage.image = selectedImage
             didChangeNewProfilePic = true
+            print(3)
         }
+        */
+        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+        profileImage.image = image
+        didChangeNewProfilePic = true
+        
+        
         dismiss(animated: true, completion: nil)
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let controller = UIImagePickerController()
+        controller.delegate = self
+        controller.sourceType = .photoLibrary
+        self.present(controller, animated: true, completion: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

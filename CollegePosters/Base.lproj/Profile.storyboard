@@ -25,12 +25,7 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultIcon" translatesAutoresizingMaskIntoConstraints="NO" id="ZN5-2v-gtK">
-                                <rect key="frame" x="112" y="78" width="150" height="177"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="177" id="5FP-Eg-ax9"/>
-                                    <constraint firstAttribute="width" constant="150" id="I6W-4F-Spa"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="150" id="dMI-kK-p5m"/>
-                                </constraints>
+                                <rect key="frame" x="112" y="78" width="150" height="112"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3jm-O9-Kgp">
                                 <rect key="frame" x="59" y="487" width="257" height="30"/>
@@ -66,13 +61,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xds-XN-23l">
-                                <rect key="frame" x="16" y="274" width="343" height="54"/>
+                                <rect key="frame" x="16" y="209" width="343" height="119"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BJ2-Z2-jHY">
-                                <rect key="frame" x="112" y="78" width="150" height="177"/>
+                                <rect key="frame" x="112" y="78" width="150" height="112"/>
                                 <connections>
                                     <action selector="uploadImageAction:" destination="4dI-9v-H1e" eventType="touchUpInside" id="Qgy-Th-cON"/>
                                 </connections>
