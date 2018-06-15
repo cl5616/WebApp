@@ -35,6 +35,7 @@ class PosterDescriptionCollectionView: UIView, UICollectionViewDataSource, UICol
     
     var alreadyLoadedComment = 0
     var comments: [Comment] = [Comment]()
+    var commentsId: [Int] = [Int]()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -67,12 +68,14 @@ class PosterDescriptionCollectionView: UIView, UICollectionViewDataSource, UICol
         
         if from == 0 {
             comments = [Comment]()
+            commentsId = [Int]()
             alreadyLoadedComment = 0
         }
         
         HttpApiService.sharedHttpApiService.fetchComment(postId: postId, from: from) { (comments) in
             self.sortComment(comments)
-            self.comments.append(contentsOf: comments)
+            //self.comments.append(contentsOf: comments)
+            self.selectForRender(comments: comments)
             self.alreadyLoadedComment += comments.count
             self.isFetchingComment = false
             DispatchQueue.main.async {
@@ -94,6 +97,16 @@ class PosterDescriptionCollectionView: UIView, UICollectionViewDataSource, UICol
                         })
                     }
                 }
+            }
+        }
+    }
+    
+    func selectForRender(comments: [Comment]) {
+        for comment in comments {
+            let newId = comment.commentId!
+            if !commentsId.contains(newId) {
+                self.comments.append(comment)
+                commentsId.append(newId)
             }
         }
     }
