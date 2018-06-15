@@ -322,6 +322,57 @@ class HttpApiService {
         
     }
     
+    func searchPoster(with: String, completion: @escaping ([Poster]) -> ()) {
+        let url = URL(string: "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/searchposts.php")!
+        var request = URLRequest(url:url)
+        request.httpMethod = "POST"
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        let postDetailStr = "keyword=\(with)"
+        request.httpBody = postDetailStr.data(using: .utf8)
+        URLSession.shared.dataTask(with: request) {(data, response, error) in
+            if let response = response {
+                print(response)
+            }
+            if let data = data {
+                print(data)
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+                    self.posters = [Poster]()
+                    
+                    if (json as? [String: AnyObject]) == nil {
+                        for dict in json as! [[String: AnyObject]] {
+                            let newPoster = Poster()
+                            
+                            //title
+                            newPoster.posterTitle = dict["title"] as? String
+                            //content
+                            newPoster.posterDescription = dict["content"] as? String
+                            //image name
+                            var ImageName = dict["picture"] as? String
+                            ImageName = ImageName == "null" ? "fire64" : ImageName
+                            newPoster.posterImageName = ImageName
+                            newPoster.postId = dict["msg_id"] as? Int
+                            //time
+                            let time = dict["post_time"] as? String
+                            let subTime = time?.prefix(19)
+                            newPoster.time = String(subTime!)
+                            //postId
+                            newPoster.postId = dict["msg_id"] as? Int
+                            //userId
+                            newPoster.userId = dict["poster_id"] as? Int
+                            
+                            self.posters?.append(newPoster)
+                        }
+                    }
+                    completion(self.posters!)
+                    
+                } catch let jsonError {
+                    print(jsonError)
+                }
+            }
+        }.resume()
+    }
+
     func setImages(withName: String, poster: Poster?, user: User?) {
         let picFolderUrl = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/pic/"
         var combinedUrls = [URL]()

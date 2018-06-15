@@ -36,6 +36,9 @@
                     </collectionView>
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" title="Search" id="FJc-v3-9wh"/>
+                    <connections>
+                        <outlet property="searchText" destination="Vsm-Qo-ZcE" id="5lM-RS-2Fb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VEJ-qF-uIf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
