@@ -15,15 +15,19 @@ class PosterDetailsCollectionViewCell: PostDetailCell {
             timeLbl.text = comment?.commentTime
             cmtBtn.isReply = true
             cmtBtn.commentId = comment?.commentId
-            guard let commenterId = comment?.commenterId else {
+            guard let commenterName = comment?.commenterProfile?.username else {
                 print("invalid comment found, no commenter")
                 return
             }
-            if let replyUser = comment?.replyUser{
-                cmterLbl.text = "\(commenterId) replies \(replyUser)"
+            if let replyUser = comment?.replyUserProfile?.username{
+                cmterLbl.text = "\(commenterName) replies \(replyUser)"
                 
             } else {
-                cmterLbl.text = String(commenterId)
+                cmterLbl.text = String(commenterName)
+            }
+            
+            if let commenterProfileImg = comment?.commenterProfile?.profileImg {
+                profileImg.image = commenterProfileImg
             }
             
             contentLbl.text = comment?.content

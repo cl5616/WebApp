@@ -44,6 +44,10 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                         authenticated = false
                     }*/
                     // store cookies
+                    let httpResp: HTTPURLResponse = response as! HTTPURLResponse
+                    let httpCookies: [HTTPCookie] = HTTPCookie.cookies(withResponseHeaderFields: httpResp.allHeaderFields as! [String: String], for: httpResp.url!)
+                    HTTPCookieStorage.shared.setCookies(httpCookies, for: response?.url!, mainDocumentURL: nil)
+                    //print ("header: \(httpResp.allHeaderFields as! [String: String])")
                     // store user session
                     let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String : Any]
                     let status = json["status"] as! Int

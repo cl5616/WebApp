@@ -72,7 +72,7 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
             }
             
             let parameters = ["type": "1", "id": "\(arc4random())"]
-            let dataBody = createDataBody(withParams: parameters, media: [mediaImage], boundary: boundary)
+            let dataBody = PostDetailsViewController.createDataBody(withParams: parameters, media: [mediaImage], boundary: boundary)
             request.httpBody = dataBody
             
             session.dataTask(with: request) { (data, response, error) in
@@ -139,7 +139,7 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
         return "Boundary-\(NSUUID().uuidString)"
     }
     
-    func createDataBody(withParams params: [String : String]?, media: [PostDetails]?, boundary: String) -> Data {
+    static func createDataBody(withParams params: [String : String]?, media: [PostDetails]?, boundary: String) -> Data {
         let separator = "\r\n"
         var body = Data()
         

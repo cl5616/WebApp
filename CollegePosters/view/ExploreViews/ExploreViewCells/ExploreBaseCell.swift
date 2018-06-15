@@ -109,8 +109,9 @@ class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
         return cell
     }
     
+    let newL = PosterDetailLauncher()
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let newL = PosterDetailLauncher()
         newL.exitGesture.edges = .left
         newL.exitGesture.addTarget(self, action: #selector(handleSwipe(_:)))
         newL.showPosterDetail(posters[indexPath.item])

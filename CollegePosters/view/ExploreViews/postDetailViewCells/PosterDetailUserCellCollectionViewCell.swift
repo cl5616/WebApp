@@ -10,6 +10,23 @@ import UIKit
 
 class PosterDetailUserCellCollectionViewCell: PostDetailCell {
     
+    
+    override var poster: Poster? {
+        didSet {
+            setUserInformation()
+        }
+    }
+    
+    func setUserInformation() {
+        if let pi = poster?.user?.profileImg {
+            profileImage.image = pi
+        }
+        
+        if let un = poster?.user?.username {
+            userLabel.text = un
+        }
+    }
+    
     let profileImage: CellImageView = {
         let imageView = CellImageView()
         imageView.backgroundColor = UIColor.gray
@@ -32,7 +49,6 @@ class PosterDetailUserCellCollectionViewCell: PostDetailCell {
     let userLabel : UILabel = {
         let label = UILabel()
         label.backgroundColor = UIColor.white
-        label.text = "example@mail.com"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

@@ -84,7 +84,6 @@ class PostImagesView: UIView, UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if (!selectedOne) {
             selectedOne = true
-            print("selected: \(indexPath.item)")
             let sp = selectedPhotos![indexPath.item]
             imageViewer.exitGesture.addTarget(self, action: #selector(handleTap(_:)))
             imageViewer.showImage(sp)

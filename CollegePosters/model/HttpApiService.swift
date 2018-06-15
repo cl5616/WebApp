@@ -28,6 +28,7 @@ class HttpApiService {
         shs.urls["unlike"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/unlike.php"
         shs.urls["comment"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/addcomment.php"
         shs.urls["getComments"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getcomments.php?"
+        shs.urls["getUserProfile"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getprofile.php"
         
         return shs
     }()
@@ -37,6 +38,58 @@ class HttpApiService {
     
     private init() {
         
+    }
+    
+    func createAnonymousUser() -> User{
+        let au = User()
+        au.intro = "this guy does not want show himself"
+        au.profileImg = nil
+        au.userEmail = "disguised"
+        au.username = "Anonymous"
+        return au
+    }
+    
+    func fetchUserProfile(_ userId: Int, completion: @escaping (User) -> ()) {
+        
+        if userId == 0 {
+            completion(createAnonymousUser())
+            return
+        }
+        
+        let url = URL(string: urls["getUserProfile"]!)
+        var request = URLRequest(url: url!)
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        let postString = "userid=\(userId)"
+
+        request.httpBody = postString.data(using: .utf8)
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if error != nil {
+                print(error!)
+                return
+            }
+            guard let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode == 200 else {
+                print(response!)
+                return
+            }
+            
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! [String: AnyObject]
+                let newUser = User()
+                newUser.userEmail = json["email"] as? String
+                newUser.intro = json["introduction"] as? String
+                newUser.username = json["nickname"] as? String
+                newUser.profileImgName = json["image"] as? String
+                if let pin = newUser.profileImgName {
+                    self.setImages(withName: pin, poster: nil, user: newUser)
+                }
+                
+                completion(newUser)
+            } catch {
+                print(error)
+            }
+        }.resume()
     }
     
     func fetchComment(postId: Int, from: Int, completion: @escaping ([Comment]) -> ()) {
@@ -70,6 +123,11 @@ class HttpApiService {
                         if let ri = ri {
                             newComment.replyId = Int(ri)
                         }
+                        //set user
+                        self.fetchUserProfile(newComment.commenterId!, completion: { (user) in
+                            newComment.commenterProfile = user
+                        })
+                        
                         comments.append(newComment)
                     }
                 }
@@ -78,6 +136,8 @@ class HttpApiService {
             }
             completion(comments)
         }.resume()
+        
+        
     }
     
     func sendComment(postId: Int, replyId: Int?, content: String) {
@@ -104,7 +164,6 @@ class HttpApiService {
             do {
                 let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! [String: AnyObject]
                 print("comment status: \(json["status"] as! Int)")
-                
             } catch {
                 print(error)
             }
@@ -187,7 +246,7 @@ class HttpApiService {
                 if (json as? [String: AnyObject]) == nil {
                     for dict in json as! [[String: AnyObject]] {
                         let newPoster = Poster()
-                        
+                    
                         //title
                         newPoster.posterTitle = dict["title"] as? String
                         //content
@@ -197,7 +256,7 @@ class HttpApiService {
                         ImageName = ImageName == "" ? "fire64" : ImageName
                         newPoster.posterImageName = ImageName
                         //set images 
-                        self.setImages(withName: ImageName!, poster: newPoster)
+                        self.setImages(withName: ImageName!, poster: newPoster, user: nil)
                         //image counts
                         newPoster.numOfPoster = ImageName?.split(separator: ";").count
                         //time
@@ -208,6 +267,13 @@ class HttpApiService {
                         newPoster.postId = dict["msg_id"] as? Int
                         //userId
                         newPoster.userId = dict["poster_id"] as? Int
+                        //is not search result
+                        newPoster.isSearchResult = false
+                        //set user
+                        self.fetchUserProfile(newPoster.userId!, completion: { (user) in
+                            newPoster.user = user
+                        })
+                        
                         
                         self.posters?.append(newPoster)
                     }
@@ -274,7 +340,8 @@ class HttpApiService {
             }
         }.resume()
     }
-    func setImages(withName: String, poster: Poster) {
+
+    func setImages(withName: String, poster: Poster?, user: User?) {
         let picFolderUrl = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/pic/"
         var combinedUrls = [URL]()
         let subNames = withName.split(separator: ";")
@@ -284,16 +351,32 @@ class HttpApiService {
             combinedUrls.append(URL(string: newCombinedUrl)!)
         }
         
-        for idx in 0...combinedUrls.count - 1 {
-            URLSession.shared.dataTask(with: combinedUrls[idx]) { (data, response, error) in
+        if let poster = poster {
+            for idx in 0...combinedUrls.count - 1 {
+                URLSession.shared.dataTask(with: combinedUrls[idx]) { (data, response, error) in
+                    if error != nil {
+                        print(error!)
+                        return
+                    }
+                    let imageToCache = UIImage(data: data!)
+                    if let imageToCache = imageToCache {
+                        imageCache.setObject(imageToCache, forKey: String(subNames[idx]) as NSString)
+                        poster.posterImage.append(imageToCache)
+                    }
+                    }.resume()
+            }
+        }
+        
+        if let user = user {
+            URLSession.shared.dataTask(with: combinedUrls[0]) { (data, response, error) in
                 if error != nil {
                     print(error!)
                     return
                 }
                 let imageToCache = UIImage(data: data!)
                 if let imageToCache = imageToCache {
-                    imageCache.setObject(imageToCache, forKey: String(subNames[idx]) as NSString)
-                    poster.posterImage.append(imageToCache)
+                    imageCache.setObject(imageToCache, forKey: String(subNames[0]) as NSString)
+                    user.profileImg = imageToCache
                 }
             }.resume()
         }

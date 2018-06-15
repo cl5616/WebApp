@@ -12,8 +12,10 @@ class ExploreCell : UICollectionViewCell {
 
     var poster: Poster? {
         didSet {
-            cellLabel.text = poster?.posterTitle
-            dateLabel.text = poster?.time
+            if !(poster?.isSearchResult)! {
+                cellLabel.text = poster?.posterTitle
+                dateLabel.text = poster?.time
+            }
             if let imageName = poster?.posterImageName {
                 setImage(withName: imageName)
             }
