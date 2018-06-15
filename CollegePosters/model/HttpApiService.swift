@@ -271,7 +271,6 @@ class HttpApiService {
                 let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
                 
                 self.posters = [Poster]()
-                print(json)
                 
                 if (json as? [String: AnyObject]) == nil {
                     for dict in json as! [[String: AnyObject]] {

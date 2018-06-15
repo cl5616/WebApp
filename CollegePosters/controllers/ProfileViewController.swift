@@ -36,12 +36,13 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("called")
         if (ProfileCredentialViewController.pressButton) {
             self.user = ProfileViewController.connectUser
             ProfileCredentialViewController.pressButton = false
         }
-        update()
+        if (!didChangeNewProfilePic) {
+            update()
+        }
     }
     
     override func viewDidLoad() {
@@ -69,8 +70,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             
             if let data = data {
                 do {
-                    let json = try JSONSerialization.jsonObject(with: data, options: [])
-                    print(json)
+                    _ = try JSONSerialization.jsonObject(with: data, options: [])
                 } catch {
                     print(data)
                     print(error)

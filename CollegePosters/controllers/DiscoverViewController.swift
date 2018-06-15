@@ -45,7 +45,6 @@ class DiscoverViewController: UIViewController {
                 print(data)
                 do {
                     let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-                    print(json)
                     
                     if (json as? [String: AnyObject]) == nil {
                         for dict in json as! [[String: AnyObject]] {

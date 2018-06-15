@@ -58,7 +58,6 @@ class ProfileCredentialViewController: UIViewController, UITextFieldDelegate {
                 if let data = data {
                     do {
                         let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-                        print(json)
                         DispatchQueue.main.async {
                             let status = json["status"] as! Int
                             if (status == 1) {
