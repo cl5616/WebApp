@@ -12,8 +12,10 @@ class ExploreCell : UICollectionViewCell {
 
     var poster: Poster? {
         didSet {
-            cellLabel.text = poster?.posterTitle
-            dateLabel.text = poster?.time
+            if !(poster?.isSearchResult)! {
+                cellLabel.text = poster?.posterTitle
+                dateLabel.text = poster?.time
+            }
             if let imageName = poster?.posterImageName {
                 setImage(withName: imageName)
             }
@@ -31,6 +33,13 @@ class ExploreCell : UICollectionViewCell {
         
         if withName == "fire64" {
             posterImage.image = UIImage(named: withName)
+            return
+        }
+        
+        let subNames = withName.split(separator: ";")
+        
+        if let imageFromCache = imageCache.object(forKey: NSString(string: String(subNames[0]))) {
+            posterImage.image = imageFromCache
             return
         }
 

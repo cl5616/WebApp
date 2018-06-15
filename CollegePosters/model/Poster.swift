@@ -20,6 +20,8 @@ class Poster: NSObject {
     var numOfPoster: Int?
     var userId: Int?
     var user: User?
+    var isSearchResult: Bool?
+    var checkedLikeStatus = false
     
 }
 

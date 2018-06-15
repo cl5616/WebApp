@@ -89,6 +89,9 @@ class PosterDescriptionCollectionView: UIView, UICollectionViewDataSource, UICol
                 for otherComment in comments {
                     if otherComment.commentId! == comment.replyId {
                         comment.replyUser = otherComment.commenterId
+                        HttpApiService.sharedHttpApiService.fetchUserProfile(comment.replyUser!, completion: { (user) in
+                            comment.replyUserProfile = user
+                        })
                     }
                 }
             }
@@ -120,8 +123,10 @@ class PosterDescriptionCollectionView: UIView, UICollectionViewDataSource, UICol
             idx = 2
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: idxToIdMap[idx]!, for: indexPath)
- 
-        if idx == 1 {
+        if idx == 0 {
+            let cell = cell as! PosterDetailUserCellCollectionViewCell
+            cell.poster = poster
+        } else if idx == 1 {
             let cell = cell as! PosterDetailContentCollectionViewCell
             cell.poster = poster
             cell.cmtbtn.addTarget(self, action: #selector(cmtBtnTapped(sender:)), for: .touchUpInside)
