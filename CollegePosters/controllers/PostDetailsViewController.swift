@@ -20,7 +20,7 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
     var selectedCategory: String?
     var selectedPhotos: [UIImage] = []
     var titleText: String = ""
-    var anonymousity: String = "1"
+    var anonymousity: String = "0"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,11 +52,11 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
         if (anonymousButton.image(for: .normal) == UIImage(named: "anonymous")) {
             anonymousButton.setImage(UIImage(named: "anonymousfilled"), for: .normal)
             anonymousTxt.text = "ANONYMOUS"
-            anonymousity = "0"
+            anonymousity = "1"
         } else {
             anonymousButton.setImage(UIImage(named: "anonymous"), for: .normal)
             anonymousTxt.text = "NON-ANONYMOUS"
-            anonymousity = "1"
+            anonymousity = "0"
         }
     }
     @IBAction func sendPressed(_ sender: Any) {
