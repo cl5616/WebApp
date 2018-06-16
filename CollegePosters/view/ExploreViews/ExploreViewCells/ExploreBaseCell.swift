@@ -12,6 +12,7 @@ class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
     
     let cellId = "cellId"
     var posters: [Poster] = [Poster]()
+    var postersId: [Int] = [Int]()
     let posterGetter = HttpApiService.sharedHttpApiService
     var alreadyLoaded: Int = 0
     var isLoading = false
@@ -63,17 +64,29 @@ class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
         if from == 0 {
             if posters.count != 0 {
                 posters = [Poster]()
+                postersId = [Int]()
             }
             self.alreadyLoaded = 0
         }
         
         posterGetter.fetchPosters(with: section!, from: from, keyword: nil) { (posters) in
-            self.posters.append(contentsOf: posters)
+            //self.posters.append(contentsOf: posters)
+            self.selectForRender(posters: posters)
             self.alreadyLoaded += posters.count
             DispatchQueue.main.async {
                 self.isLoading = false
                 self.cvt.reloadData()
                 self.rc.endRefreshing()
+            }
+        }
+    }
+    
+    func selectForRender(posters: [Poster]) {
+        for poster in posters {
+            let id = poster.postId!
+            if !postersId.contains(id) {
+                self.posters.append(poster)
+                self.postersId.append(id)
             }
         }
     }

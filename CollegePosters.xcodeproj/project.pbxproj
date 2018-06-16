@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		299C885E20EFF44472BA215C /* Pods_CollegePosters.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CAE3A4F07D2613D19DD221D /* Pods_CollegePosters.framework */; };
+		31B910E020D325A200C1D61D /* ProfileCredentialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B910DF20D325A200C1D61D /* ProfileCredentialViewController.swift */; };
 		631E0BCC20C9AAEE00908267 /* PostDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631E0BCB20C9AAEE00908267 /* PostDetails.swift */; };
 		634169A220D19A0900C6E680 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634169A120D19A0900C6E680 /* RegisterViewController.swift */; };
 		634169A420D1A13700C6E680 /* RegisterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634169A320D1A13700C6E680 /* RegisterDetailViewController.swift */; };
@@ -76,6 +77,7 @@
 
 /* Begin PBXFileReference section */
 		0CAE3A4F07D2613D19DD221D /* Pods_CollegePosters.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CollegePosters.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		31B910DF20D325A200C1D61D /* ProfileCredentialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCredentialViewController.swift; sourceTree = "<group>"; };
 		4997281D62618CC43C5B174E /* Pods-CollegePostersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CollegePostersTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CollegePostersTests/Pods-CollegePostersTests.release.xcconfig"; sourceTree = "<group>"; };
 		576E6AD15ACF977781557463 /* Pods-CollegePostersTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CollegePostersTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CollegePostersTests/Pods-CollegePostersTests.debug.xcconfig"; sourceTree = "<group>"; };
 		631E0BCB20C9AAEE00908267 /* PostDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetails.swift; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 				634169A120D19A0900C6E680 /* RegisterViewController.swift */,
 				634169A320D1A13700C6E680 /* RegisterDetailViewController.swift */,
 				EBB79DB720D284F300B28886 /* SearchCollectionViewController.swift */,
+				31B910DF20D325A200C1D61D /* ProfileCredentialViewController.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -553,6 +556,7 @@
 				EBB79DBD20D3050000B28886 /* BtnActions.swift in Sources */,
 				EB4A886620BF6F0700AF5587 /* ExploreCollectionViewController.swift in Sources */,
 				EBB79DB420D19B7F00B28886 /* PosterDetailsCollectionViewCell.swift in Sources */,
+				31B910E020D325A200C1D61D /* ProfileCredentialViewController.swift in Sources */,
 				EB4A887320C09D8800AF5587 /* ExploreCell.swift in Sources */,
 				63640EB620C74EFF0045A0F1 /* PostImagesViewCell.swift in Sources */,
 				EB4A885C20BF1A9E00AF5587 /* ProfileViewController.swift in Sources */,
