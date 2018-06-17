@@ -10,16 +10,17 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
-class SearchCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
+class SearchCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate, UIGestureRecognizerDelegate {
 
     let searchBarHeight = 40
     
     var searchResult: [Poster] = [Poster]()
     var alreadyLoadedSearchResult = 0
     var isSearching: Bool = false
-    let tap: UITapGestureRecognizer = {
+    lazy var tap: UITapGestureRecognizer = {
         let t = UITapGestureRecognizer()
         t.addTarget(self, action: #selector(dismissKeyboardFromSearch))
+        t.delegate = self
         return t
     }()
     
@@ -70,21 +71,8 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
         return true
     }
     
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        print("end editting")
-        view.removeGestureRecognizer(self.tap)
-        dismissKeyboardFromSearch()
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        print("cancelling search")
-        view.removeGestureRecognizer(self.tap)
-        dismissKeyboardFromSearch()
-    }
-    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.count == 0 {
-            view.removeGestureRecognizer(self.tap)
             dismissKeyboardFromSearch()
         }
     }
@@ -92,12 +80,12 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print("searching " + searchBar.text!)
         searchForPosters(keyword: searchBar.text!, from: 0)
-        searchBar.endEditing(true)
-        view.removeGestureRecognizer(self.tap)
+        dismissKeyboardFromSearch()
     }
     
     @objc func dismissKeyboardFromSearch() {
         searchBar.endEditing(true)
+        view.removeGestureRecognizer(self.tap)
     }
     
     override func didReceiveMemoryWarning() {
