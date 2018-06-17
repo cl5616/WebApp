@@ -21,7 +21,7 @@ class PosterDetailContentCollectionViewCell: PostDetailCell {
     }
     
     var cmtbtn : CommentBtn = {
-        let cmtImage = UIImage(named: "comment33")
+        let cmtImage = UIImage(named: "commentbtn")
         let btn = CommentBtn(type: .custom)
         btn.frame = CGRect(x: 0,y: 0,width: 33,height: 33)
         btn.setImage(cmtImage, for: .normal)
@@ -49,11 +49,11 @@ class PosterDetailContentCollectionViewCell: PostDetailCell {
     override func buildCell() {
         addSubview(contentLabel)
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[v0]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": contentLabel]))
-        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:|-35-[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": contentLabel]))
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:|-25-[v0]-25-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": contentLabel]))
         
         addSubview(cmtbtn)
-        addConstraint(NSLayoutConstraint(item: cmtbtn, attribute: .bottom, relatedBy: .equal, toItem: contentLabel, attribute: .top, multiplier: 1, constant: 2))
-        addConstraint(NSLayoutConstraint(item: cmtbtn, attribute: .trailing, relatedBy: .equal, toItem: contentLabel, attribute: .trailing, multiplier: 1, constant: 0))
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:[v0(60)]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": cmtbtn]))
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0(15)]-5-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": cmtbtn]))
         
         addSubview(separator)
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[v0]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": separator]))

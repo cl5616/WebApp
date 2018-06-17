@@ -172,13 +172,13 @@ class PosterDescriptionCollectionView: UIView, UICollectionViewDataSource, UICol
         case 0:
             return CGSize(width: width, height: 56)
         case 1:
-            return CGSize(width: width, height: 200)
+            return CGSize(width: width, height: 200 + 35)
         default:
             if comments.count == 0 {
                 return CGSize(width: width, height: 100)
             } else {
                 let height = comments[indexPath.item - 2].content?.height(withConstrainedWidth: frame.width - 56)
-                return CGSize(width: width, height: height! + 56)
+                return CGSize(width: width, height: height! + 56 + 35)
             }
         }
     }

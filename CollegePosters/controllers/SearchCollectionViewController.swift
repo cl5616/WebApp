@@ -10,7 +10,7 @@ import UIKit
 
 private let reuseIdentifier = "Cell"
 
-class SearchCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate, UIGestureRecognizerDelegate {
+class SearchCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
 
     let searchBarHeight = 40
     
@@ -20,7 +20,7 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
     lazy var tap: UITapGestureRecognizer = {
         let t = UITapGestureRecognizer()
         t.addTarget(self, action: #selector(dismissKeyboardFromSearch))
-        t.delegate = self
+        //t.delegate = self
         return t
     }()
     
