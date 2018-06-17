@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ActiveLabel
 
 class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
 
@@ -116,9 +117,7 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
 
         
         let filenames = String(filename_array.joined(separator: ";"))
-        //print("combined filename ->")
-        //print("joined filename: \(filenames)")
-        
+
         let category = categorySelection.text?.lowercased() ?? ""
         let description = self.postDescription.text ?? ""
         let title = self.titleText
@@ -137,9 +136,6 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
             }*/
             if let data = data {
                 do {
-                    /*if data.count == 0 {
-                        print("wrong data")
-                    }*/
                     /*let json = */try JSONSerialization.jsonObject(with: data, options: [])
                     //print(json)
                 } catch {
@@ -181,6 +177,8 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
     }
     
     func textViewDidChange(_ textView: UITextView) {
+        print("changes made to text view...")
+        textView.resolveHashTags()
         sendButton.isEnabled = !(postDescription.text?.isEmpty ?? true) && !(categorySelection.text?.isEmpty ?? true)
     }
     
@@ -265,4 +263,33 @@ extension Data {
             append(data)
         }
     }
+}
+
+extension UITextView {
+    
+    func resolveHashTags() {
+
+        let nsText = NSString(string: self.text)
+        
+        let words = nsText.components(separatedBy: CharacterSet(charactersIn: " "))
+        
+        let attrString = NSMutableAttributedString()
+        attrString.setAttributedString(self.attributedText)
+
+        for word in words {
+            
+            if word.hasPrefix("#") {
+                let matchRange: NSRange = nsText.range(of: word as String)
+                attrString.addAttribute(.foregroundColor, value: UIColor.blue, range: matchRange)
+                attrString.addAttribute(.underlineColor, value: UIColor.blue, range: matchRange)
+                
+            } else {
+                let matchRange: NSRange = nsText.range(of: word as String)
+                attrString.addAttribute(.foregroundColor, value: UIColor.black, range: matchRange)
+                attrString.addAttribute(.underlineColor, value: UIColor.black, range: matchRange)
+            }
+            self.attributedText = attrString
+        }
+    }
+
 }

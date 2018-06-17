@@ -15,8 +15,6 @@
 		6362718120C888BC0003F236 /* PostDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6362718020C888BC0003F236 /* PostDetailsViewController.swift */; };
 		63640EB420C74EBD0045A0F1 /* PostImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63640EB320C74EBD0045A0F1 /* PostImagesView.swift */; };
 		63640EB620C74EFF0045A0F1 /* PostImagesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63640EB520C74EFF0045A0F1 /* PostImagesViewCell.swift */; };
-		63A1622320D5802A0009872E /* launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 63A1622120D5802A0009872E /* launch.png */; };
-		63A1622420D5802A0009872E /* appname.png in Resources */ = {isa = PBXBuildFile; fileRef = 63A1622220D5802A0009872E /* appname.png */; };
 		63D40D2520C5E16000DBF059 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D40D2420C5E16000DBF059 /* PostViewController.swift */; };
 		93CB93758FD07CEEA0422BEB /* Pods_CollegePostersTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C74B41D4A16BAF559D7DB52F /* Pods_CollegePostersTests.framework */; };
 		EB31AC1220D0286000474B9E /* PosterDetailUserCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB31AC1120D0286000474B9E /* PosterDetailUserCellCollectionViewCell.swift */; };
@@ -88,8 +86,6 @@
 		6362718020C888BC0003F236 /* PostDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsViewController.swift; sourceTree = "<group>"; };
 		63640EB320C74EBD0045A0F1 /* PostImagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImagesView.swift; sourceTree = "<group>"; };
 		63640EB520C74EFF0045A0F1 /* PostImagesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostImagesViewCell.swift; sourceTree = "<group>"; };
-		63A1622120D5802A0009872E /* launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launch.png; path = ../../Desktop/launch.png; sourceTree = "<group>"; };
-		63A1622220D5802A0009872E /* appname.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = appname.png; path = ../../Desktop/appname.png; sourceTree = "<group>"; };
 		63D40D2420C5E16000DBF059 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		BFB6DEDE88608C0C0BFBA801 /* Pods-CollegePosters.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CollegePosters.release.xcconfig"; path = "Pods/Target Support Files/Pods-CollegePosters/Pods-CollegePosters.release.xcconfig"; sourceTree = "<group>"; };
 		C74B41D4A16BAF559D7DB52F /* Pods_CollegePostersTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CollegePostersTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -267,8 +263,6 @@
 				EB4A88AF20C9522600AF5587 /* Explore.storyboard */,
 				EB4A882620BEC4F400AF5587 /* Main.storyboard */,
 				EB4A882C20BEC4F500AF5587 /* Assets.xcassets */,
-				63A1622220D5802A0009872E /* appname.png */,
-				63A1622120D5802A0009872E /* launch.png */,
 				EB4A882E20BEC4F500AF5587 /* LaunchScreen.storyboard */,
 				EB4A883120BEC4F500AF5587 /* Info.plist */,
 				EB4A882920BEC4F400AF5587 /* College_Posters.xcdatamodeld */,
@@ -323,7 +317,6 @@
 		EB4A887620C0A10500AF5587 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				EBB79DB920D2852900B28886 /* SearchViews */,
 				EB4A88AC20C94F9100AF5587 /* ExploreViews */,
 				EB4A88AD20C94FA300AF5587 /* PostViews */,
 			);
@@ -349,13 +342,6 @@
 				EB4A889A20C852D600AF5587 /* PosterImage.swift */,
 			);
 			path = PostViews;
-			sourceTree = "<group>";
-		};
-		EBB79DB920D2852900B28886 /* SearchViews */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SearchViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -448,9 +434,7 @@
 				EB4A882D20BEC4F500AF5587 /* Assets.xcassets in Resources */,
 				EB4A882820BEC4F400AF5587 /* Main.storyboard in Resources */,
 				EB4A88B720C9527B00AF5587 /* Post.storyboard in Resources */,
-				63A1622320D5802A0009872E /* launch.png in Resources */,
 				EB4A88B420C9525C00AF5587 /* Search.storyboard in Resources */,
-				63A1622420D5802A0009872E /* appname.png in Resources */,
 				EB4A88C020C952CB00AF5587 /* LogIn.storyboard in Resources */,
 				EB4A88BA20C9529700AF5587 /* Message.storyboard in Resources */,
 			);
