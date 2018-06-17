@@ -73,10 +73,20 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         print("end editting")
         view.removeGestureRecognizer(self.tap)
+        dismissKeyboardFromSearch()
     }
     
-    @objc func dismissKeyboardFromSearch() {
-        searchBar.endEditing(true)
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        print("cancelling search")
+        view.removeGestureRecognizer(self.tap)
+        dismissKeyboardFromSearch()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.count == 0 {
+            view.removeGestureRecognizer(self.tap)
+            dismissKeyboardFromSearch()
+        }
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -84,6 +94,10 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
         searchForPosters(keyword: searchBar.text!, from: 0)
         searchBar.endEditing(true)
         view.removeGestureRecognizer(self.tap)
+    }
+    
+    @objc func dismissKeyboardFromSearch() {
+        searchBar.endEditing(true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -97,7 +111,6 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-    
     
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -145,7 +158,7 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
     
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.item == alreadyLoadedSearchResult - 1 {
-            if let text = searchBar.text {
+            if let text = searchBar.text, text.count != 0 {
                 searchForPosters(keyword: text, from: alreadyLoadedSearchResult)
             }
         }
