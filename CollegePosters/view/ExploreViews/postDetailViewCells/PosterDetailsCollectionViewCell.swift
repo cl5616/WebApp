@@ -97,7 +97,7 @@ class PosterDetailsCollectionViewCell: PostDetailCell {
         addSubview(cmtBtn)
         addConstraint(NSLayoutConstraint(item: cmtBtn, attribute: .top, relatedBy: .equal, toItem: contentLbl, attribute: .bottom, multiplier: 1, constant: 5))
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:[v0(60)]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": cmtBtn]))
-        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0(15)]-5-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": cmtBtn]))
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0(15)]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": cmtBtn]))
         
         //commenter
         addSubview(cmterLbl)
@@ -114,7 +114,7 @@ class PosterDetailsCollectionViewCell: PostDetailCell {
         
         //separator
         addSubview(separator)
-        addConstraint(NSLayoutConstraint(item: separator, attribute: .top, relatedBy: .equal, toItem: contentLbl, attribute: .bottom, multiplier: 1, constant: 5))
+        addConstraint(NSLayoutConstraint(item: separator, attribute: .top, relatedBy: .equal, toItem: cmtBtn, attribute: .bottom, multiplier: 1, constant: 5))
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0(1)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": separator]))
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[v0]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": separator]))
     }
