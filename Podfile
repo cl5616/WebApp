@@ -7,7 +7,11 @@ target 'CollegePosters' do
 
   # Pods for CollegePosters
   
+  # for multiple-image selection
   pod "BSImagePicker", "~> 2.4"
+  
+  # for hashtags
+  pod 'ActiveLabel'
 
   target 'CollegePostersTests' do
     inherit! :search_paths
