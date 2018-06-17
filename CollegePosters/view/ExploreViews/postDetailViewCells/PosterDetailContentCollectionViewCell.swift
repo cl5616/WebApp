@@ -9,6 +9,8 @@
 import UIKit
 import ActiveLabel
 
+var pressedHashTag: String?
+
 class PosterDetailContentCollectionViewCell: PostDetailCell {
     
     override var poster: Poster? {
@@ -50,6 +52,20 @@ class PosterDetailContentCollectionViewCell: PostDetailCell {
         // handle the segue when clicking on the hashtag here
         label.handleHashtagTap { hashtag in
             print("Success. You just tapped the \(hashtag) hashtag")
+            
+            guard let keywindow = UIApplication.shared.keyWindow else {
+                print("failed to retrieve keywindow")
+                return
+            }
+            let mainStoryBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let startVC: UIViewController = mainStoryBoard.instantiateViewController(withIdentifier: "SignedIn")
+            pressedHashTag = "#" + hashtag
+            
+            (startVC as! UITabBarController).selectedIndex = 1
+            
+            keywindow.rootViewController = startVC
+ 
+            //TagsLauncher().showPostersWithTags(tag: hashtag)
         }
         return label
     }()

@@ -60,7 +60,7 @@ class HttpApiService {
                     print("http error while checking like status")
                 }
                 let like = json["like"]
-                poster.liked = (like as! Int == 1)
+                poster.liked = (like as? Int == 1)
                 poster.checkedLikeStatus = true
                 
             } catch let jsonErr {

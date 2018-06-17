@@ -12,7 +12,7 @@
         <!--Search-->
         <scene sceneID="NOc-pt-id2">
             <objects>
-                <viewController id="jPc-wd-6Hf" customClass="SearchCollectionViewController" customModule="CollegePosters" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="search" id="jPc-wd-6Hf" customClass="SearchCollectionViewController" customModule="CollegePosters" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="hXL-NV-Ekl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

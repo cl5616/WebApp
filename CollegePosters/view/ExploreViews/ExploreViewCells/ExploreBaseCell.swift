@@ -8,6 +8,8 @@
 
 import UIKit
 
+var originalPoster: Poster?
+
 class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
     
     let cellId = "cellId"
@@ -81,6 +83,8 @@ class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
         }
     }
     
+    
+    
     func selectForRender(posters: [Poster]) {
         for poster in posters {
             let id = poster.postId!
@@ -117,6 +121,7 @@ class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
             
             // Render poster on cell
             cell.poster = posters[indexPath.item]
+            
         }
         
         return cell
@@ -128,6 +133,9 @@ class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
         newL.exitGesture.addTarget(self, action: #selector(handleSwipe(_:)))
         newL.showPosterDetail(posters[indexPath.item])
         originC = newL.mainV?.center
+        originalPoster = posters[indexPath.item]
+        print("set original poster")
+        print(originalPoster)
     }
     
     @objc func handleSwipe(_ sender: UIScreenEdgePanGestureRecognizer) {

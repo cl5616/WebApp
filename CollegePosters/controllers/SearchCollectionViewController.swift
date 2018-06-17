@@ -44,6 +44,33 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0(\(searchBarHeight))]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": searchBar]))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": searchBar]))
         searchBar.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
+        
+        
+    }
+    
+    lazy var tempView: UIView = {
+        let v = UIView()
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.layer.borderWidth = 2
+        v.layer.borderColor = UIColor(white: 0, alpha: 0.5).cgColor
+        v.layer.cornerRadius = 20
+        v.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tappedTempView)))
+        v.isUserInteractionEnabled = true
+        
+        return v
+    }()
+    
+    @objc func tappedTempView() {
+        print("trying to follow")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let hashtag = pressedHashTag {
+            searchBar.text = hashtag
+            self.searchBarSearchButtonClicked(searchBar)
+            pressedHashTag = nil
+        }
     }
     
     func searchForPosters(keyword: String, from: Int) {
@@ -56,7 +83,7 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
             }
             
             HttpApiService.sharedHttpApiService.fetchPosters(with: "getTrendPosters", from: alreadyLoadedSearchResult, keyword: keyword) { (posters) in
-                self.searchResult.append(contentsOf: posters)
+                self.sortNAppend(posters: posters)
                 self.alreadyLoadedSearchResult += posters.count
                 DispatchQueue.main.async {
                     self.isSearching = false
@@ -64,6 +91,21 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
                 }
             }
         }
+    }
+    
+    func sortNAppend(posters: [Poster]) {
+        if let op = originalPoster {
+            for poster in posters {
+                if op.postId == poster.postId {
+                    searchResult.insert(poster, at: 0)
+                    continue
+                }
+                searchResult.append(poster)
+            }
+            return
+        }
+        
+        searchResult.append(contentsOf: posters)
     }
 
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
@@ -79,6 +121,15 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         print("searching " + searchBar.text!)
+        if searchBar.text?.first == "#" {
+            collectionView?.contentInset = UIEdgeInsets(top: 60, left: 0, bottom: 0, right: 0)
+            view.addSubview(tempView)
+            view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-\(searchBarHeight + 3)-[v0(60)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": tempView]))
+            view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": tempView]))
+        } else {
+            collectionView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            tempView.removeFromSuperview()
+        }
         searchForPosters(keyword: searchBar.text!, from: 0)
         dismissKeyboardFromSearch()
     }
@@ -159,6 +210,7 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
         newL.exitGesture.addTarget(self, action: #selector(handleSwipe(_:)))
         newL.showPosterDetail(searchResult[indexPath.item])
         originC = newL.mainV?.center
+        originalPoster = searchResult[indexPath.item]
     }
     
     var originC: CGPoint?

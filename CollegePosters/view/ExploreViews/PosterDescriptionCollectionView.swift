@@ -18,6 +18,7 @@ class PosterDescriptionCollectionView: UIView, UICollectionViewDataSource, UICol
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.backgroundColor = .white
         cv.dataSource = self
         cv.delegate = self
         return cv
@@ -164,6 +165,24 @@ class PosterDescriptionCollectionView: UIView, UICollectionViewDataSource, UICol
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if showingUserDetail {
+            dissmissUserDetail()
+            return
+        }
+        
+        if indexPath.item == 0 {
+           showUserDetail()
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if showingUserDetail {
+            dissmissUserDetail()
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let width = frame.width
@@ -187,6 +206,12 @@ class PosterDescriptionCollectionView: UIView, UICollectionViewDataSource, UICol
         return 0
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if showingUserDetail {
+            dissmissUserDetail()
+        }
+    }
+    
     let action = CommentAction()
     
     @IBAction func cmtBtnTapped(sender: UIButton!) -> Void {
@@ -195,6 +220,28 @@ class PosterDescriptionCollectionView: UIView, UICollectionViewDataSource, UICol
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    let userDetailViewer = UserDetailLauncher()
+    let dismissUserDetailGesture : UITapGestureRecognizer = {
+        let g = UITapGestureRecognizer()
+        g.addTarget(self, action: #selector(dissmissUserDetail))
+        return g
+    }()
+    var showingUserDetail: Bool = false
+    
+    @objc func showUserDetail() {
+        print("showing user detail")
+        if let user = poster?.user {
+            showingUserDetail = true
+            userDetailViewer.showUserDetail(user: user)
+        }
+    }
+    
+    @objc func dissmissUserDetail() {
+        print("dismissing user detail")
+        showingUserDetail = false
+        userDetailViewer.dismissView()
     }
 
 }
