@@ -1,4 +1,5 @@
 PODS:
+  - ActiveLabel (0.9.0)
   - BSGridCollectionViewLayout (1.2.0)
   - BSImagePicker (2.7.1):
     - BSGridCollectionViewLayout (~> 1.2.0)
@@ -6,19 +7,22 @@ PODS:
   - UIImageViewModeScaleAspect (1.5)
 
 DEPENDENCIES:
+  - ActiveLabel
   - BSImagePicker (~> 2.4)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - ActiveLabel
     - BSGridCollectionViewLayout
     - BSImagePicker
     - UIImageViewModeScaleAspect
 
 SPEC CHECKSUMS:
+  ActiveLabel: c4fdd14a288483e98b5a3dff0ab214699aeee74a
   BSGridCollectionViewLayout: 8f12c8e1e08c47057f5a39a6828f4395f043d78f
   BSImagePicker: eb12948a6e71b9855c2c37723dfd989b9b4288bd
   UIImageViewModeScaleAspect: 11a790a0b9d248a13dc63e3a78991f1463b6d84e
 
-PODFILE CHECKSUM: de504061896bf43c8ab531f066b60de17f6bc497
+PODFILE CHECKSUM: bd4844ad9b3c26def7b54340ed6a586d83192b3b
 
 COCOAPODS: 1.5.3

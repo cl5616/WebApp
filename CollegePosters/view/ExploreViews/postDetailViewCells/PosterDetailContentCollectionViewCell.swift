@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ActiveLabel
 
 class PosterDetailContentCollectionViewCell: PostDetailCell {
     
@@ -30,12 +31,26 @@ class PosterDetailContentCollectionViewCell: PostDetailCell {
         return btn
     }()
     
-    let contentLabel : UILabel = {
+    /*let contentLabel : UILabel = {
         let label = UILabel()
         label.backgroundColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
+        return label
+    }()*/
+    
+    let contentLabel : ActiveLabel = {
+        let label = ActiveLabel()
+        label.numberOfLines = 0
+        label.enabledTypes = [.hashtag]
+        label.backgroundColor = UIColor.white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.lineBreakMode = .byWordWrapping
+        // handle the segue when clicking on the hashtag here
+        label.handleHashtagTap { hashtag in
+            print("Success. You just tapped the \(hashtag) hashtag")
+        }
         return label
     }()
     
