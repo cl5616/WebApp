@@ -55,7 +55,7 @@
         <!--Navigation Controller-->
         <scene sceneID="LYG-Tk-4Eu">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5Tk-m5-90e" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Search" automaticallyAdjustsScrollViewInsets="NO" id="5Tk-m5-90e" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="mag33" selectedImage="magfilled33" id="791-d0-mAf">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>

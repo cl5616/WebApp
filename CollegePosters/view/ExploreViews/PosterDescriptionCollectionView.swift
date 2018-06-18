@@ -18,6 +18,7 @@ class PosterDescriptionCollectionView: UIView, UICollectionViewDataSource, UICol
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.backgroundColor = .white
         cv.dataSource = self
         cv.delegate = self
         return cv
@@ -164,6 +165,24 @@ class PosterDescriptionCollectionView: UIView, UICollectionViewDataSource, UICol
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if showingUserDetail {
+            dissmissUserDetail()
+            return
+        }
+        
+        if indexPath.item == 0 {
+           showUserDetail()
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if showingUserDetail {
+            dissmissUserDetail()
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let width = frame.width
@@ -172,19 +191,25 @@ class PosterDescriptionCollectionView: UIView, UICollectionViewDataSource, UICol
         case 0:
             return CGSize(width: width, height: 56)
         case 1:
-            return CGSize(width: width, height: 200)
+            return CGSize(width: width, height: 200 + 35)
         default:
             if comments.count == 0 {
                 return CGSize(width: width, height: 100)
             } else {
                 let height = comments[indexPath.item - 2].content?.height(withConstrainedWidth: frame.width - 56)
-                return CGSize(width: width, height: height! + 56)
+                return CGSize(width: width, height: height! + 56 + 35)
             }
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if showingUserDetail {
+            dissmissUserDetail()
+        }
     }
     
     let action = CommentAction()
@@ -195,6 +220,28 @@ class PosterDescriptionCollectionView: UIView, UICollectionViewDataSource, UICol
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    let userDetailViewer = UserDetailLauncher()
+    let dismissUserDetailGesture : UITapGestureRecognizer = {
+        let g = UITapGestureRecognizer()
+        g.addTarget(self, action: #selector(dissmissUserDetail))
+        return g
+    }()
+    var showingUserDetail: Bool = false
+    
+    @objc func showUserDetail() {
+        print("showing user detail")
+        if let user = poster?.user {
+            showingUserDetail = true
+            userDetailViewer.showUserDetail(user: user)
+        }
+    }
+    
+    @objc func dissmissUserDetail() {
+        print("dismissing user detail")
+        showingUserDetail = false
+        userDetailViewer.dismissView()
     }
 
 }

@@ -31,13 +31,50 @@ class HttpApiService {
         shs.urls["getUserProfile"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getprofile.php"
         shs.urls["searchPoster"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/searchposts.php?"
         shs.urls["checkLike"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/iflike.php?"
+        shs.urls["getPostersWithTags"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getpostsbytags.php?"
+        shs.urls["followTag"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/followtag.php"
+        shs.urls["unfollowTag"] =  "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/unfollowtag.php"
         return shs
     }()
+    
+    var searchTasks = [URLSessionTask]()
     
     var urls: [String: String] = [String: String]()
     var posters: [Poster]?
     
     private init() {
+        
+    }
+    
+    func followPressed(tag: String, follow: Bool) {
+        follow ? print("following \(tag)") : print("unfollowing \(tag)")
+        let rawUrl = follow ? urls["followTag"]! : urls["unfollowTag"]!
+        let url = URL(string: rawUrl)
+        
+        var request = URLRequest(url: url!)
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        let postString = "tag=\(tag)"
+        request.httpBody = postString.data(using: .utf8)
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            if error != nil {
+                print(error!)
+                return
+            }
+            
+            guard let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode == 200 else {
+                print(response!)
+                return
+            }
+            
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
+                print(json)
+            } catch let jsonErr {
+                print(jsonErr)
+            }
+        }.resume()
         
     }
     
@@ -60,7 +97,7 @@ class HttpApiService {
                     print("http error while checking like status")
                 }
                 let like = json["like"]
-                poster.liked = (like as! Int == 1)
+                poster.liked = (like as? Int == 1)
                 poster.checkedLikeStatus = true
                 
             } catch let jsonErr {
@@ -71,7 +108,7 @@ class HttpApiService {
     
     func createAnonymousUser() -> User{
         let au = User()
-        au.intro = "this guy does not want show himself"
+        au.intro = "this guy does not want to show himself"
         au.profileImg = nil
         au.userEmail = "disguised"
         au.username = "Anonymous"
@@ -105,11 +142,13 @@ class HttpApiService {
             
             do {
                 let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! [String: AnyObject]
+                print("user is following \(json["tags"] as? [String])")
                 let newUser = User()
                 newUser.userEmail = json["email"] as? String
                 newUser.intro = json["introduction"] as? String
                 newUser.username = json["nickname"] as? String
                 newUser.profileImgName = json["image"] as? String
+                newUser.followedTags = json["tags"] as? [String]
                 if let pin = newUser.profileImgName {
                     self.setImages(withName: pin, poster: nil, user: newUser)
                 }
@@ -251,17 +290,30 @@ class HttpApiService {
         }.resume()
     }
     
-    func fetchPosters(with: String, from: Int, keyword: String?, completion: @escaping ([Poster]) -> ()) {
+    func fetchPosters(with: String, from: Int, keyword: String?, tags: String?, completion: @escaping ([Poster]) -> ()) {
+        var order: Int?
+        switch SearchCollectionViewController.searchMode {
+        case "relevance":
+            order = 0
+        case "like":
+            order = 1
+        default:
+            order = 1
+        }
         
         var rawUrl = urls[with]!
         if let keyword = keyword {
             rawUrl = urls["searchPoster"]!
-            rawUrl += "search=\(keyword)"
+            rawUrl += "search=\(keyword)&order=\(order!)"
+        } else if let tags = tags {
+            print("searching for tags \(tags)")
+            rawUrl = urls["getPostersWithTags"]!
+            rawUrl += "tags=\(tags)&order=\(order!)"
         }
         let combinedUrl = rawUrl + "&limit=5&offset=\(from)"
         
         let url = URL(string: combinedUrl)
-        URLSession.shared.dataTask(with: url!) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
             if error != nil {
                 print(error!)
                 return
@@ -269,8 +321,11 @@ class HttpApiService {
             
             do {
                 let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
-                
                 self.posters = [Poster]()
+                //print(json)
+                if tags != nil {
+                    print(json)
+                }
                 
                 if (json as? [String: AnyObject]) == nil {
                     for dict in json as! [[String: AnyObject]] {
@@ -297,7 +352,7 @@ class HttpApiService {
                         //userId
                         newPoster.userId = dict["poster_id"] as? Int
                         //is not search result
-                        newPoster.isSearchResult = false
+                        newPoster.isSearchResult = keyword != nil || tags != nil
                         //set user
                         self.fetchUserProfile(newPoster.userId!, completion: { (user) in
                             newPoster.user = user
@@ -314,11 +369,13 @@ class HttpApiService {
                 
                 completion(self.posters!)
                 
-            } catch let jsonError {
-                print(jsonError)
+                } catch let jsonError {
+                    print(jsonError)
+                }
             }
-        }.resume()
         
+            searchTasks.append(task)
+            task.resume()
     }
     
     func searchPoster(with: String, completion: @escaping ([Poster]) -> ()) {

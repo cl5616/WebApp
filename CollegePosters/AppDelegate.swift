@@ -40,13 +40,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //set starting view controller
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        let mainStoryBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let startVC: UIViewController = mainStoryBoard.instantiateViewController(withIdentifier: "notSignedIn")
-        self.window?.rootViewController = startVC
-        self.window?.makeKeyAndVisible()
-        
+        if isLoggedIn() {
+            let cookies: [HTTPCookie] = NSKeyedUnarchiver.unarchiveObject(with: UserDefaults.standard.data(forKey: "cookies")!) as! [HTTPCookie]
+            HTTPCookieStorage.shared.setCookies(cookies, for: UserDefaults.standard.url(forKey: "cookiesURL"), mainDocumentURL: nil)
+            LogInViewController.userId.userid = UserDefaults.standard.integer(forKey: "userid")
+            print("setting userid to \(UserDefaults.standard.integer(forKey: "userid"))")
+        HttpApiService.sharedHttpApiService.fetchUserProfile(UserDefaults.standard.integer(forKey: "userid")) { (user) in
+                LogInViewController.userProfile = user
+            }
+            let exploreStoryBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let startVC: UIViewController = exploreStoryBoard.instantiateViewController(withIdentifier: "SignedIn")
+            self.window?.rootViewController = startVC
+            self.window?.makeKeyAndVisible()
+        } else {
+            let mainStoryBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let startVC: UIViewController = mainStoryBoard.instantiateViewController(withIdentifier: "notSignedIn")
+            self.window?.rootViewController = startVC
+            self.window?.makeKeyAndVisible()
+        }
         
         return true
+    }
+    
+    fileprivate func isLoggedIn() -> Bool {
+        return UserDefaults.standard.bool(forKey: "isLoggedIn")
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

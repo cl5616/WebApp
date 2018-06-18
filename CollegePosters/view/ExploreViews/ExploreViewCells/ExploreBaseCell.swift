@@ -8,6 +8,8 @@
 
 import UIKit
 
+var originalPoster: Poster?
+
 class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
     
     let cellId = "cellId"
@@ -69,7 +71,7 @@ class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
             self.alreadyLoaded = 0
         }
         
-        posterGetter.fetchPosters(with: section!, from: from, keyword: nil) { (posters) in
+        posterGetter.fetchPosters(with: section!, from: from, keyword: nil, tags: nil) { (posters) in
             //self.posters.append(contentsOf: posters)
             self.selectForRender(posters: posters)
             self.alreadyLoaded += posters.count
@@ -80,6 +82,8 @@ class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
             }
         }
     }
+    
+    
     
     func selectForRender(posters: [Poster]) {
         for poster in posters {
@@ -117,6 +121,7 @@ class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
             
             // Render poster on cell
             cell.poster = posters[indexPath.item]
+            
         }
         
         return cell
@@ -128,6 +133,9 @@ class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
         newL.exitGesture.addTarget(self, action: #selector(handleSwipe(_:)))
         newL.showPosterDetail(posters[indexPath.item])
         originC = newL.mainV?.center
+        originalPoster = posters[indexPath.item]
+        print("set original poster")
+        print(originalPoster)
     }
     
     @objc func handleSwipe(_ sender: UIScreenEdgePanGestureRecognizer) {

@@ -29,6 +29,9 @@
 		EB31AC1E20D059C000474B9E /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB31AC1D20D059C000474B9E /* Comment.swift */; };
 		EB31AC2120D066E800474B9E /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB31AC2020D066E800474B9E /* StringExtension.swift */; };
 		EB31AC2420D12C3B00474B9E /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB31AC2320D12C3B00474B9E /* Utils.swift */; };
+		EB47501A20D6C2F500D8D3FC /* UserDetailLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB47501920D6C2F500D8D3FC /* UserDetailLauncher.swift */; };
+		EB47502020D7DBB500D8D3FC /* FilterLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB47501F20D7DBB500D8D3FC /* FilterLauncher.swift */; };
+		EB47502320D7E98D00D8D3FC /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB47502220D7E98D00D8D3FC /* SettingCell.swift */; };
 		EB4A882320BEC4F400AF5587 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB4A882220BEC4F400AF5587 /* AppDelegate.swift */; };
 		EB4A882820BEC4F400AF5587 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB4A882620BEC4F400AF5587 /* Main.storyboard */; };
 		EB4A882B20BEC4F400AF5587 /* College_Posters.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EB4A882920BEC4F400AF5587 /* College_Posters.xcdatamodeld */; };
@@ -106,6 +109,10 @@
 		EB31AC1D20D059C000474B9E /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		EB31AC2020D066E800474B9E /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		EB31AC2320D12C3B00474B9E /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		EB47501920D6C2F500D8D3FC /* UserDetailLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailLauncher.swift; sourceTree = "<group>"; };
+		EB47501F20D7DBB500D8D3FC /* FilterLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterLauncher.swift; sourceTree = "<group>"; };
+		EB47502220D7E98D00D8D3FC /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
+		EB47502420D85B1400D8D3FC /* CollegePosters.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CollegePosters.entitlements; sourceTree = "<group>"; };
 		EB4A881F20BEC4F400AF5587 /* CollegePosters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollegePosters.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB4A882220BEC4F400AF5587 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB4A882720BEC4F400AF5587 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -234,6 +241,15 @@
 			path = utils;
 			sourceTree = "<group>";
 		};
+		EB47502120D7E96800D8D3FC /* SearchViews */ = {
+			isa = PBXGroup;
+			children = (
+				EB47502220D7E98D00D8D3FC /* SettingCell.swift */,
+			);
+			name = SearchViews;
+			path = searchView;
+			sourceTree = "<group>";
+		};
 		EB4A881620BEC4F400AF5587 = {
 			isa = PBXGroup;
 			children = (
@@ -257,6 +273,7 @@
 		EB4A882120BEC4F400AF5587 /* CollegePosters */ = {
 			isa = PBXGroup;
 			children = (
+				EB47502420D85B1400D8D3FC /* CollegePosters.entitlements */,
 				EB31AC2220D12C2600474B9E /* utils */,
 				EB31AC1F20D066D400474B9E /* extension */,
 				EB4A886F20C06D7B00AF5587 /* model */,
@@ -300,6 +317,8 @@
 				EB8C0B1B20D16AE1002A36D4 /* CommentAction.swift */,
 				EBB79DB520D1BDFB00B28886 /* User.swift */,
 				EBB79DBC20D3050000B28886 /* BtnActions.swift */,
+				EB47501920D6C2F500D8D3FC /* UserDetailLauncher.swift */,
+				EB47501F20D7DBB500D8D3FC /* FilterLauncher.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -329,7 +348,7 @@
 		EB4A887620C0A10500AF5587 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				EBB79DB920D2852900B28886 /* SearchViews */,
+				EB47502120D7E96800D8D3FC /* SearchViews */,
 				EB4A88AC20C94F9100AF5587 /* ExploreViews */,
 				EB4A88AD20C94FA300AF5587 /* PostViews */,
 			);
@@ -355,13 +374,6 @@
 				EB4A889A20C852D600AF5587 /* PosterImage.swift */,
 			);
 			path = PostViews;
-			sourceTree = "<group>";
-		};
-		EBB79DB920D2852900B28886 /* SearchViews */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SearchViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -417,6 +429,11 @@
 				TargetAttributes = {
 					EB4A881E20BEC4F400AF5587 = {
 						CreatedOnToolsVersion = 9.3.1;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
 					};
 					EB4A883520BEC4F500AF5587 = {
 						CreatedOnToolsVersion = 9.3.1;
@@ -495,12 +512,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CollegePosters/Pods-CollegePosters-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ActiveLabel/ActiveLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/BSGridCollectionViewLayout/BSGridCollectionViewLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/BSImagePicker/BSImagePicker.framework",
 				"${BUILT_PRODUCTS_DIR}/UIImageViewModeScaleAspect/UIImageViewModeScaleAspect.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActiveLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BSGridCollectionViewLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BSImagePicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIImageViewModeScaleAspect.framework",
@@ -554,10 +573,12 @@
 				634169A220D19A0900C6E680 /* RegisterViewController.swift in Sources */,
 				EB31AC1620D0291E00474B9E /* PosterDetailCommentCollectionViewCell.swift in Sources */,
 				315E51AB20D6F99A00EB8ECD /* ProfileShowPostsViewController.swift in Sources */,
+				EB47501A20D6C2F500D8D3FC /* UserDetailLauncher.swift in Sources */,
 				EB8C0B1C20D16AE1002A36D4 /* CommentAction.swift in Sources */,
 				63D40D2520C5E16000DBF059 /* PostViewController.swift in Sources */,
 				315E51AF20D7387100EB8ECD /* ProfileTagsCollectionViewCell.swift in Sources */,
 				EBDBA69820CF052E00DCB6DC /* PosterDetailLauncher.swift in Sources */,
+				EB47502320D7E98D00D8D3FC /* SettingCell.swift in Sources */,
 				631E0BCC20C9AAEE00908267 /* PostDetails.swift in Sources */,
 				EB31AC1420D0290A00474B9E /* PosterDetailContentCollectionViewCell.swift in Sources */,
 				EB31AC1220D0286000474B9E /* PosterDetailUserCellCollectionViewCell.swift in Sources */,
@@ -570,6 +591,7 @@
 				EBB79DBD20D3050000B28886 /* BtnActions.swift in Sources */,
 				315E51AD20D6FAAA00EB8ECD /* ProfileCollectionViewCell.swift in Sources */,
 				EB4A886620BF6F0700AF5587 /* ExploreCollectionViewController.swift in Sources */,
+				EB47502020D7DBB500D8D3FC /* FilterLauncher.swift in Sources */,
 				EBB79DB420D19B7F00B28886 /* PosterDetailsCollectionViewCell.swift in Sources */,
 				31B910E020D325A200C1D61D /* ProfileCredentialViewController.swift in Sources */,
 				EB4A887320C09D8800AF5587 /* ExploreCell.swift in Sources */,

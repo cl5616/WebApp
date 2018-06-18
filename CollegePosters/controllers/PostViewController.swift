@@ -17,9 +17,12 @@ class PostViewController: UIViewController, UINavigationControllerDelegate,
     @IBOutlet weak var nextButton: UIBarButtonItem!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var previewImage: PostImagesView!
-
+    @IBOutlet weak var expireDate: UITextField!
+    
     var selectedAssets = [PHAsset]()
     var selectedPhotos = [UIImage]()
+    
+    let datePicker = UIDatePicker()
 
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -27,6 +30,13 @@ class PostViewController: UIViewController, UINavigationControllerDelegate,
         
         destViewController.selectedPhotos = selectedPhotos
         destViewController.titleText = titleTextField.text!
+        if expireDate.text == "" {
+            destViewController.expDate = ""
+        } else {
+            let secSince1970 = Int(datePicker.date.timeIntervalSince1970)
+            destViewController.expDate = String(secSince1970)
+        }
+        print(destViewController.expDate)
     }
     
     @IBAction func selectPressed(_ sender: Any) {
@@ -106,7 +116,40 @@ class PostViewController: UIViewController, UINavigationControllerDelegate,
         }
 
     }
+    
+    func createDataPicker() {
+        let tb = UIToolbar()
+        tb.sizeToFit()
+        
+        let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+        let cancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: #selector(cancelPressed))
+        
+        tb.setItems([done, cancel], animated: false)
 
+        expireDate.inputAccessoryView = tb
+        expireDate.inputView = datePicker
+        
+        datePicker.minimumDate = Date()
+        datePicker.datePickerMode = .dateAndTime
+    }
+    
+    @objc func cancelPressed() {
+        expireDate.text = ""
+        self.view.endEditing(true)
+    }
+
+    @objc func donePressed() {
+        
+        /*let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        formatter.timeStyle = .medium
+        let dateStr = formatter.string(from: datePicker.date)
+        */
+        //let secSince1970 = Int(datePicker.date.timeIntervalSince1970)
+        
+        expireDate.text = "\(datePicker.date)"//String(secSince1970)//dateStrate
+        self.view.endEditing(true)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,6 +161,7 @@ class PostViewController: UIViewController, UINavigationControllerDelegate,
 
         titleTextField.delegate = self
         self.navigationItem.rightBarButtonItem = nextButton
+        createDataPicker()
     }
 
     deinit {

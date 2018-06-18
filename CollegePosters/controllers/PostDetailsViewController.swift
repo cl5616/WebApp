@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ActiveLabel
 
 class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
 
@@ -21,6 +22,8 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
     var selectedPhotos: [UIImage] = []
     var titleText: String = ""
     var anonymousity: String = "0"
+    var expDate: String = ""
+    var hashtags: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,7 +101,7 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
                         let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String : Any]
                         let filename = json["filename"] as! String
                         //print(filename)
-                        //print(json)
+                        print(json)
                         filename_array[i] = filename
                     } catch {
                         print(data)
@@ -116,9 +119,7 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
 
         
         let filenames = String(filename_array.joined(separator: ";"))
-        //print("combined filename ->")
-        //print("joined filename: \(filenames)")
-        
+
         let category = categorySelection.text?.lowercased() ?? ""
         let description = self.postDescription.text ?? ""
         let title = self.titleText
@@ -127,8 +128,8 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
         var request1 = URLRequest(url: url1!)
         request1.httpMethod = "POST"
         request1.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        let postDetailStr = "category=\(category)&content=\(description)&title=\(title)&picture=\(filenames)&anonymous=\(anonymousity)"
-        print(postDetailStr)
+        let postDetailStr = "category=\(category)&content=\(description)&title=\(title)&picture=\(filenames)&anonymous=\(anonymousity)&tags=\(hashtags)&expdate=\(expDate)"
+        //print(postDetailStr)
         request1.httpBody = postDetailStr.data(using: .utf8)
         let session1 = URLSession.shared
         session1.dataTask(with: request1) {(data, response, error) in
@@ -137,9 +138,6 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
             }*/
             if let data = data {
                 do {
-                    /*if data.count == 0 {
-                        print("wrong data")
-                    }*/
                     /*let json = */try JSONSerialization.jsonObject(with: data, options: [])
                     //print(json)
                 } catch {
@@ -181,6 +179,8 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
     }
     
     func textViewDidChange(_ textView: UITextView) {
+        hashtags = textView.resolveHashTags()
+//        print(hashtags)
         sendButton.isEnabled = !(postDescription.text?.isEmpty ?? true) && !(categorySelection.text?.isEmpty ?? true)
     }
     
@@ -265,4 +265,44 @@ extension Data {
             append(data)
         }
     }
+}
+
+extension UITextView {
+    
+    func resolveHashTags() -> String {
+
+        let attrString = NSMutableAttributedString()
+        attrString.setAttributedString(self.attributedText)
+        
+        let str = self.text
+        attrString.addAttribute(.foregroundColor, value: UIColor.black, range: NSMakeRange(0, str!.count))
+        
+        var regex: NSRegularExpression? = nil
+        
+        do {
+            regex = try NSRegularExpression(pattern: "(#[A-Za-z0-9]*)", options: [])
+        } catch {
+            print("Encountering error when parsing regex in \(String(describing: str))")
+        }
+        
+        let matches = regex?.matches(in: str!, options:[], range:NSMakeRange(0, (str!.count)))
+        var hashtag = [String]()
+        
+        for match in matches! {
+            let strRange = Range(match.range, in: str!)
+            //print(str![strRange!])
+            //print("match = \(match.range)")
+            hashtag.append(String(str![strRange!].dropFirst()))
+            
+            attrString.addAttribute(.foregroundColor, value: UIColor.blue, range: match.range)
+            attrString.addAttribute(.underlineColor, value: UIColor.blue, range: match.range)
+        }
+        //print(hashtags)
+        //print(hashtags.joined(separator: " "))
+        
+        self.attributedText = attrString
+        return hashtag.joined(separator: " ")
+    }
+
+    
 }

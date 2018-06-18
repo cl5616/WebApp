@@ -51,7 +51,7 @@ class PosterDetailsCollectionViewCell: PostDetailCell {
     }()
     
     let cmtBtn: CommentBtn = {
-        let fcmtImage = UIImage(named: "comment33")
+        let fcmtImage = UIImage(named: "commentbtn")
         let fbtn = CommentBtn(type: .custom)
         fbtn.frame = CGRect(x: 0,y: 0,width: 33,height: 33)
         fbtn.setImage(fcmtImage, for: .normal)
@@ -93,12 +93,6 @@ class PosterDetailsCollectionViewCell: PostDetailCell {
         addConstraint(NSLayoutConstraint(item: timeLbl, attribute: .leading, relatedBy: .equal, toItem: profileImg, attribute: .trailing, multiplier: 1, constant: 8))
         addConstraint(NSLayoutConstraint(item: timeLbl, attribute: .height, relatedBy: .equal, toItem: profileImg, attribute: .height, multiplier: 0.5, constant: -1))
         
-        //cmtbtn
-        addSubview(cmtBtn)
-        addConstraint(NSLayoutConstraint(item: cmtBtn, attribute: .top, relatedBy: .equal, toItem: profileImg, attribute: .top, multiplier: 1, constant: 0))
-        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:[v0(33)]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": cmtBtn]))
-        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0(33)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": cmtBtn]))
-        
         //commenter
         addSubview(cmterLbl)
         addConstraint(NSLayoutConstraint(item: cmterLbl, attribute: .bottom, relatedBy: .equal, toItem: profileImg, attribute: .bottom, multiplier: 1, constant: 0))
@@ -109,12 +103,18 @@ class PosterDetailsCollectionViewCell: PostDetailCell {
         addSubview(contentLbl)
         addConstraint(NSLayoutConstraint(item: contentLbl, attribute: .top, relatedBy: .equal, toItem: profileImg, attribute: .bottom, multiplier: 1, constant: 0))
         addConstraint(NSLayoutConstraint(item: contentLbl, attribute: .leading, relatedBy: .equal, toItem: profileImg, attribute: .trailing, multiplier: 1, constant: 8))
-        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0]-5-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": contentLbl]))
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0]-25-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": contentLbl]))
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": contentLbl]))
+        
+        //cmtbtn
+        addSubview(cmtBtn)
+        addConstraint(NSLayoutConstraint(item: cmtBtn, attribute: .top, relatedBy: .equal, toItem: contentLbl, attribute: .bottom, multiplier: 1, constant: 5))
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:[v0(60)]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": cmtBtn]))
+        NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0(15)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": cmtBtn]))
         
         //separator
         addSubview(separator)
-        addConstraint(NSLayoutConstraint(item: separator, attribute: .top, relatedBy: .equal, toItem: contentLbl, attribute: .bottom, multiplier: 1, constant: 5))
+        addConstraint(NSLayoutConstraint(item: separator, attribute: .top, relatedBy: .equal, toItem: cmtBtn, attribute: .bottom, multiplier: 1, constant: 3))
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0(1)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": separator]))
         NSLayoutConstraint.activate(NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[v0]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": separator]))
     }
