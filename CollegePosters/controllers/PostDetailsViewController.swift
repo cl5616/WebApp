@@ -177,7 +177,6 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        print("changes made to text view...")
         textView.resolveHashTags()
         sendButton.isEnabled = !(postDescription.text?.isEmpty ?? true) && !(categorySelection.text?.isEmpty ?? true)
     }
@@ -267,29 +266,32 @@ extension Data {
 
 extension UITextView {
     
+    
     func resolveHashTags() {
 
-        let nsText = NSString(string: self.text)
-        
-        let words = nsText.components(separatedBy: CharacterSet(charactersIn: " "))
-        
         let attrString = NSMutableAttributedString()
         attrString.setAttributedString(self.attributedText)
-
-        for word in words {
-            
-            if word.hasPrefix("#") {
-                let matchRange: NSRange = nsText.range(of: word as String)
-                attrString.addAttribute(.foregroundColor, value: UIColor.blue, range: matchRange)
-                attrString.addAttribute(.underlineColor, value: UIColor.blue, range: matchRange)
-                
-            } else {
-                let matchRange: NSRange = nsText.range(of: word as String)
-                attrString.addAttribute(.foregroundColor, value: UIColor.black, range: matchRange)
-                attrString.addAttribute(.underlineColor, value: UIColor.black, range: matchRange)
-            }
-            self.attributedText = attrString
+        
+        let str = self.text
+        attrString.addAttribute(.foregroundColor, value: UIColor.black, range: NSMakeRange(0, str!.count))
+        
+        var regex: NSRegularExpression? = nil
+        
+        do {
+            regex = try NSRegularExpression(pattern: "(#[A-Za-z0-9]*)", options: [])
+        } catch {
+            print("Encountering error when parsing regex in \(str)")
         }
+        
+        let matches = regex?.matches(in: str!, options:[], range:NSMakeRange(0, (str!.count)))
+        for match in matches! {
+            //print("match = \(match.range)")
+            attrString.addAttribute(.foregroundColor, value: UIColor.blue, range: match.range)
+            attrString.addAttribute(.underlineColor, value: UIColor.blue, range: match.range)
+        }
+        
+        self.attributedText = attrString
     }
 
+    
 }
