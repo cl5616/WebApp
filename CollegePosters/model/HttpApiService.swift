@@ -31,6 +31,7 @@ class HttpApiService {
         shs.urls["getUserProfile"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getprofile.php"
         shs.urls["searchPoster"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/searchposts.php?"
         shs.urls["checkLike"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/iflike.php?"
+        shs.urls["getPostersWithTags"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getpostsbytags.php?"
         return shs
     }()
     
@@ -105,6 +106,7 @@ class HttpApiService {
             
             do {
                 let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! [String: AnyObject]
+                print(json)
                 let newUser = User()
                 newUser.userEmail = json["email"] as? String
                 newUser.intro = json["introduction"] as? String
@@ -251,12 +253,15 @@ class HttpApiService {
         }.resume()
     }
     
-    func fetchPosters(with: String, from: Int, keyword: String?, completion: @escaping ([Poster]) -> ()) {
+    func fetchPosters(with: String, from: Int, keyword: String?, tags: String?, completion: @escaping ([Poster]) -> ()) {
         
         var rawUrl = urls[with]!
         if let keyword = keyword {
             rawUrl = urls["searchPoster"]!
             rawUrl += "search=\(keyword)"
+        } else if let tags = tags {
+            rawUrl = urls["getPostersWithTags"]!
+            rawUrl += "tags=\(tags)"
         }
         let combinedUrl = rawUrl + "&limit=5&offset=\(from)"
         

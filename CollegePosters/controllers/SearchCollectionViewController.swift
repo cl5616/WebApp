@@ -13,6 +13,7 @@ private let reuseIdentifier = "Cell"
 class SearchCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
 
     let searchBarHeight = 40
+    static var searchMode = "by relevance"
     
     var searchResult: [Poster] = [Poster]()
     var alreadyLoadedSearchResult = 0
@@ -46,6 +47,16 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
         searchBar.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor).isActive = true
         
         
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "filter", style: .plain, target: self, action: #selector(filter))
+        
+        
+    }
+    
+    let filterLauncher = FilterLauncher()
+    
+    @objc func filter() {
+        print("selecting filter")
+        filterLauncher.showFilterOptions()
     }
     
     lazy var tempView: UIView = {
@@ -82,12 +93,29 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
                 alreadyLoadedSearchResult = 0
             }
             
-            HttpApiService.sharedHttpApiService.fetchPosters(with: "getTrendPosters", from: alreadyLoadedSearchResult, keyword: keyword) { (posters) in
-                self.sortNAppend(posters: posters)
-                self.alreadyLoadedSearchResult += posters.count
-                DispatchQueue.main.async {
-                    self.isSearching = false
-                    self.collectionView!.reloadData()
+            if keyword.first == "#" {
+                if keyword.suffix(1).contains("#") {
+                    let alert = UIAlertController(title: "Wrong search format", message: "You can only search for one tag at a time", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    HttpApiService.sharedHttpApiService.fetchPosters(with: "getTrendPosters", from: alreadyLoadedSearchResult, keyword: nil, tags: keyword) { (posters) in
+                        self.sortNAppend(posters: posters)
+                        self.alreadyLoadedSearchResult += posters.count
+                        DispatchQueue.main.async {
+                            self.isSearching = false
+                            self.collectionView?.reloadData()
+                        }
+                    }
+                }
+            } else {
+                HttpApiService.sharedHttpApiService.fetchPosters(with: "getTrendPosters", from: alreadyLoadedSearchResult, keyword: keyword, tags: nil) { (posters) in
+                    self.sortNAppend(posters: posters)
+                    self.alreadyLoadedSearchResult += posters.count
+                    DispatchQueue.main.async {
+                        self.isSearching = false
+                        self.collectionView!.reloadData()
+                    }
                 }
             }
         }

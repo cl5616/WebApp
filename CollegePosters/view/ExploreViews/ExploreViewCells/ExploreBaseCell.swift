@@ -71,7 +71,7 @@ class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
             self.alreadyLoaded = 0
         }
         
-        posterGetter.fetchPosters(with: section!, from: from, keyword: nil) { (posters) in
+        posterGetter.fetchPosters(with: section!, from: from, keyword: nil, tags: nil) { (posters) in
             //self.posters.append(contentsOf: posters)
             self.selectForRender(posters: posters)
             self.alreadyLoaded += posters.count
