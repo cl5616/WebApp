@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var introduction: UITextField!
     @IBOutlet weak var profileImage: UIImageView!
@@ -47,6 +47,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        introduction.delegate = self
         let userID = LogInViewController.userId.userid
         if user != nil {
             update()
@@ -56,6 +57,11 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                 self.user = user
             }
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     static func editProfile(postString: String) {
