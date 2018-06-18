@@ -16,5 +16,6 @@ class User: NSObject {
     var username: String?
     var userEmail: String?
     var profileImgName: String?
+    var followedTags: [String]?
     
 }

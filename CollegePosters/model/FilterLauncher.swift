@@ -11,7 +11,9 @@ import UIKit
 
 class FilterLauncher: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    let settings = ["by relevance", "by time", "by popularity"]
+    let settings = ["relevance", "time", "popularity"]
+    
+    
     
     let blackView: UIView = {
         let v = UIView()

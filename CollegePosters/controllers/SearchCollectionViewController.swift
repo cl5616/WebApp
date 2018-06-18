@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import ActiveLabel
 
 private let reuseIdentifier = "Cell"
 
 class SearchCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
 
     let searchBarHeight = 40
-    static var searchMode = "by relevance"
+    static var searchMode = "time"
     
     var searchResult: [Poster] = [Poster]()
     var alreadyLoadedSearchResult = 0
@@ -59,8 +60,10 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
         filterLauncher.showFilterOptions()
     }
     
-    lazy var tempView: UIView = {
-        let v = UIView()
+    lazy var tempView: ActiveLabel = {
+        let v = ActiveLabel()
+        v.enabledTypes = [.hashtag]
+        v.textAlignment = .center
         v.translatesAutoresizingMaskIntoConstraints = false
         v.layer.borderWidth = 2
         v.layer.borderColor = UIColor(white: 0, alpha: 0.5).cgColor
@@ -72,7 +75,13 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
     }()
     
     @objc func tappedTempView() {
-        print("trying to follow")
+        if tempView.text?.split(separator: " ").first == "Tap" {
+            print("trying to follow")
+            tempView.text = "following \(searchBar.text!)"
+            HttpApiService.sharedHttpApiService.followPressed(tag: String(searchBar.text!.suffix(searchBar.text!.count - 1)), follow: true)
+        } else {
+            print("trying to unfollow")
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -91,15 +100,18 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
             if from == 0{
                 searchResult = [Poster]()
                 alreadyLoadedSearchResult = 0
+                DispatchQueue.main.async {
+                    self.collectionView?.reloadData()
+                }
             }
             
             if keyword.first == "#" {
-                if keyword.suffix(1).contains("#") {
+                if keyword.suffix(keyword.count - 1).contains("#") {
                     let alert = UIAlertController(title: "Wrong search format", message: "You can only search for one tag at a time", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                 } else {
-                    HttpApiService.sharedHttpApiService.fetchPosters(with: "getTrendPosters", from: alreadyLoadedSearchResult, keyword: nil, tags: keyword) { (posters) in
+                    HttpApiService.sharedHttpApiService.fetchPosters(with: "getTrendPosters", from: alreadyLoadedSearchResult, keyword: nil, tags: String(keyword.suffix(keyword.count - 1))) { (posters) in
                         self.sortNAppend(posters: posters)
                         self.alreadyLoadedSearchResult += posters.count
                         DispatchQueue.main.async {
@@ -138,6 +150,11 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
 
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         view.addGestureRecognizer(tap)
+        searchBtnClicked = false
+        isSearching = false
+        HttpApiService.sharedHttpApiService.searchTasks.forEach { (task) in
+            task.cancel()
+        }
         return true
     }
     
@@ -152,6 +169,10 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
         if searchBar.text?.first == "#" {
             collectionView?.contentInset = UIEdgeInsets(top: 60, left: 0, bottom: 0, right: 0)
             view.addSubview(tempView)
+            tempView.text = "Tap to follow \(searchBar.text!)"
+            //if .followedTags?.contains(String(searchBar.text!.suffix(searchBar.text!.count - 1))))! {
+              //  tempView.text = "following \(searchBar.text!)"
+            //}
             view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-\(searchBarHeight + 3)-[v0(60)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": tempView]))
             view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": tempView]))
         } else {
@@ -160,6 +181,7 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
         }
         searchForPosters(keyword: searchBar.text!, from: 0)
         dismissKeyboardFromSearch()
+        searchBtnClicked = true
     }
     
     @objc func dismissKeyboardFromSearch() {
@@ -223,10 +245,14 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
         return cell
     }
     
+    var searchBtnClicked: Bool = false
+    
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.item == alreadyLoadedSearchResult - 1 {
             if let text = searchBar.text, text.count != 0 {
-                searchForPosters(keyword: text, from: alreadyLoadedSearchResult)
+                if searchBtnClicked {
+                    searchForPosters(keyword: text, from: alreadyLoadedSearchResult)
+                }
             }
         }
     }

@@ -104,6 +104,7 @@
 		EB47501920D6C2F500D8D3FC /* UserDetailLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailLauncher.swift; sourceTree = "<group>"; };
 		EB47501F20D7DBB500D8D3FC /* FilterLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterLauncher.swift; sourceTree = "<group>"; };
 		EB47502220D7E98D00D8D3FC /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
+		EB47502420D85B1400D8D3FC /* CollegePosters.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CollegePosters.entitlements; sourceTree = "<group>"; };
 		EB4A881F20BEC4F400AF5587 /* CollegePosters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CollegePosters.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB4A882220BEC4F400AF5587 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB4A882720BEC4F400AF5587 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -264,6 +265,7 @@
 		EB4A882120BEC4F400AF5587 /* CollegePosters */ = {
 			isa = PBXGroup;
 			children = (
+				EB47502420D85B1400D8D3FC /* CollegePosters.entitlements */,
 				EB31AC2220D12C2600474B9E /* utils */,
 				EB31AC1F20D066D400474B9E /* extension */,
 				EB4A886F20C06D7B00AF5587 /* model */,
@@ -415,6 +417,11 @@
 				TargetAttributes = {
 					EB4A881E20BEC4F400AF5587 = {
 						CreatedOnToolsVersion = 9.3.1;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
 					};
 					EB4A883520BEC4F500AF5587 = {
 						CreatedOnToolsVersion = 9.3.1;
