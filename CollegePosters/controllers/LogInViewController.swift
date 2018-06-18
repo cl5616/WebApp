@@ -21,6 +21,17 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     var authenticated: Bool = false {
         didSet {
             if authenticated {
+                UserDefaults.standard.set(true, forKey: "isLoggedIn")
+                let data: Data = NSKeyedArchiver.archivedData(withRootObject: cookies.httpCookies)
+                UserDefaults.standard.set(data, forKey: "cookies")
+                UserDefaults.standard.set(cookies.url, forKey: "cookiesURL")
+                UserDefaults.standard.set(userId.userid, forKey: "userid")
+                print("Setting userid to \(userId.userid)")
+                //UserDefaults.standard.
+//                print(UserDefaults.standard.integer(forKey: "userid"))
+//                print(UserDefaults.standard.url(forKey: "cookiesURL"))
+  //              UserDefaults.standard.synchronize()
+                UserDefaults.standard.synchronize()
                 DispatchQueue.main.async(execute: {
                     self.performSegue(withIdentifier: "logInSegue", sender: nil)
                 })
@@ -70,14 +81,17 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                     let httpResp: HTTPURLResponse = response as! HTTPURLResponse
                     let httpCookies: [HTTPCookie] = HTTPCookie.cookies(withResponseHeaderFields: httpResp.allHeaderFields as! [String: String], for: httpResp.url!)
                     HTTPCookieStorage.shared.setCookies(httpCookies, for: response?.url!, mainDocumentURL: nil)
+                    
+                    cookies.httpCookies = httpCookies
+                    cookies.url = (response?.url!)!
                     //print ("header: \(httpResp.allHeaderFields as! [String: String])")
                     // store user session
                     let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String : Any]
                     let status = json["status"] as! Int
                     if status == 1 {
-                        self.authenticated = true
                         let uid = json["id"] as! Int
                         userId.userid = uid
+                        self.authenticated = true
                     } else if status == 0 {
                         self.authenticated = false
                         let errorMsg = json["error"] as! String
@@ -90,31 +104,15 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }.resume()
-
-        /*var sleep = 155555555
-
-        while sleep > 0 {
-            sleep -= 1
-        }
-
-        if  authenticated {
-            //print("Authenicated, perform segue to the main storyboard")
-            // store cookies
-            // store user session
-            performSegue(withIdentifier: "logInSegue", sender: nil)
-        } else {
-            if errorMessage == "login failed" {
-                wrongLoginAlert()
-            } else if errorMessage == "argument \"password\" cannot be empty" {
-                emptyPasswordAlert()
-            }
-            passwordTxt.text = ""
-        }*/
-
     }
     
     struct userId {
         static var userid = Int()
+    }
+    
+    struct cookies {
+        static var httpCookies = [HTTPCookie]()
+        static var url: URL?
     }
 
     func wrongLoginAlert() {
@@ -140,10 +138,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-
-        //NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
-        //NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
         logInView.layer.cornerRadius = 15
     }
 
