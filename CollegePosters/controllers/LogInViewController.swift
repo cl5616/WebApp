@@ -15,6 +15,8 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordTxt: UITextField!
 
     @IBOutlet weak var logInView: UIView!
+    
+    static var userProfile: User?
 
     var keyboardPresent: Bool = false
     var errorMessage = ""
@@ -27,11 +29,10 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                 UserDefaults.standard.set(cookies.url, forKey: "cookiesURL")
                 UserDefaults.standard.set(userId.userid, forKey: "userid")
                 print("Setting userid to \(userId.userid)")
-                //UserDefaults.standard.
-//                print(UserDefaults.standard.integer(forKey: "userid"))
-//                print(UserDefaults.standard.url(forKey: "cookiesURL"))
-  //              UserDefaults.standard.synchronize()
                 UserDefaults.standard.synchronize()
+            HttpApiService.sharedHttpApiService.fetchUserProfile(UserDefaults.standard.integer(forKey: "userid")) { (user) in
+                    LogInViewController.userProfile = user
+                }
                 DispatchQueue.main.async(execute: {
                     self.performSegue(withIdentifier: "logInSegue", sender: nil)
                 })

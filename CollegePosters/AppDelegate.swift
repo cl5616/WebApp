@@ -45,6 +45,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             HTTPCookieStorage.shared.setCookies(cookies, for: UserDefaults.standard.url(forKey: "cookiesURL"), mainDocumentURL: nil)
             LogInViewController.userId.userid = UserDefaults.standard.integer(forKey: "userid")
             print("setting userid to \(UserDefaults.standard.integer(forKey: "userid"))")
+        HttpApiService.sharedHttpApiService.fetchUserProfile(UserDefaults.standard.integer(forKey: "userid")) { (user) in
+                LogInViewController.userProfile = user
+            }
             let exploreStoryBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let startVC: UIViewController = exploreStoryBoard.instantiateViewController(withIdentifier: "SignedIn")
             self.window?.rootViewController = startVC
