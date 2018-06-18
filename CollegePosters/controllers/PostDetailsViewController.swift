@@ -22,6 +22,8 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
     var selectedPhotos: [UIImage] = []
     var titleText: String = ""
     var anonymousity: String = "0"
+    var expDate: String = ""
+    var hashtags: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -126,8 +128,8 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
         var request1 = URLRequest(url: url1!)
         request1.httpMethod = "POST"
         request1.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        let postDetailStr = "category=\(category)&content=\(description)&title=\(title)&picture=\(filenames)&anonymous=\(anonymousity)"
-        print(postDetailStr)
+        let postDetailStr = "category=\(category)&content=\(description)&title=\(title)&picture=\(filenames)&anonymous=\(anonymousity)&tags=\(hashtags)&expdate=\(expDate)"
+        //print(postDetailStr)
         request1.httpBody = postDetailStr.data(using: .utf8)
         let session1 = URLSession.shared
         session1.dataTask(with: request1) {(data, response, error) in
@@ -177,7 +179,8 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        textView.resolveHashTags()
+        hashtags = textView.resolveHashTags()
+//        print(hashtags)
         sendButton.isEnabled = !(postDescription.text?.isEmpty ?? true) && !(categorySelection.text?.isEmpty ?? true)
     }
     
@@ -266,8 +269,7 @@ extension Data {
 
 extension UITextView {
     
-    
-    func resolveHashTags() {
+    func resolveHashTags() -> String {
 
         let attrString = NSMutableAttributedString()
         attrString.setAttributedString(self.attributedText)
@@ -280,17 +282,26 @@ extension UITextView {
         do {
             regex = try NSRegularExpression(pattern: "(#[A-Za-z0-9]*)", options: [])
         } catch {
-            print("Encountering error when parsing regex in \(str)")
+            print("Encountering error when parsing regex in \(String(describing: str))")
         }
         
         let matches = regex?.matches(in: str!, options:[], range:NSMakeRange(0, (str!.count)))
+        var hashtag = [String]()
+        
         for match in matches! {
+            let strRange = Range(match.range, in: str!)
+            //print(str![strRange!])
             //print("match = \(match.range)")
+            hashtag.append(String(str![strRange!].dropFirst()))
+            
             attrString.addAttribute(.foregroundColor, value: UIColor.blue, range: match.range)
             attrString.addAttribute(.underlineColor, value: UIColor.blue, range: match.range)
         }
+        //print(hashtags)
+        //print(hashtags.joined(separator: " "))
         
         self.attributedText = attrString
+        return hashtag.joined(separator: " ")
     }
 
     
