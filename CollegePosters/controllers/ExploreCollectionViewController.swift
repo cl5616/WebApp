@@ -30,6 +30,8 @@ class ExploreCollectionViewController: UICollectionViewController, UICollectionV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(handleSignOut))
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -50,6 +52,16 @@ class ExploreCollectionViewController: UICollectionViewController, UICollectionV
         
         collectionView?.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: 0, right: 0)
         setupMenuBar()
+    }
+    
+    @objc func handleSignOut() {
+        UserDefaults.standard.set(false, forKey: "isLoggedIn")
+        UserDefaults.standard.synchronize()
+        
+        //let loginController = LogInViewController
+        let mainStoryBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let startVC: UIViewController = mainStoryBoard.instantiateViewController(withIdentifier: "notSignedIn")
+        present(startVC, animated: true, completion: nil)
     }
     
     override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {

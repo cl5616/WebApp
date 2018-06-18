@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ActiveLabel
 
 class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
 
@@ -116,9 +117,7 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
 
         
         let filenames = String(filename_array.joined(separator: ";"))
-        //print("combined filename ->")
-        //print("joined filename: \(filenames)")
-        
+
         let category = categorySelection.text?.lowercased() ?? ""
         let description = self.postDescription.text ?? ""
         let title = self.titleText
@@ -137,9 +136,6 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
             }*/
             if let data = data {
                 do {
-                    /*if data.count == 0 {
-                        print("wrong data")
-                    }*/
                     /*let json = */try JSONSerialization.jsonObject(with: data, options: [])
                     //print(json)
                 } catch {
@@ -181,6 +177,7 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
     }
     
     func textViewDidChange(_ textView: UITextView) {
+        textView.resolveHashTags()
         sendButton.isEnabled = !(postDescription.text?.isEmpty ?? true) && !(categorySelection.text?.isEmpty ?? true)
     }
     
@@ -265,4 +262,36 @@ extension Data {
             append(data)
         }
     }
+}
+
+extension UITextView {
+    
+    
+    func resolveHashTags() {
+
+        let attrString = NSMutableAttributedString()
+        attrString.setAttributedString(self.attributedText)
+        
+        let str = self.text
+        attrString.addAttribute(.foregroundColor, value: UIColor.black, range: NSMakeRange(0, str!.count))
+        
+        var regex: NSRegularExpression? = nil
+        
+        do {
+            regex = try NSRegularExpression(pattern: "(#[A-Za-z0-9]*)", options: [])
+        } catch {
+            print("Encountering error when parsing regex in \(str)")
+        }
+        
+        let matches = regex?.matches(in: str!, options:[], range:NSMakeRange(0, (str!.count)))
+        for match in matches! {
+            //print("match = \(match.range)")
+            attrString.addAttribute(.foregroundColor, value: UIColor.blue, range: match.range)
+            attrString.addAttribute(.underlineColor, value: UIColor.blue, range: match.range)
+        }
+        
+        self.attributedText = attrString
+    }
+
+    
 }

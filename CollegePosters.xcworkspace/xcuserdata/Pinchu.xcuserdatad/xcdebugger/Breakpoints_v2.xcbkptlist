@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CollegePosters/controllers/PostDetailsViewController.swift"
-            timestampString = "550927794.912576"
+            timestampString = "551010137.294103"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "postUploadRequest()"
             landmarkType = "7">
          </BreakpointContent>

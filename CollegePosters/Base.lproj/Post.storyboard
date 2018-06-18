@@ -130,7 +130,7 @@
                                 <state key="normal" title="SEND"/>
                                 <connections>
                                     <action selector="sendPressed:" destination="5wP-SZ-X0J" eventType="touchUpInside" id="bpQ-aN-dpA"/>
-                                    <segue destination="SC7-aT-qhD" kind="show" id="D5r-5m-dpD"/>
+                                    <segue destination="RcW-DM-eos" kind="presentation" id="ruY-5d-JhT"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lbX-xj-d3n">
@@ -197,10 +197,10 @@
             </objects>
             <point key="canvasLocation" x="2797.5999999999999" y="1084.4077961019491"/>
         </scene>
-        <!--Explore-->
+        <!--SignedIn-->
         <scene sceneID="k97-aL-ftK">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="Main" storyboardName="Main" referencedIdentifier="Explore" id="RcW-DM-eos" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="Main" storyboardName="Main" referencedIdentifier="SignedIn" id="RcW-DM-eos" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="09w-Pf-mBG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3594" y="1083"/>

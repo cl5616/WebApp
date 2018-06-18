@@ -325,7 +325,6 @@
 		EB4A887620C0A10500AF5587 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				EBB79DB920D2852900B28886 /* SearchViews */,
 				EB4A88AC20C94F9100AF5587 /* ExploreViews */,
 				EB4A88AD20C94FA300AF5587 /* PostViews */,
 			);
@@ -352,13 +351,6 @@
 				EB4A889A20C852D600AF5587 /* PosterImage.swift */,
 			);
 			path = PostViews;
-			sourceTree = "<group>";
-		};
-		EBB79DB920D2852900B28886 /* SearchViews */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SearchViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
