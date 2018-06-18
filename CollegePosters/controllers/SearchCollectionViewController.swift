@@ -170,9 +170,9 @@ class SearchCollectionViewController: UICollectionViewController, UICollectionVi
             collectionView?.contentInset = UIEdgeInsets(top: 60, left: 0, bottom: 0, right: 0)
             view.addSubview(tempView)
             tempView.text = "Tap to follow \(searchBar.text!)"
-            //if .followedTags?.contains(String(searchBar.text!.suffix(searchBar.text!.count - 1))))! {
-              //  tempView.text = "following \(searchBar.text!)"
-            //}
+            if (LogInViewController.userProfile?.followedTags?.contains(String(searchBar.text!.suffix(searchBar.text!.count - 1))))! {
+                tempView.text = "following \(searchBar.text!)"
+            }
             view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-\(searchBarHeight + 3)-[v0(60)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": tempView]))
             view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": tempView]))
         } else {
