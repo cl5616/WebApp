@@ -30,6 +30,7 @@ class PostViewController: UIViewController, UINavigationControllerDelegate,
         
         destViewController.selectedPhotos = selectedPhotos
         destViewController.titleText = titleTextField.text!
+        destViewController.expDate = expireDate.text ?? ""
     }
     
     @IBAction func selectPressed(_ sender: Any) {
@@ -115,12 +116,19 @@ class PostViewController: UIViewController, UINavigationControllerDelegate,
         tb.sizeToFit()
         
         let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
-        tb.setItems([done], animated: false)
+        let cancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: #selector(cancelPressed))
+        
+        tb.setItems([done, cancel], animated: false)
         expireDate.inputAccessoryView = tb
         expireDate.inputView = datePicker
         
         datePicker.minimumDate = Date()
         datePicker.datePickerMode = .dateAndTime
+    }
+    
+    @objc func cancelPressed() {
+        expireDate.text = ""
+        self.view.endEditing(true)
     }
 
     @objc func donePressed() {
@@ -130,7 +138,6 @@ class PostViewController: UIViewController, UINavigationControllerDelegate,
         formatter.timeStyle = .medium
         let dateStr = formatter.string(from: datePicker.date)
         */
-
         
         expireDate.text = "\(datePicker.date)"//dateStr
         self.view.endEditing(true)
