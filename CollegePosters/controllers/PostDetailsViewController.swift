@@ -128,8 +128,16 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
         var request1 = URLRequest(url: url1!)
         request1.httpMethod = "POST"
         request1.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        let postDetailStr = "category=\(category)&content=\(description)&title=\(title)&picture=\(filenames)&anonymous=\(anonymousity)&tags=\(hashtags)&expdate=\(expDate)"
-        //print(postDetailStr)
+        var htandexpdate = ""
+        if hashtags != "" {
+            htandexpdate.append("&tags=\(hashtags)")
+        }
+        if expDate != "" {
+            htandexpdate.append("&expdate=\(expDate)")
+        }
+        var postDetailStr = "category=\(category)&content=\(description)&title=\(title)&picture=\(filenames)&anonymous=\(anonymousity)"
+        postDetailStr.append(htandexpdate)
+        print(postDetailStr)
         request1.httpBody = postDetailStr.data(using: .utf8)
         let session1 = URLSession.shared
         session1.dataTask(with: request1) {(data, response, error) in
