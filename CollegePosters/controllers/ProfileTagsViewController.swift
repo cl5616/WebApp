@@ -75,7 +75,7 @@ class ProfileTagsViewController: UIViewController, UICollectionViewDelegate, UIC
     }
     
     func sendDeleteTagUrl(tag: String) {
-        let url = URL(string: "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getTags.php")
+        let url = URL(string: "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/unfollowtag.php")
         var request = URLRequest(url: url!)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"

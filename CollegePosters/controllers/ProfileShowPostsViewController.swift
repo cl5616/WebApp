@@ -19,7 +19,7 @@ class ProfileShowPostsViewController: UIViewController, UICollectionViewDelegate
     override func viewDidLoad() {
         
         getAllOfMyPosts()
-        let poster = Poster()
+        /*let poster = Poster()
         poster.posterImage = [UIImage(named: "close")] as! [UIImage]
         poster.posterTitle = "gas"
         poster.posterDescription = "#first tag test"
@@ -33,7 +33,7 @@ class ProfileShowPostsViewController: UIViewController, UICollectionViewDelegate
         poster.isSearchResult = false
         poster.checkedLikeStatus = false
         
-        posts.append(poster)
+        posts.append(poster)*/
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -43,6 +43,11 @@ class ProfileShowPostsViewController: UIViewController, UICollectionViewDelegate
         // Do any additional setup after loading the view.
         
         navigationItem.rightBarButtonItem = editButtonItem
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        getAllOfMyPosts()
+        collectionView.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -89,22 +94,49 @@ class ProfileShowPostsViewController: UIViewController, UICollectionViewDelegate
     
     func getAllOfMyPosts() {
         let userId = LogInViewController.userId.userid
-        let url = URL(string: "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/follow.php")
+        let url = URL(string: "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getpostsbyuser.php")
         var request = URLRequest(url: url!)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
-        let postString = "userid=\(userId)"
+        let offset = "0"
+        let limit = "10"
+        let order = "0"
+        let postString = "userid=\(userId)&offset=\(offset)&&limit=\(limit)&order=\(order)"
         request.httpBody = postString.data(using: .utf8)
         let session = URLSession.shared
         session.dataTask(with: request) {(data, response, error) in
             
             if let data = data {
                 do {
-                    let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String : Any]
-                    print(json)
+                    let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+                    //print(json)
                     
                     DispatchQueue.main.async {
-                        //TODO: set new posters
+                        if (json as? [String: AnyObject]) == nil {
+                            for dict in json as! [[String: AnyObject]] {
+                                let newPoster = Poster()
+                                
+                                //title
+                                newPoster.posterTitle = dict["title"] as? String
+                                //content
+                                newPoster.posterDescription = dict["content"] as? String
+                                //image name
+                                var ImageName = dict["picture"] as? String
+                                ImageName = ImageName == "null" ? "fire64" : ImageName
+                                newPoster.posterImageName = ImageName
+                                newPoster.postId = dict["msg_id"] as? Int
+                                //time
+                                let time = dict["post_time"] as? String
+                                let subTime = time?.prefix(19)
+                                newPoster.time = String(subTime!)
+                                //postId
+                                newPoster.postId = dict["msg_id"] as? Int
+                                //userId
+                                newPoster.userId = dict["poster_id"] as? Int
+                                
+                                self.posts.append(newPoster)
+                            }
+                        }
                     }
                 } catch {
                     print(data)
@@ -117,11 +149,11 @@ class ProfileShowPostsViewController: UIViewController, UICollectionViewDelegate
     func sendDeletePostUrl(post: Poster) {
         
         //TODO
-        let url = URL(string: "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/editprofile.php")
+        let url = URL(string: "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/deletepost.php")
         var request = URLRequest(url: url!)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
-        let postString = ""
+        let postString = "postid=\(post.postId ?? 0)"
         request.httpBody = postString.data(using: .utf8)
         let session = URLSession.shared
         session.dataTask(with: request) {(data, response, error) in
@@ -134,7 +166,7 @@ class ProfileShowPostsViewController: UIViewController, UICollectionViewDelegate
                     print(error)
                 }
             }
-            }.resume()
+        }.resume()
     }
 }
 
