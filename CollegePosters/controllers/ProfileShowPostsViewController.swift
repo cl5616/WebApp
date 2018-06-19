@@ -19,6 +19,8 @@ class ProfileShowPostsViewController: UIViewController, UICollectionViewDelegate
     override func viewDidLoad() {
         
         getAllOfMyPosts()
+        print(posts)
+        collectionView.reloadData()
         /*let poster = Poster()
         poster.posterImage = [UIImage(named: "close")] as! [UIImage]
         poster.posterTitle = "gas"
@@ -93,6 +95,7 @@ class ProfileShowPostsViewController: UIViewController, UICollectionViewDelegate
     }
     
     func getAllOfMyPosts() {
+        var res = [Poster]()
         let userId = LogInViewController.userId.userid
         let url = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getpostsbyuser.php"
         let offset = "0"
@@ -145,8 +148,9 @@ class ProfileShowPostsViewController: UIViewController, UICollectionViewDelegate
                                HttpApiService.sharedHttpApiService.checkLikeStatus(posterId: newPoster.postId!, poster: newPoster)
                                 
                                 
-                                self.posts.append(newPoster)
+                                res.append(newPoster)
                             }
+                            self.posts = res
                         }
                     }
                 } catch {
@@ -158,8 +162,7 @@ class ProfileShowPostsViewController: UIViewController, UICollectionViewDelegate
     }
     
     func sendDeletePostUrl(post: Poster) {
-        /*
-        //TODO
+        
         let url = URL(string: "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/deletepost.php")
         var request = URLRequest(url: url!)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
@@ -178,16 +181,19 @@ class ProfileShowPostsViewController: UIViewController, UICollectionViewDelegate
                 }
             }
         }.resume()
- */
+ 
     }
+    
 }
 
 extension ProfileShowPostsViewController: ProfileCollectionViewCellDelegate {
     func delete(cell: ProfileCollectionViewCell) {
         if let indexPath = collectionView?.indexPath(for: cell) {
             sendDeletePostUrl(post: posts[indexPath.section])
+            //print(posts.count)
+            //print([indexPath])
             posts.remove(at: indexPath.section)
-            collectionView.deleteItems(at: [indexPath])
+            collectionView?.deleteItems(at: [indexPath])
         }
     }
 }
