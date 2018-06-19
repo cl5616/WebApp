@@ -52,13 +52,11 @@ class ExploreBaseCell: UICollectionViewCell, UICollectionViewDataSource, UIColle
     }
     
     @objc func refreshAllPost() {
-        if !isLoading{
-            isLoading = true
-            fetchPosters(from: 0)
-        }
+        isLoading = true
+        fetchPosters(from: 0)
     }
     
-    func setSection() {
+    func setSection () {
         return
     }
     

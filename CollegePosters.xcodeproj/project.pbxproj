@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		299C885E20EFF44472BA215C /* Pods_CollegePosters.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CAE3A4F07D2613D19DD221D /* Pods_CollegePosters.framework */; };
+		315E51AB20D6F99A00EB8ECD /* ProfileShowPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315E51AA20D6F99A00EB8ECD /* ProfileShowPostsViewController.swift */; };
+		315E51AD20D6FAAA00EB8ECD /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315E51AC20D6FAAA00EB8ECD /* ProfileCollectionViewCell.swift */; };
+		315E51AF20D7387100EB8ECD /* ProfileTagsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315E51AE20D7387100EB8ECD /* ProfileTagsCollectionViewCell.swift */; };
+		315E51B120D73C8100EB8ECD /* ProfileTagsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 315E51B020D73C8100EB8ECD /* ProfileTagsViewController.swift */; };
 		31B910E020D325A200C1D61D /* ProfileCredentialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B910DF20D325A200C1D61D /* ProfileCredentialViewController.swift */; };
 		631E0BCC20C9AAEE00908267 /* PostDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631E0BCB20C9AAEE00908267 /* PostDetails.swift */; };
 		634169A220D19A0900C6E680 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634169A120D19A0900C6E680 /* RegisterViewController.swift */; };
@@ -80,6 +84,10 @@
 
 /* Begin PBXFileReference section */
 		0CAE3A4F07D2613D19DD221D /* Pods_CollegePosters.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CollegePosters.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		315E51AA20D6F99A00EB8ECD /* ProfileShowPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileShowPostsViewController.swift; sourceTree = "<group>"; };
+		315E51AC20D6FAAA00EB8ECD /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
+		315E51AE20D7387100EB8ECD /* ProfileTagsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTagsCollectionViewCell.swift; sourceTree = "<group>"; };
+		315E51B020D73C8100EB8ECD /* ProfileTagsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTagsViewController.swift; sourceTree = "<group>"; };
 		31B910DF20D325A200C1D61D /* ProfileCredentialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCredentialViewController.swift; sourceTree = "<group>"; };
 		4997281D62618CC43C5B174E /* Pods-CollegePostersTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CollegePostersTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CollegePostersTests/Pods-CollegePostersTests.release.xcconfig"; sourceTree = "<group>"; };
 		576E6AD15ACF977781557463 /* Pods-CollegePostersTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CollegePostersTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CollegePostersTests/Pods-CollegePostersTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -329,6 +337,10 @@
 				634169A320D1A13700C6E680 /* RegisterDetailViewController.swift */,
 				EBB79DB720D284F300B28886 /* SearchCollectionViewController.swift */,
 				31B910DF20D325A200C1D61D /* ProfileCredentialViewController.swift */,
+				315E51AA20D6F99A00EB8ECD /* ProfileShowPostsViewController.swift */,
+				315E51AC20D6FAAA00EB8ECD /* ProfileCollectionViewCell.swift */,
+				315E51B020D73C8100EB8ECD /* ProfileTagsViewController.swift */,
+				315E51AE20D7387100EB8ECD /* ProfileTagsCollectionViewCell.swift */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -560,9 +572,11 @@
 				EB4A88C220C990B500AF5587 /* CellImageView.swift in Sources */,
 				634169A220D19A0900C6E680 /* RegisterViewController.swift in Sources */,
 				EB31AC1620D0291E00474B9E /* PosterDetailCommentCollectionViewCell.swift in Sources */,
+				315E51AB20D6F99A00EB8ECD /* ProfileShowPostsViewController.swift in Sources */,
 				EB47501A20D6C2F500D8D3FC /* UserDetailLauncher.swift in Sources */,
 				EB8C0B1C20D16AE1002A36D4 /* CommentAction.swift in Sources */,
 				63D40D2520C5E16000DBF059 /* PostViewController.swift in Sources */,
+				315E51AF20D7387100EB8ECD /* ProfileTagsCollectionViewCell.swift in Sources */,
 				EBDBA69820CF052E00DCB6DC /* PosterDetailLauncher.swift in Sources */,
 				EB47502320D7E98D00D8D3FC /* SettingCell.swift in Sources */,
 				631E0BCC20C9AAEE00908267 /* PostDetails.swift in Sources */,
@@ -575,6 +589,7 @@
 				EBB79DB820D284F300B28886 /* SearchCollectionViewController.swift in Sources */,
 				EB4A88A120C87FBE00AF5587 /* JobCell.swift in Sources */,
 				EBB79DBD20D3050000B28886 /* BtnActions.swift in Sources */,
+				315E51AD20D6FAAA00EB8ECD /* ProfileCollectionViewCell.swift in Sources */,
 				EB4A886620BF6F0700AF5587 /* ExploreCollectionViewController.swift in Sources */,
 				EB47502020D7DBB500D8D3FC /* FilterLauncher.swift in Sources */,
 				EBB79DB420D19B7F00B28886 /* PosterDetailsCollectionViewCell.swift in Sources */,
@@ -583,6 +598,7 @@
 				63640EB620C74EFF0045A0F1 /* PostImagesViewCell.swift in Sources */,
 				EB4A885C20BF1A9E00AF5587 /* ProfileViewController.swift in Sources */,
 				EB4A88A720C8806500AF5587 /* AcademyCell.swift in Sources */,
+				315E51B120D73C8100EB8ECD /* ProfileTagsViewController.swift in Sources */,
 				EB31AC1A20D0536D00474B9E /* PostDetailCell.swift in Sources */,
 				EB4A88A920C88EB800AF5587 /* LogInViewController.swift in Sources */,
 				634169A420D1A13700C6E680 /* RegisterDetailViewController.swift in Sources */,
@@ -798,18 +814,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3K4LF27X2X;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = QJQGH9NF7F;
 				INFOPLIST_FILE = CollegePosters/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.imperial.CollegePosters1111;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.imperial.CollegePosters;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "5279b5e3-162a-4bda-8968-7a429f77a70b";
+				PROVISIONING_PROFILE_SPECIFIER = CollegePosters;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -821,18 +837,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3K4LF27X2X;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = QJQGH9NF7F;
 				INFOPLIST_FILE = CollegePosters/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.imperial.CollegePosters1111;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.ac.imperial.CollegePosters;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "5279b5e3-162a-4bda-8968-7a429f77a70b";
+				PROVISIONING_PROFILE_SPECIFIER = CollegePosters;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

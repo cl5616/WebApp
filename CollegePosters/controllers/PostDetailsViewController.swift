@@ -101,7 +101,7 @@ class PostDetailsViewController: UIViewController, UITextFieldDelegate, UITextVi
                         let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String : Any]
                         let filename = json["filename"] as! String
                         //print(filename)
-                        print(json)
+                        //print(json)
                         filename_array[i] = filename
                     } catch {
                         print(data)
