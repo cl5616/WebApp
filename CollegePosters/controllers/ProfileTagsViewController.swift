@@ -87,6 +87,9 @@ class ProfileTagsViewController: UIViewController, UICollectionViewDelegate, UIC
             if let data = data {
                 do {
                     _ = try JSONSerialization.jsonObject(with: data, options: []) as! [String : Any]
+                    HttpApiService.sharedHttpApiService.fetchUserProfile(LogInViewController.userId.userid, completion: { (user) in
+                        LogInViewController.userProfile = user
+                    })
                 } catch {
                     print(data)
                     print(error)
@@ -129,6 +132,7 @@ extension ProfileTagsViewController : TagCellDelegate
     func delete(cell: ProfileTagsCollectionViewCell) {
         if let indexPath = tagsCollectionView?.indexPath(for: cell) {
             sendDeleteTagUrl(tag: tags[indexPath.section])
+            print([indexPath])
             tags.remove(at: indexPath.section)
             tagsCollectionView?.deleteItems(at: [indexPath])
         }
