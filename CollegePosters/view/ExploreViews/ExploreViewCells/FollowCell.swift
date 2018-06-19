@@ -25,4 +25,35 @@ class FollowCell: ExploreBaseCell {
         self.section = "getFollowPosters"
     }
     
+    override func fetchPosters(from: Int) {
+        if from == 0 {
+            if posters.count != 0 {
+                posters = [Poster]()
+                postersId = [Int]()
+            }
+            self.alreadyLoaded = 0
+        }
+        
+        posterGetter.fetchPosters(with: section!, from: from, keyword: nil, tags: tagsToString(LogInViewController.userProfile!)) { (posters) in
+            //self.posters.append(contentsOf: posters)
+            self.selectForRender(posters: posters)
+            self.alreadyLoaded += posters.count
+            DispatchQueue.main.async {
+                self.isLoading = false
+                self.cvt.reloadData()
+                self.rc.endRefreshing()
+            }
+        }
+    }
+    
+    func tagsToString(_ user: User) -> String {
+        var ret = ""
+        
+        user.followedTags?.forEach({ (string) in
+            ret.append(string + "+")
+        })
+        
+        return ret
+    }
+    
 }

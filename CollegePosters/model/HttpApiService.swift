@@ -19,7 +19,7 @@ class HttpApiService {
         //add new URLs to dictionary
         shs.urls["getSocialPosters"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getposts.php?category=social"
         shs.urls["getTrendPosters"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getposts.php?sort=1"
-        shs.urls["getFollowPosters"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getposts.php?category=follow"
+        shs.urls["getFollowPosters"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getpostsbytags?"
         shs.urls["getClubsPosters"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getposts.php?category=clubs"
         shs.urls["getMarketPosters"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getposts.php?category=market"
         shs.urls["getJobPosters"] = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getposts.php?category=job"
@@ -76,6 +76,9 @@ class HttpApiService {
             }
         }.resume()
         
+        fetchUserProfile(LogInViewController.userId.userid) { (user) in
+            LogInViewController.userProfile = user
+        }
     }
     
     func checkLikeStatus(posterId: Int, poster: Poster) {
@@ -295,7 +298,7 @@ class HttpApiService {
         switch SearchCollectionViewController.searchMode {
         case "relevance":
             order = 0
-        case "like":
+        case "popularity":
             order = 1
         default:
             order = 1
@@ -324,7 +327,7 @@ class HttpApiService {
                 self.posters = [Poster]()
                 //print(json)
                 if tags != nil {
-                    print(json)
+                    print("posts with tags: \(json)")
                 }
                 
                 if (json as? [String: AnyObject]) == nil {
@@ -352,7 +355,7 @@ class HttpApiService {
                         //userId
                         newPoster.userId = dict["poster_id"] as? Int
                         //is not search result
-                        newPoster.isSearchResult = keyword != nil || tags != nil
+                        newPoster.isSearchResult = false
                         //set user
                         self.fetchUserProfile(newPoster.userId!, completion: { (user) in
                             newPoster.user = user
