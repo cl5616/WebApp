@@ -65,16 +65,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BJ2-Z2-jHY">
-                                <rect key="frame" x="16" y="213" width="150" height="150"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="TPn-Zn-rM0"/>
-                                    <constraint firstAttribute="width" constant="150" id="VbG-Sw-Ex8"/>
-                                </constraints>
-                                <connections>
-                                    <action selector="uploadImageAction:" destination="4dI-9v-H1e" eventType="touchUpInside" id="Qgy-Th-cON"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="agB-Se-UK9">
                                 <rect key="frame" x="59" y="573" width="257" height="30"/>
                                 <color key="backgroundColor" red="0.84498167434017579" green="0.26808059633671721" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -114,6 +104,16 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BJ2-Z2-jHY">
+                                <rect key="frame" x="112" y="98" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="TPn-Zn-rM0"/>
+                                    <constraint firstAttribute="width" constant="150" id="VbG-Sw-Ex8"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="uploadImageAction:" destination="4dI-9v-H1e" eventType="touchUpInside" id="Qgy-Th-cON"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -125,7 +125,7 @@
                             <constraint firstItem="dg1-Ma-vcy" firstAttribute="leading" secondItem="aOD-QE-wH3" secondAttribute="leading" id="Dt9-xR-XTF"/>
                             <constraint firstItem="qJX-Df-VOO" firstAttribute="top" secondItem="TTL-DY-bfZ" secondAttribute="top" id="G50-iv-xPH"/>
                             <constraint firstItem="ZN5-2v-gtK" firstAttribute="centerX" secondItem="hgs-hC-dVE" secondAttribute="centerX" id="Gw0-Yt-FQe"/>
-                            <constraint firstItem="Xds-XN-23l" firstAttribute="leading" secondItem="BJ2-Z2-jHY" secondAttribute="leading" id="Jlw-HQ-AzJ"/>
+                            <constraint firstItem="Xds-XN-23l" firstAttribute="leading" secondItem="BJ2-Z2-jHY" secondAttribute="leading" constant="-96" id="Jlw-HQ-AzJ"/>
                             <constraint firstItem="dg1-Ma-vcy" firstAttribute="trailing" secondItem="hgs-hC-dVE" secondAttribute="trailing" id="KMk-Ag-R6J"/>
                             <constraint firstItem="hgs-hC-dVE" firstAttribute="top" secondItem="3jm-O9-Kgp" secondAttribute="bottom" constant="8" symbolic="YES" id="Mb6-3Q-TPl"/>
                             <constraint firstItem="aOD-QE-wH3" firstAttribute="top" secondItem="00v-LD-L3z" secondAttribute="bottom" constant="8" symbolic="YES" id="N0z-bF-Xjy"/>
@@ -142,7 +142,7 @@
                             <constraint firstItem="dg1-Ma-vcy" firstAttribute="top" secondItem="iKq-Kp-7ML" secondAttribute="bottom" constant="16" id="iON-bo-WoF"/>
                             <constraint firstItem="dg1-Ma-vcy" firstAttribute="leading" secondItem="00v-LD-L3z" secondAttribute="leading" id="jyn-t5-iml"/>
                             <constraint firstItem="qJX-Df-VOO" firstAttribute="trailing" secondItem="R3R-8y-k84" secondAttribute="trailing" id="kBa-sU-WMn"/>
-                            <constraint firstItem="Xds-XN-23l" firstAttribute="centerY" secondItem="BJ2-Z2-jHY" secondAttribute="centerY" id="kSz-3p-NWF"/>
+                            <constraint firstItem="Xds-XN-23l" firstAttribute="centerY" secondItem="BJ2-Z2-jHY" secondAttribute="centerY" constant="114.5" id="kSz-3p-NWF"/>
                             <constraint firstItem="ZN5-2v-gtK" firstAttribute="centerX" secondItem="agB-Se-UK9" secondAttribute="centerX" id="pd8-Vy-2HG"/>
                             <constraint firstItem="agB-Se-UK9" firstAttribute="top" secondItem="hgs-hC-dVE" secondAttribute="bottom" constant="8" symbolic="YES" id="wkN-g1-GB3"/>
                             <constraint firstItem="ZN5-2v-gtK" firstAttribute="centerX" secondItem="qJX-Df-VOO" secondAttribute="centerX" id="x9g-yo-MEh"/>

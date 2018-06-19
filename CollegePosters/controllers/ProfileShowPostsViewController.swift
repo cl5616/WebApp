@@ -94,22 +94,21 @@ class ProfileShowPostsViewController: UIViewController, UICollectionViewDelegate
     
     func getAllOfMyPosts() {
         let userId = LogInViewController.userId.userid
-        let url = URL(string: "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getpostsbyuser.php")
-        var request = URLRequest(url: url!)
-        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "POST"
+        let url = "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/getpostsbyuser.php"
         let offset = "0"
         let limit = "10"
         let order = "0"
         let postString = "userid=\(userId)&offset=\(offset)&&limit=\(limit)&order=\(order)"
-        request.httpBody = postString.data(using: .utf8)
+        let combinedUrl = URL(string: url + "?" + postString)
+        var request = URLRequest(url: combinedUrl!)
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         let session = URLSession.shared
         session.dataTask(with: request) {(data, response, error) in
             
             if let data = data {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-                    //print(json)
+                    print(json)
                     
                     DispatchQueue.main.async {
                         if (json as? [String: AnyObject]) == nil {
@@ -122,9 +121,12 @@ class ProfileShowPostsViewController: UIViewController, UICollectionViewDelegate
                                 newPoster.posterDescription = dict["content"] as? String
                                 //image name
                                 var ImageName = dict["picture"] as? String
-                                ImageName = ImageName == "null" ? "fire64" : ImageName
+                                ImageName = ImageName == "" ? "fire64" : ImageName
                                 newPoster.posterImageName = ImageName
-                                newPoster.postId = dict["msg_id"] as? Int
+                                //set images
+                                HttpApiService.sharedHttpApiService.setImages(withName: ImageName!, poster: newPoster, user: nil)
+                                //image counts
+                                newPoster.numOfPoster = ImageName?.split(separator: ";").count
                                 //time
                                 let time = dict["post_time"] as? String
                                 let subTime = time?.prefix(19)
@@ -133,6 +135,15 @@ class ProfileShowPostsViewController: UIViewController, UICollectionViewDelegate
                                 newPoster.postId = dict["msg_id"] as? Int
                                 //userId
                                 newPoster.userId = dict["poster_id"] as? Int
+                                //is not search result
+                                newPoster.isSearchResult = false
+                                //set user
+                                HttpApiService.sharedHttpApiService.fetchUserProfile(newPoster.userId!, completion: { (user) in
+                                    newPoster.user = user
+                                })
+                                //check like status
+                               HttpApiService.sharedHttpApiService.checkLikeStatus(posterId: newPoster.postId!, poster: newPoster)
+                                
                                 
                                 self.posts.append(newPoster)
                             }
@@ -147,7 +158,7 @@ class ProfileShowPostsViewController: UIViewController, UICollectionViewDelegate
     }
     
     func sendDeletePostUrl(post: Poster) {
-        
+        /*
         //TODO
         let url = URL(string: "https://www.doc.ic.ac.uk/project/2017/271/g1727111/WebAppsServer/deletepost.php")
         var request = URLRequest(url: url!)
@@ -167,6 +178,7 @@ class ProfileShowPostsViewController: UIViewController, UICollectionViewDelegate
                 }
             }
         }.resume()
+ */
     }
 }
 
