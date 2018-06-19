@@ -189,7 +189,7 @@ class ProfileShowPostsViewController: UIViewController, UICollectionViewDelegate
 extension ProfileShowPostsViewController: ProfileCollectionViewCellDelegate {
     func delete(cell: ProfileCollectionViewCell) {
         if let indexPath = collectionView?.indexPath(for: cell) {
-            sendDeletePostUrl(post: posts[indexPath.section])
+            sendDeletePostUrl(post: posts[indexPath.item])
             //print(posts.count)
             print([indexPath])
             posts.remove(at: indexPath.section)

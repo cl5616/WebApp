@@ -131,7 +131,7 @@ extension ProfileTagsViewController : TagCellDelegate
 {
     func delete(cell: ProfileTagsCollectionViewCell) {
         if let indexPath = tagsCollectionView?.indexPath(for: cell) {
-            sendDeleteTagUrl(tag: tags[indexPath.section])
+            sendDeleteTagUrl(tag: tags[indexPath.item])
             print([indexPath])
             tags.remove(at: indexPath.section)
             tagsCollectionView?.deleteItems(at: [indexPath])
